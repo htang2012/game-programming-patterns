@@ -165,10 +165,10 @@ instruction because it needs data. It sits there, bored out of its mind for a
 few hundred cycles until the fetch completes. Our mission is to avoid that.
 Imagine you&#8217;re trying to optimize some performance-critical piece of game code
 and it looks like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">NUM_THINGS</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_THINGS</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">sleepFor500Cycles</span><span class="p">();</span>
-  <span class="n">things</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">doStuff</span><span class="p">();</span>
+<span class="w">  </span><span class="n">sleepFor500Cycles</span><span class="p">();</span>
+<span class="w">  </span><span class="n">things</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">doStuff</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -294,23 +294,23 @@ keep in mind that the general technique can be applied anywhere it fits.</p>
 processes a bunch of game entities. Those entities are decomposed into different
 domains&#8202;&mdash;&#8202;AI, physics, and rendering&#8202;&mdash;&#8202;using the <a href="component.html"
 class="pattern">Component</a> pattern. Here&#8217;s the <code>GameEntity</code> class:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">GameEntity</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">GameEntity</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="n">GameEntity</span><span class="p">(</span><span class="n">AIComponent</span><span class="o">*</span> <span class="n">ai</span><span class="p">,</span>
-             <span class="n">PhysicsComponent</span><span class="o">*</span> <span class="n">physics</span><span class="p">,</span>
-             <span class="n">RenderComponent</span><span class="o">*</span> <span class="n">render</span><span class="p">)</span>
-  <span class="o">:</span> <span class="n">ai_</span><span class="p">(</span><span class="n">ai</span><span class="p">),</span> <span class="n">physics_</span><span class="p">(</span><span class="n">physics</span><span class="p">),</span> <span class="n">render_</span><span class="p">(</span><span class="n">render</span><span class="p">)</span>
-  <span class="p">{}</span>
+<span class="w">  </span><span class="n">GameEntity</span><span class="p">(</span><span class="n">AIComponent</span><span class="o">*</span><span class="w"> </span><span class="n">ai</span><span class="p">,</span>
+<span class="w">             </span><span class="n">PhysicsComponent</span><span class="o">*</span><span class="w"> </span><span class="n">physics</span><span class="p">,</span>
+<span class="w">             </span><span class="n">RenderComponent</span><span class="o">*</span><span class="w"> </span><span class="n">render</span><span class="p">)</span>
+<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">ai_</span><span class="p">(</span><span class="n">ai</span><span class="p">),</span><span class="w"> </span><span class="n">physics_</span><span class="p">(</span><span class="n">physics</span><span class="p">),</span><span class="w"> </span><span class="n">render_</span><span class="p">(</span><span class="n">render</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{}</span>
 
-  <span class="n">AIComponent</span><span class="o">*</span> <span class="n">ai</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">ai_</span><span class="p">;</span> <span class="p">}</span>
-  <span class="n">PhysicsComponent</span><span class="o">*</span> <span class="n">physics</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">physics_</span><span class="p">;</span> <span class="p">}</span>
-  <span class="n">RenderComponent</span><span class="o">*</span> <span class="n">render</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">render_</span><span class="p">;</span> <span class="p">}</span>
+<span class="w">  </span><span class="n">AIComponent</span><span class="o">*</span><span class="w"> </span><span class="n">ai</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ai_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="n">PhysicsComponent</span><span class="o">*</span><span class="w"> </span><span class="n">physics</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">physics_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="n">RenderComponent</span><span class="o">*</span><span class="w"> </span><span class="n">render</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">render_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-  <span class="n">AIComponent</span><span class="o">*</span> <span class="n">ai_</span><span class="p">;</span>
-  <span class="n">PhysicsComponent</span><span class="o">*</span> <span class="n">physics_</span><span class="p">;</span>
-  <span class="n">RenderComponent</span><span class="o">*</span> <span class="n">render_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">AIComponent</span><span class="o">*</span><span class="w"> </span><span class="n">ai_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">PhysicsComponent</span><span class="o">*</span><span class="w"> </span><span class="n">physics_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">RenderComponent</span><span class="o">*</span><span class="w"> </span><span class="n">render_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -323,31 +323,31 @@ lines of:</p>
 class="pattern">Update Method</a> pattern. Even <code>render()</code> is this pattern, just
 by another name.</p>
 </aside>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">AIComponent</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AIComponent</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="kt">void</span> <span class="n">update</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* Work with and modify state... */</span> <span class="p">}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* Work with and modify state... */</span><span class="w"> </span><span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-  <span class="c1">// Goals, mood, etc. ...</span>
+<span class="w">  </span><span class="c1">// Goals, mood, etc. ...</span>
 <span class="p">};</span>
 
-<span class="k">class</span> <span class="nc">PhysicsComponent</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PhysicsComponent</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="kt">void</span> <span class="n">update</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* Work with and modify state... */</span> <span class="p">}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* Work with and modify state... */</span><span class="w"> </span><span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-  <span class="c1">// Rigid body, velocity, mass, etc. ...</span>
+<span class="w">  </span><span class="c1">// Rigid body, velocity, mass, etc. ...</span>
 <span class="p">};</span>
 
-<span class="k">class</span> <span class="nc">RenderComponent</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RenderComponent</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="kt">void</span> <span class="n">render</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* Work with and modify state... */</span> <span class="p">}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* Work with and modify state... */</span><span class="w"> </span><span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-  <span class="c1">// Mesh, textures, shaders, etc. ...</span>
+<span class="w">  </span><span class="c1">// Mesh, textures, shaders, etc. ...</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -365,27 +365,27 @@ Each spin of the game loop, we need to run the following:</p>
 </li>
 </ol>
 <p>Lots of game engines implement that like so:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">gameOver</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">gameOver</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="c1">// Process AI.</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numEntities</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">entities</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">ai</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">();</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="c1">// Process AI.</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numEntities</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">entities</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">ai</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// Update physics.</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numEntities</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">entities</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">physics</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">();</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="c1">// Update physics.</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numEntities</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">entities</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">physics</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// Draw to screen.</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numEntities</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">entities</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">render</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">render</span><span class="p">();</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="c1">// Draw to screen.</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numEntities</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">entities</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">render</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">render</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// Other game loop machinery for timing...</span>
+<span class="w">  </span><span class="c1">// Other game loop machinery for timing...</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -440,12 +440,12 @@ Earth. We&#8217;ll have a big array for each type of component: a flat array of 
 components, another for physics, and another for rendering.</p>
 <p>Like this:</p>
 <p><span name="long-name"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="n">AIComponent</span><span class="o">*</span> <span class="n">aiComponents</span> <span class="o">=</span>
-    <span class="k">new</span> <span class="n">AIComponent</span><span class="p">[</span><span class="n">MAX_ENTITIES</span><span class="p">];</span>
-<span class="n">PhysicsComponent</span><span class="o">*</span> <span class="n">physicsComponents</span> <span class="o">=</span>
-    <span class="k">new</span> <span class="n">PhysicsComponent</span><span class="p">[</span><span class="n">MAX_ENTITIES</span><span class="p">];</span>
-<span class="n">RenderComponent</span><span class="o">*</span> <span class="n">renderComponents</span> <span class="o">=</span>
-    <span class="k">new</span> <span class="n">RenderComponent</span><span class="p">[</span><span class="n">MAX_ENTITIES</span><span class="p">];</span>
+<div class="codehilite"><pre><span></span><code><span class="n">AIComponent</span><span class="o">*</span><span class="w"> </span><span class="n">aiComponents</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">AIComponent</span><span class="p">[</span><span class="n">MAX_ENTITIES</span><span class="p">];</span>
+<span class="n">PhysicsComponent</span><span class="o">*</span><span class="w"> </span><span class="n">physicsComponents</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">PhysicsComponent</span><span class="p">[</span><span class="n">MAX_ENTITIES</span><span class="p">];</span>
+<span class="n">RenderComponent</span><span class="o">*</span><span class="w"> </span><span class="n">renderComponents</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">RenderComponent</span><span class="p">[</span><span class="n">MAX_ENTITIES</span><span class="p">];</span>
 </code></pre></div>
 
 <aside name="long-name">
@@ -456,27 +456,27 @@ is.</p>
 components</em>. The data is all there, one byte after the other. The game loop can
 then walk these directly:</p>
 <p><span name="arrow"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">gameOver</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">gameOver</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="c1">// Process AI.</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numEntities</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">aiComponents</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">update</span><span class="p">();</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="c1">// Process AI.</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numEntities</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">aiComponents</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">update</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// Update physics.</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numEntities</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">physicsComponents</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">update</span><span class="p">();</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="c1">// Update physics.</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numEntities</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">physicsComponents</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">update</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// Draw to screen.</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numEntities</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">renderComponents</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">render</span><span class="p">();</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="c1">// Draw to screen.</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numEntities</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">renderComponents</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">render</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// Other game loop machinery for timing...</span>
+<span class="w">  </span><span class="c1">// Other game loop machinery for timing...</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -510,36 +510,36 @@ a little <span name="pool">manager class</span> too:</p>
 <p>The <code>ParticleSystem</code> class is an example of an <a href="object-pool.html"
 class="pattern">Object Pool</a> custom built for a single type of object.</p>
 </aside>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Particle</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Particle</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="kt">void</span> <span class="n">update</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* Gravity, etc. ... */</span> <span class="p">}</span>
-  <span class="c1">// Position, velocity, etc. ...</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* Gravity, etc. ... */</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// Position, velocity, etc. ...</span>
 <span class="p">};</span>
 
-<span class="k">class</span> <span class="nc">ParticleSystem</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ParticleSystem</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="n">ParticleSystem</span><span class="p">()</span>
-  <span class="o">:</span> <span class="n">numParticles_</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-  <span class="p">{}</span>
+<span class="w">  </span><span class="n">ParticleSystem</span><span class="p">()</span>
+<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">numParticles_</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{}</span>
 
-  <span class="kt">void</span> <span class="n">update</span><span class="p">();</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">();</span>
 <span class="k">private</span><span class="o">:</span>
-  <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">MAX_PARTICLES</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">;</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAX_PARTICLES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100000</span><span class="p">;</span>
 
-  <span class="kt">int</span> <span class="n">numParticles_</span><span class="p">;</span>
-  <span class="n">Particle</span> <span class="n">particles_</span><span class="p">[</span><span class="n">MAX_PARTICLES</span><span class="p">];</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">numParticles_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Particle</span><span class="w"> </span><span class="n">particles_</span><span class="p">[</span><span class="n">MAX_PARTICLES</span><span class="p">];</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>A rudimentary update method for the system just looks like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">ParticleSystem::update</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">ParticleSystem::update</span><span class="p">()</span>
 <span class="p">{</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numParticles_</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">particles_</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">update</span><span class="p">();</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numParticles_</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">particles_</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">update</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -547,12 +547,12 @@ class="pattern">Object Pool</a> custom built for a single type of object.</p>
 all the time. The particle system has a fixed-size pool of objects, but they
 aren&#8217;t usually all actively twinkling across the screen. The easy answer is
 something like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numParticles_</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numParticles_</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">particles_</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">isActive</span><span class="p">())</span>
-  <span class="p">{</span>
-    <span class="n">particles_</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">update</span><span class="p">();</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">particles_</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">isActive</span><span class="p">())</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">particles_</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">update</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -594,9 +594,9 @@ particles in the front of the list. If we know all of those particles are
 active, we don&#8217;t have to check the flag at all.</p>
 <p>We can also easily keep track of how many active particles there are. With this,
 our update loop turns into this thing of beauty:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numActive_</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numActive_</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">particles</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">update</span><span class="p">();</span>
+<span class="w">  </span><span class="n">particles</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">update</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -610,36 +610,36 @@ are inactive&#8202;&mdash;&#8202;the only time it can become <em>un</em>sorted i
 been activated or deactivated. We can handle those two cases pretty easily. When
 a particle gets activated, we move it up to the end of the active particles by
 swapping it with the first <em>in</em>active one:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">ParticleSystem::activateParticle</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">ParticleSystem::activateParticle</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="c1">// Shouldn&#39;t already be active!</span>
-  <span class="n">assert</span><span class="p">(</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">numActive_</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Shouldn&#39;t already be active!</span>
+<span class="w">  </span><span class="n">assert</span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">numActive_</span><span class="p">);</span>
 
-  <span class="c1">// Swap it with the first inactive particle</span>
-  <span class="c1">// right after the active ones.</span>
-  <span class="n">Particle</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">particles_</span><span class="p">[</span><span class="n">numActive_</span><span class="p">];</span>
-  <span class="n">particles_</span><span class="p">[</span><span class="n">numActive_</span><span class="p">]</span> <span class="o">=</span> <span class="n">particles_</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
-  <span class="n">particles_</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Swap it with the first inactive particle</span>
+<span class="w">  </span><span class="c1">// right after the active ones.</span>
+<span class="w">  </span><span class="n">Particle</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">particles_</span><span class="p">[</span><span class="n">numActive_</span><span class="p">];</span>
+<span class="w">  </span><span class="n">particles_</span><span class="p">[</span><span class="n">numActive_</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">particles_</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+<span class="w">  </span><span class="n">particles_</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
 
-  <span class="c1">// Now there&#39;s one more.</span>
-  <span class="n">numActive_</span><span class="o">++</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Now there&#39;s one more.</span>
+<span class="w">  </span><span class="n">numActive_</span><span class="o">++</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p>To deactivate a particle, we just do the opposite:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">ParticleSystem::deactivateParticle</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">ParticleSystem::deactivateParticle</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="c1">// Shouldn&#39;t already be inactive!</span>
-  <span class="n">assert</span><span class="p">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">numActive_</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Shouldn&#39;t already be inactive!</span>
+<span class="w">  </span><span class="n">assert</span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numActive_</span><span class="p">);</span>
 
-  <span class="c1">// There&#39;s one fewer.</span>
-  <span class="n">numActive_</span><span class="o">--</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// There&#39;s one fewer.</span>
+<span class="w">  </span><span class="n">numActive_</span><span class="o">--</span><span class="p">;</span>
 
-  <span class="c1">// Swap it with the last active particle</span>
-  <span class="c1">// right before the inactive ones.</span>
-  <span class="n">Particle</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">particles_</span><span class="p">[</span><span class="n">numActive_</span><span class="p">];</span>
-  <span class="n">particles_</span><span class="p">[</span><span class="n">numActive_</span><span class="p">]</span> <span class="o">=</span> <span class="n">particles_</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
-  <span class="n">particles_</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Swap it with the last active particle</span>
+<span class="w">  </span><span class="c1">// right before the inactive ones.</span>
+<span class="w">  </span><span class="n">Particle</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">particles_</span><span class="p">[</span><span class="n">numActive_</span><span class="p">];</span>
+<span class="w">  </span><span class="n">particles_</span><span class="p">[</span><span class="n">numActive_</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">particles_</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+<span class="w">  </span><span class="n">particles_</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -674,15 +674,15 @@ happier. Say we&#8217;ve got an AI component for some game entity. It has some s
 in it&#8202;&mdash;&#8202;the animation it&#8217;s currently playing, a goal position it&#8217;s heading
 towards, energy level, etc.&#8202;&mdash;&#8202;stuff it checks and tweaks every single frame.
 Something like:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">AIComponent</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AIComponent</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="kt">void</span> <span class="n">update</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-  <span class="n">Animation</span><span class="o">*</span> <span class="n">animation_</span><span class="p">;</span>
-  <span class="kt">double</span> <span class="n">energy_</span><span class="p">;</span>
-  <span class="n">Vector</span> <span class="n">goalPos_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Animation</span><span class="o">*</span><span class="w"> </span><span class="n">animation_</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">energy_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Vector</span><span class="w"> </span><span class="n">goalPos_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -690,17 +690,17 @@ Something like:</p>
 describing what loot it drops when it has an unfortunate encounter with the
 noisy end of a shotgun. That drop data is only used once in the entity&#8217;s
 lifetime, right at its bitter end:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">AIComponent</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AIComponent</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="kt">void</span> <span class="n">update</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-  <span class="c1">// Previous fields...</span>
-  <span class="n">LootType</span> <span class="n">drop_</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">minDrops_</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">maxDrops_</span><span class="p">;</span>
-  <span class="kt">double</span> <span class="n">chanceOfDrop_</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Previous fields...</span>
+<span class="w">  </span><span class="n">LootType</span><span class="w"> </span><span class="n">drop_</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">minDrops_</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">maxDrops_</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">chanceOfDrop_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -719,25 +719,25 @@ everything else that gets used less frequently.</p>
 so we don&#8217;t want to chase a pointer to find it. The cold component can be off to
 the side, but we still need to get to it, so we give the hot component a pointer
 to it, like so:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">AIComponent</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AIComponent</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="c1">// Methods...</span>
+<span class="w">  </span><span class="c1">// Methods...</span>
 <span class="k">private</span><span class="o">:</span>
-  <span class="n">Animation</span><span class="o">*</span> <span class="n">animation_</span><span class="p">;</span>
-  <span class="kt">double</span> <span class="n">energy_</span><span class="p">;</span>
-  <span class="n">Vector</span> <span class="n">goalPos_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Animation</span><span class="o">*</span><span class="w"> </span><span class="n">animation_</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">energy_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Vector</span><span class="w"> </span><span class="n">goalPos_</span><span class="p">;</span>
 
-  <span class="n">LootDrop</span><span class="o">*</span> <span class="n">loot_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">LootDrop</span><span class="o">*</span><span class="w"> </span><span class="n">loot_</span><span class="p">;</span>
 <span class="p">};</span>
 
-<span class="k">class</span> <span class="nc">LootDrop</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LootDrop</span>
 <span class="p">{</span>
-  <span class="k">friend</span> <span class="k">class</span> <span class="nc">AIComponent</span><span class="p">;</span>
-  <span class="n">LootType</span> <span class="n">drop_</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">minDrops_</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">maxDrops_</span><span class="p">;</span>
-  <span class="kt">double</span> <span class="n">chanceOfDrop_</span><span class="p">;</span>
+<span class="w">  </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">AIComponent</span><span class="p">;</span>
+<span class="w">  </span><span class="n">LootType</span><span class="w"> </span><span class="n">drop_</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">minDrops_</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">maxDrops_</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">chanceOfDrop_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 

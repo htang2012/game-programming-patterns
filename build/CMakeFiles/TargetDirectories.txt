@@ -1,0 +1,3 @@
+/workspace/game-programming-patterns/build/CMakeFiles/gamerun.dir
+/workspace/game-programming-patterns/build/CMakeFiles/edit_cache.dir
+/workspace/game-programming-patterns/build/CMakeFiles/rebuild_cache.dir

@@ -56,14 +56,14 @@ unsavory dinner companions enter the arena by way of &#8220;spawners&#8221;, and
 different spawner for each kind of enemy.</p>
 <p>For the sake of this example, let&#8217;s say we have different classes for each kind
 of monster in the game&#8202;&mdash;&#8202;<code>Ghost</code>, <code>Demon</code>, <code>Sorcerer</code>, etc., like:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Monster</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Monster</span>
 <span class="p">{</span>
-  <span class="c1">// Stuff...</span>
+<span class="w">  </span><span class="c1">// Stuff...</span>
 <span class="p">};</span>
 
-<span class="k">class</span> <span class="nc">Ghost</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Monster</span> <span class="p">{};</span>
-<span class="k">class</span> <span class="nc">Demon</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Monster</span> <span class="p">{};</span>
-<span class="k">class</span> <span class="nc">Sorcerer</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Monster</span> <span class="p">{};</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Ghost</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Monster</span><span class="w"> </span><span class="p">{};</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Demon</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Monster</span><span class="w"> </span><span class="p">{};</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Sorcerer</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Monster</span><span class="w"> </span><span class="p">{};</span>
 </code></pre></div>
 
 <p>A spawner constructs instances of one particular monster type. To support every
@@ -76,29 +76,29 @@ each monster class, leading to a parallel class hierarchy:</p>
 src="images/arrow-inherits.png" class="arrow" alt="A UML arrow." /> means &#8220;inherits from&#8221;.</p>
 </aside>
 <p>Implementing it would look like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Spawner</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Spawner</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="o">~</span><span class="n">Spawner</span><span class="p">()</span> <span class="p">{}</span>
-  <span class="k">virtual</span> <span class="n">Monster</span><span class="o">*</span> <span class="n">spawnMonster</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Spawner</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">Monster</span><span class="o">*</span><span class="w"> </span><span class="n">spawnMonster</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">};</span>
 
-<span class="k">class</span> <span class="nc">GhostSpawner</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Spawner</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">GhostSpawner</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Spawner</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="n">Monster</span><span class="o">*</span> <span class="n">spawnMonster</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="n">Ghost</span><span class="p">();</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">Monster</span><span class="o">*</span><span class="w"> </span><span class="n">spawnMonster</span><span class="p">()</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Ghost</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">};</span>
 
-<span class="k">class</span> <span class="nc">DemonSpawner</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Spawner</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DemonSpawner</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Spawner</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="n">Monster</span><span class="o">*</span> <span class="n">spawnMonster</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="n">Demon</span><span class="p">();</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">Monster</span><span class="o">*</span><span class="w"> </span><span class="n">spawnMonster</span><span class="p">()</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Demon</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">};</span>
 
 <span class="c1">// You get the idea...</span>
@@ -114,52 +114,52 @@ be treated as a <em>prototypal</em> monster used to generate other versions of
 itself.</p>
 <p>To implement this, we give our base class, <code>Monster</code>, an abstract <code>clone()</code>
 method:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Monster</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Monster</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="o">~</span><span class="n">Monster</span><span class="p">()</span> <span class="p">{}</span>
-  <span class="k">virtual</span> <span class="n">Monster</span><span class="o">*</span> <span class="n">clone</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Monster</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">Monster</span><span class="o">*</span><span class="w"> </span><span class="n">clone</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-  <span class="c1">// Other stuff...</span>
+<span class="w">  </span><span class="c1">// Other stuff...</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>Each monster subclass provides an implementation that returns a new object
 identical in class and state to itself. For example:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Ghost</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Monster</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Ghost</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Monster</span><span class="w"> </span><span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="n">Ghost</span><span class="p">(</span><span class="kt">int</span> <span class="n">health</span><span class="p">,</span> <span class="kt">int</span> <span class="n">speed</span><span class="p">)</span>
-  <span class="o">:</span> <span class="n">health_</span><span class="p">(</span><span class="n">health</span><span class="p">),</span>
-    <span class="n">speed_</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span>
-  <span class="p">{}</span>
+<span class="w">  </span><span class="n">Ghost</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">health</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">speed</span><span class="p">)</span>
+<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">health_</span><span class="p">(</span><span class="n">health</span><span class="p">),</span>
+<span class="w">    </span><span class="n">speed_</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{}</span>
 
-  <span class="k">virtual</span> <span class="n">Monster</span><span class="o">*</span> <span class="n">clone</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="n">Ghost</span><span class="p">(</span><span class="n">health_</span><span class="p">,</span> <span class="n">speed_</span><span class="p">);</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">Monster</span><span class="o">*</span><span class="w"> </span><span class="n">clone</span><span class="p">()</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Ghost</span><span class="p">(</span><span class="n">health_</span><span class="p">,</span><span class="w"> </span><span class="n">speed_</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-  <span class="kt">int</span> <span class="n">health_</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">speed_</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">health_</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">speed_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>Once all our monsters support that, we no longer need a spawner class for each
 monster class. Instead, we define a single one:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Spawner</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Spawner</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="n">Spawner</span><span class="p">(</span><span class="n">Monster</span><span class="o">*</span> <span class="n">prototype</span><span class="p">)</span>
-  <span class="o">:</span> <span class="n">prototype_</span><span class="p">(</span><span class="n">prototype</span><span class="p">)</span>
-  <span class="p">{}</span>
+<span class="w">  </span><span class="n">Spawner</span><span class="p">(</span><span class="n">Monster</span><span class="o">*</span><span class="w"> </span><span class="n">prototype</span><span class="p">)</span>
+<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">prototype_</span><span class="p">(</span><span class="n">prototype</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{}</span>
 
-  <span class="n">Monster</span><span class="o">*</span> <span class="n">spawnMonster</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="k">return</span> <span class="n">prototype_</span><span class="o">-&gt;</span><span class="n">clone</span><span class="p">();</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="n">Monster</span><span class="o">*</span><span class="w"> </span><span class="n">spawnMonster</span><span class="p">()</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">prototype_</span><span class="o">-&gt;</span><span class="n">clone</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-  <span class="n">Monster</span><span class="o">*</span> <span class="n">prototype_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Monster</span><span class="o">*</span><span class="w"> </span><span class="n">prototype_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -169,8 +169,8 @@ queen bee who never leaves the hive.</p>
 <p><img src="images/prototype-spawner.png" alt="A Spawner contains a prototype field referencing a Monster. It calls clone() on the prototype to create new monsters." /></p>
 <p>To create a ghost spawner, we create a prototypal ghost instance and
 then create a spawner holding that prototype:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Monster</span><span class="o">*</span> <span class="n">ghostPrototype</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Ghost</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
-<span class="n">Spawner</span><span class="o">*</span> <span class="n">ghostSpawner</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Spawner</span><span class="p">(</span><span class="n">ghostPrototype</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Monster</span><span class="o">*</span><span class="w"> </span><span class="n">ghostPrototype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Ghost</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<span class="n">Spawner</span><span class="o">*</span><span class="w"> </span><span class="n">ghostSpawner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Spawner</span><span class="p">(</span><span class="n">ghostPrototype</span><span class="p">);</span>
 </code></pre></div>
 
 <p>One neat part about this pattern is that it doesn&#8217;t just clone the <em>class</em> of
@@ -200,35 +200,35 @@ enshrining each in its own class.</p>
 <p>Even if we do have different classes for each monster, there are other ways to
 decorticate this <em>Felis catus</em>. Instead of making separate spawner <em>classes</em> for
 each monster, we could make spawn <em>functions</em>, like so:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Monster</span><span class="o">*</span> <span class="nf">spawnGhost</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Monster</span><span class="o">*</span><span class="w"> </span><span class="nf">spawnGhost</span><span class="p">()</span>
 <span class="p">{</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="n">Ghost</span><span class="p">();</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Ghost</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p>This is less boilerplate than rolling a whole class for constructing a monster
 of some type. Then the one spawner class can simply store a function pointer:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">typedef</span> <span class="n">Monster</span><span class="o">*</span> <span class="p">(</span><span class="o">*</span><span class="n">SpawnCallback</span><span class="p">)();</span>
+<div class="codehilite"><pre><span></span><code><span class="k">typedef</span><span class="w"> </span><span class="n">Monster</span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">SpawnCallback</span><span class="p">)();</span>
 
-<span class="k">class</span> <span class="nc">Spawner</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Spawner</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="n">Spawner</span><span class="p">(</span><span class="n">SpawnCallback</span> <span class="n">spawn</span><span class="p">)</span>
-  <span class="o">:</span> <span class="n">spawn_</span><span class="p">(</span><span class="n">spawn</span><span class="p">)</span>
-  <span class="p">{}</span>
+<span class="w">  </span><span class="n">Spawner</span><span class="p">(</span><span class="n">SpawnCallback</span><span class="w"> </span><span class="n">spawn</span><span class="p">)</span>
+<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">spawn_</span><span class="p">(</span><span class="n">spawn</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{}</span>
 
-  <span class="n">Monster</span><span class="o">*</span> <span class="n">spawnMonster</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="k">return</span> <span class="n">spawn_</span><span class="p">();</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="n">Monster</span><span class="o">*</span><span class="w"> </span><span class="n">spawnMonster</span><span class="p">()</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">spawn_</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-  <span class="n">SpawnCallback</span> <span class="n">spawn_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">SpawnCallback</span><span class="w"> </span><span class="n">spawn_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>To create a spawner for ghosts, you do:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Spawner</span><span class="o">*</span> <span class="n">ghostSpawner</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Spawner</span><span class="p">(</span><span class="n">spawnGhost</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Spawner</span><span class="o">*</span><span class="w"> </span><span class="n">ghostSpawner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Spawner</span><span class="p">(</span><span class="n">spawnGhost</span><span class="p">);</span>
 </code></pre></div>
 
 <h3><a href="#templates" name="templates">Templates</a></h3>
@@ -242,23 +242,23 @@ scared some people completely away from C++. Either way, everyone I see using
 C++ today uses templates too.</p>
 </aside>
 <p><span name="base"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Spawner</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Spawner</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="o">~</span><span class="n">Spawner</span><span class="p">()</span> <span class="p">{}</span>
-  <span class="k">virtual</span> <span class="n">Monster</span><span class="o">*</span> <span class="n">spawnMonster</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Spawner</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">Monster</span><span class="o">*</span><span class="w"> </span><span class="n">spawnMonster</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">};</span>
 
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
-<span class="k">class</span> <span class="nc">SpawnerFor</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Spawner</span>
+<span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpawnerFor</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Spawner</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="n">Monster</span><span class="o">*</span> <span class="n">spawnMonster</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">T</span><span class="p">();</span> <span class="p">}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">Monster</span><span class="o">*</span><span class="w"> </span><span class="n">spawnMonster</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">T</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>Using it looks like:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Spawner</span><span class="o">*</span> <span class="n">ghostSpawner</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SpawnerFor</span><span class="o">&lt;</span><span class="n">Ghost</span><span class="o">&gt;</span><span class="p">();</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Spawner</span><span class="o">*</span><span class="w"> </span><span class="n">ghostSpawner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SpawnerFor</span><span class="o">&lt;</span><span class="n">Ghost</span><span class="o">&gt;</span><span class="p">();</span>
 </code></pre></div>
 
 <aside name="base">
@@ -425,14 +425,14 @@ delegates to an existing one. Even that wasn&#8217;t added until ECMAScript 5,
 fourteen years after JavaScript came out. Instead of cloning, let me walk you
 through the typical way you define types and create objects in JavaScript. You
 start with a <em>constructor function</em>:</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">function</span> <span class="nx">Weapon</span><span class="p">(</span><span class="nx">range</span><span class="p">,</span> <span class="nx">damage</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">range</span> <span class="o">=</span> <span class="nx">range</span><span class="p">;</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">damage</span> <span class="o">=</span> <span class="nx">damage</span><span class="p">;</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">Weapon</span><span class="p">(</span><span class="nx">range</span><span class="p">,</span><span class="w"> </span><span class="nx">damage</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">range</span><span class="p">;</span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">damage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">damage</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p>This creates a new object and initializes its fields. You invoke it like:</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">var</span> <span class="nx">sword</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Weapon</span><span class="p">(</span><span class="mf">10</span><span class="p">,</span> <span class="mf">16</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">sword</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Weapon</span><span class="p">(</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">16</span><span class="p">);</span>
 </code></pre></div>
 
 <p>The <code>new</code> here invokes the body of the <code>Weapon()</code> function with <code>this</code> bound to a
@@ -443,12 +443,12 @@ it wires it up to delegate to a prototype object. You can get to that object
 directly using <code>Weapon.prototype</code>.</p>
 <p>While state is added in the constructor body, to define <em>behavior</em>, you usually
 add methods to the prototype object. Something like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">Weapon</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">attack</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">distanceTo</span><span class="p">(</span><span class="nx">target</span><span class="p">)</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">range</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Out of range!&quot;</span><span class="p">);</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">target</span><span class="p">.</span><span class="nx">health</span> <span class="o">-=</span> <span class="k">this</span><span class="p">.</span><span class="nx">damage</span><span class="p">;</span>
-  <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="nx">Weapon</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">attack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">target</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">distanceTo</span><span class="p">(</span><span class="nx">target</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">range</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Out of range!&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">target</span><span class="p">.</span><span class="nx">health</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">damage</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -519,11 +519,11 @@ Design Pattern&#8221;</a>.</p>
 </aside>
 <p>So a goblin in the game might be defined something like this:</p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;goblin grunt&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;minHealth&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
-  <span class="nt">&quot;maxHealth&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
-  <span class="nt">&quot;resists&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;cold&quot;</span><span class="p">,</span> <span class="s2">&quot;poison&quot;</span><span class="p">],</span>
-  <span class="nt">&quot;weaknesses&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;fire&quot;</span><span class="p">,</span> <span class="s2">&quot;light&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;goblin grunt&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;minHealth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;maxHealth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;resists&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;cold&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;poison&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;weaknesses&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;fire&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;light&quot;</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -531,21 +531,21 @@ Design Pattern&#8221;</a>.</p>
 that. So you throw in a couple of sibling branches on the Great Goblin Family
 Tree:</p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;goblin wizard&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;minHealth&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
-  <span class="nt">&quot;maxHealth&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
-  <span class="nt">&quot;resists&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;cold&quot;</span><span class="p">,</span> <span class="s2">&quot;poison&quot;</span><span class="p">],</span>
-  <span class="nt">&quot;weaknesses&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;fire&quot;</span><span class="p">,</span> <span class="s2">&quot;light&quot;</span><span class="p">],</span>
-  <span class="nt">&quot;spells&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;fire ball&quot;</span><span class="p">,</span> <span class="s2">&quot;lightning bolt&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;goblin wizard&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;minHealth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;maxHealth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;resists&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;cold&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;poison&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;weaknesses&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;fire&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;light&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;spells&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;fire ball&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;lightning bolt&quot;</span><span class="p">]</span>
 <span class="p">}</span>
 
 <span class="p">{</span>
-  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;goblin archer&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;minHealth&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
-  <span class="nt">&quot;maxHealth&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
-  <span class="nt">&quot;resists&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;cold&quot;</span><span class="p">,</span> <span class="s2">&quot;poison&quot;</span><span class="p">],</span>
-  <span class="nt">&quot;weaknesses&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;fire&quot;</span><span class="p">,</span> <span class="s2">&quot;light&quot;</span><span class="p">],</span>
-  <span class="nt">&quot;attacks&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;short bow&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;goblin archer&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;minHealth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;maxHealth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;resists&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;cold&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;poison&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;weaknesses&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;fire&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;light&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;attacks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;short bow&quot;</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -570,23 +570,23 @@ itself.</p>
 </aside>
 <p>With that, we can simplify the JSON for our goblin horde:</p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;goblin grunt&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;minHealth&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
-  <span class="nt">&quot;maxHealth&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
-  <span class="nt">&quot;resists&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;cold&quot;</span><span class="p">,</span> <span class="s2">&quot;poison&quot;</span><span class="p">],</span>
-  <span class="nt">&quot;weaknesses&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;fire&quot;</span><span class="p">,</span> <span class="s2">&quot;light&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;goblin grunt&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;minHealth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;maxHealth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;resists&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;cold&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;poison&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;weaknesses&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;fire&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;light&quot;</span><span class="p">]</span>
 <span class="p">}</span>
 
 <span class="p">{</span>
-  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;goblin wizard&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;prototype&quot;</span><span class="p">:</span> <span class="s2">&quot;goblin grunt&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;spells&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;fire ball&quot;</span><span class="p">,</span> <span class="s2">&quot;lightning bolt&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;goblin wizard&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;prototype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;goblin grunt&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;spells&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;fire ball&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;lightning bolt&quot;</span><span class="p">]</span>
 <span class="p">}</span>
 
 <span class="p">{</span>
-  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;goblin archer&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;prototype&quot;</span><span class="p">:</span> <span class="s2">&quot;goblin grunt&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;attacks&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;short bow&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;goblin archer&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;prototype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;goblin grunt&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;attacks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;short bow&quot;</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -607,9 +607,9 @@ common object in the game, and prototypal delegation is a good fit for defining
 those. The magic Sword of Head-Detaching, which is really just a longsword with
 some bonuses, can be expressed as that directly:</p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Sword of Head-Detaching&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;prototype&quot;</span><span class="p">:</span> <span class="s2">&quot;longsword&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;damageBonus&quot;</span><span class="p">:</span> <span class="s2">&quot;20&quot;</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sword of Head-Detaching&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;prototype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;longsword&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;damageBonus&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;20&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 

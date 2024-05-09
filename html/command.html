@@ -85,12 +85,12 @@ translates it to a meaningful action in the game:</p>
 <p><img src="images/command-buttons-one.png" alt="A controller, with A mapped to swapWeapon(), B mapped to lurch(), X mapped to jump(), and Y mapped to fireGun()." /></p>
 <p>A dead simple implementation looks like:</p>
 <p><span name="lurch"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">InputHandler::handleInput</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">InputHandler::handleInput</span><span class="p">()</span>
 <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_X</span><span class="p">))</span> <span class="n">jump</span><span class="p">();</span>
-  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_Y</span><span class="p">))</span> <span class="n">fireGun</span><span class="p">();</span>
-  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_A</span><span class="p">))</span> <span class="n">swapWeapon</span><span class="p">();</span>
-  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_B</span><span class="p">))</span> <span class="n">lurchIneffectively</span><span class="p">();</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_X</span><span class="p">))</span><span class="w"> </span><span class="n">jump</span><span class="p">();</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_Y</span><span class="p">))</span><span class="w"> </span><span class="n">fireGun</span><span class="p">();</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_A</span><span class="p">))</span><span class="w"> </span><span class="n">swapWeapon</span><span class="p">();</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_B</span><span class="p">))</span><span class="w"> </span><span class="n">lurchIneffectively</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -107,11 +107,11 @@ a variable, so we need an <em>object</em> that we can use to represent a game ac
 Enter: the Command pattern.</p>
 <p>We define a base class that represents a triggerable game command:</p>
 <p><span name="one-method"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Command</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Command</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="o">~</span><span class="n">Command</span><span class="p">()</span> <span class="p">{}</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">execute</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Command</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">execute</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -120,45 +120,45 @@ Enter: the Command pattern.</p>
 there&#8217;s a good chance it&#8217;s the Command pattern.</p>
 </aside>
 <p>Then we create subclasses for each of the different game actions:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">JumpCommand</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Command</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">JumpCommand</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Command</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">execute</span><span class="p">()</span> <span class="p">{</span> <span class="n">jump</span><span class="p">();</span> <span class="p">}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">execute</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">jump</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
 <span class="p">};</span>
 
-<span class="k">class</span> <span class="nc">FireCommand</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Command</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FireCommand</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Command</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">execute</span><span class="p">()</span> <span class="p">{</span> <span class="n">fireGun</span><span class="p">();</span> <span class="p">}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">execute</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">fireGun</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
 <span class="p">};</span>
 
 <span class="c1">// You get the idea...</span>
 </code></pre></div>
 
 <p>In our input handler, we store a pointer to a command for each button:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">InputHandler</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">InputHandler</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="kt">void</span> <span class="n">handleInput</span><span class="p">();</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">handleInput</span><span class="p">();</span>
 
-  <span class="c1">// Methods to bind commands...</span>
+<span class="w">  </span><span class="c1">// Methods to bind commands...</span>
 
 <span class="k">private</span><span class="o">:</span>
-  <span class="n">Command</span><span class="o">*</span> <span class="n">buttonX_</span><span class="p">;</span>
-  <span class="n">Command</span><span class="o">*</span> <span class="n">buttonY_</span><span class="p">;</span>
-  <span class="n">Command</span><span class="o">*</span> <span class="n">buttonA_</span><span class="p">;</span>
-  <span class="n">Command</span><span class="o">*</span> <span class="n">buttonB_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Command</span><span class="o">*</span><span class="w"> </span><span class="n">buttonX_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Command</span><span class="o">*</span><span class="w"> </span><span class="n">buttonY_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Command</span><span class="o">*</span><span class="w"> </span><span class="n">buttonA_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Command</span><span class="o">*</span><span class="w"> </span><span class="n">buttonB_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>Now the input handling just delegates to those:</p>
 <p><span name="null"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">InputHandler::handleInput</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">InputHandler::handleInput</span><span class="p">()</span>
 <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_X</span><span class="p">))</span> <span class="n">buttonX_</span><span class="o">-&gt;</span><span class="n">execute</span><span class="p">();</span>
-  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_Y</span><span class="p">))</span> <span class="n">buttonY_</span><span class="o">-&gt;</span><span class="n">execute</span><span class="p">();</span>
-  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_A</span><span class="p">))</span> <span class="n">buttonA_</span><span class="o">-&gt;</span><span class="n">execute</span><span class="p">();</span>
-  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_B</span><span class="p">))</span> <span class="n">buttonB_</span><span class="o">-&gt;</span><span class="n">execute</span><span class="p">();</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_X</span><span class="p">))</span><span class="w"> </span><span class="n">buttonX_</span><span class="o">-&gt;</span><span class="n">execute</span><span class="p">();</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_Y</span><span class="p">))</span><span class="w"> </span><span class="n">buttonY_</span><span class="o">-&gt;</span><span class="n">execute</span><span class="p">();</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_A</span><span class="p">))</span><span class="w"> </span><span class="n">buttonA_</span><span class="o">-&gt;</span><span class="n">execute</span><span class="p">();</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_B</span><span class="p">))</span><span class="w"> </span><span class="n">buttonB_</span><span class="o">-&gt;</span><span class="n">execute</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -185,24 +185,24 @@ player&#8217;s avatar and make him dance like the puppet he is.</p>
 the <code>JumpCommand</code> can make jump is the player. Let&#8217;s loosen that restriction.
 Instead of calling functions that find the commanded object themselves, we&#8217;ll
 <em>pass in</em> the object that we want to order around:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Command</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Command</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="o">~</span><span class="n">Command</span><span class="p">()</span> <span class="p">{}</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">execute</span><span class="p">(</span><span class="n">GameActor</span><span class="o">&amp;</span> <span class="n">actor</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Command</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">execute</span><span class="p">(</span><span class="n">GameActor</span><span class="o">&amp;</span><span class="w"> </span><span class="n">actor</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>Here, <code>GameActor</code> is our &#8220;game object&#8221; class that represents a character in the
 game world. We pass it in to <code>execute()</code> so that the derived command can invoke
 methods on an actor of our choice, like so:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">JumpCommand</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Command</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">JumpCommand</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Command</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">execute</span><span class="p">(</span><span class="n">GameActor</span><span class="o">&amp;</span> <span class="n">actor</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">actor</span><span class="p">.</span><span class="n">jump</span><span class="p">();</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">execute</span><span class="p">(</span><span class="n">GameActor</span><span class="o">&amp;</span><span class="w"> </span><span class="n">actor</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">actor</span><span class="p">.</span><span class="n">jump</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -210,15 +210,15 @@ methods on an actor of our choice, like so:</p>
 We&#8217;re just missing a piece between the input handler and the command that takes
 the command and invokes it on the right object. First, we change <code>handleInput()</code>
 so that it <em>returns</em> commands:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Command</span><span class="o">*</span> <span class="nf">InputHandler::handleInput</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Command</span><span class="o">*</span><span class="w"> </span><span class="nf">InputHandler::handleInput</span><span class="p">()</span>
 <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_X</span><span class="p">))</span> <span class="k">return</span> <span class="n">buttonX_</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_Y</span><span class="p">))</span> <span class="k">return</span> <span class="n">buttonY_</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_A</span><span class="p">))</span> <span class="k">return</span> <span class="n">buttonA_</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_B</span><span class="p">))</span> <span class="k">return</span> <span class="n">buttonB_</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_X</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">buttonX_</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_Y</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">buttonY_</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_A</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">buttonA_</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_B</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">buttonB_</span><span class="p">;</span>
 
-  <span class="c1">// Nothing pressed, so do nothing.</span>
-  <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Nothing pressed, so do nothing.</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -227,10 +227,10 @@ pass in. Here&#8217;s where we take advantage of the fact that the command is a
 reified call&#8202;&mdash;&#8202;we can <em>delay</em> when the call is executed.</p>
 <p>Then, we need some code that takes that command and runs it on the actor
 representing the player. Something like:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Command</span><span class="o">*</span> <span class="n">command</span> <span class="o">=</span> <span class="n">inputHandler</span><span class="p">.</span><span class="n">handleInput</span><span class="p">();</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">command</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Command</span><span class="o">*</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inputHandler</span><span class="p">.</span><span class="n">handleInput</span><span class="p">();</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">command</span><span class="o">-&gt;</span><span class="n">execute</span><span class="p">(</span><span class="n">actor</span><span class="p">);</span>
+<span class="w">  </span><span class="n">command</span><span class="o">-&gt;</span><span class="n">execute</span><span class="p">(</span><span class="n">actor</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -292,23 +292,23 @@ guesswork.</p>
 <p>We&#8217;re conveniently already using commands to abstract input handling, so every
 move the player makes is already encapsulated in them. For example, moving a
 unit may look like:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">MoveUnitCommand</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Command</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MoveUnitCommand</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Command</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="n">MoveUnitCommand</span><span class="p">(</span><span class="n">Unit</span><span class="o">*</span> <span class="n">unit</span><span class="p">,</span> <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
-  <span class="o">:</span> <span class="n">unit_</span><span class="p">(</span><span class="n">unit</span><span class="p">),</span>
-    <span class="n">x_</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
-    <span class="n">y_</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-  <span class="p">{}</span>
+<span class="w">  </span><span class="n">MoveUnitCommand</span><span class="p">(</span><span class="n">Unit</span><span class="o">*</span><span class="w"> </span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">unit_</span><span class="p">(</span><span class="n">unit</span><span class="p">),</span>
+<span class="w">    </span><span class="n">x_</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+<span class="w">    </span><span class="n">y_</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{}</span>
 
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">execute</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="n">unit_</span><span class="o">-&gt;</span><span class="n">moveTo</span><span class="p">(</span><span class="n">x_</span><span class="p">,</span> <span class="n">y_</span><span class="p">);</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">execute</span><span class="p">()</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">unit_</span><span class="o">-&gt;</span><span class="n">moveTo</span><span class="p">(</span><span class="n">x_</span><span class="p">,</span><span class="w"> </span><span class="n">y_</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-  <span class="n">Unit</span><span class="o">*</span> <span class="n">unit_</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">x_</span><span class="p">,</span> <span class="n">y_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Unit</span><span class="o">*</span><span class="w"> </span><span class="n">unit_</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">x_</span><span class="p">,</span><span class="w"> </span><span class="n">y_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -327,25 +327,25 @@ was pressed.</p>
 a specific point in time. This means that the input handling code will be <span
 name="free"><em>creating</em></span> an instance of this every time the player chooses
 a move. Something like:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Command</span><span class="o">*</span> <span class="nf">handleInput</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Command</span><span class="o">*</span><span class="w"> </span><span class="nf">handleInput</span><span class="p">()</span>
 <span class="p">{</span>
-  <span class="n">Unit</span><span class="o">*</span> <span class="n">unit</span> <span class="o">=</span> <span class="n">getSelectedUnit</span><span class="p">();</span>
+<span class="w">  </span><span class="n">Unit</span><span class="o">*</span><span class="w"> </span><span class="n">unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getSelectedUnit</span><span class="p">();</span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_UP</span><span class="p">))</span> <span class="p">{</span>
-    <span class="c1">// Move the unit up one.</span>
-    <span class="kt">int</span> <span class="n">destY</span> <span class="o">=</span> <span class="n">unit</span><span class="o">-&gt;</span><span class="n">y</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="n">MoveUnitCommand</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">unit</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">(),</span> <span class="n">destY</span><span class="p">);</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_UP</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Move the unit up one.</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">destY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">y</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MoveUnitCommand</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">(),</span><span class="w"> </span><span class="n">destY</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_DOWN</span><span class="p">))</span> <span class="p">{</span>
-    <span class="c1">// Move the unit down one.</span>
-    <span class="kt">int</span> <span class="n">destY</span> <span class="o">=</span> <span class="n">unit</span><span class="o">-&gt;</span><span class="n">y</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="n">MoveUnitCommand</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">unit</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">(),</span> <span class="n">destY</span><span class="p">);</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isPressed</span><span class="p">(</span><span class="n">BUTTON_DOWN</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Move the unit down one.</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">destY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">y</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MoveUnitCommand</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">(),</span><span class="w"> </span><span class="n">destY</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// Other moves...</span>
+<span class="w">  </span><span class="c1">// Other moves...</span>
 
-  <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -356,47 +356,47 @@ executing commands will also be responsible for freeing their memory.</p>
 <p>The fact that commands are one-use-only will come to our advantage in a second.
 To make commands undoable, we define another operation each command class needs
 to implement:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Command</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Command</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="o">~</span><span class="n">Command</span><span class="p">()</span> <span class="p">{}</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">execute</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">undo</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Command</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">execute</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">undo</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>An <code>undo()</code> method reverses the game state changed by the corresponding
 <code>execute()</code> method. Here&#8217;s our previous move command with undo support:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">MoveUnitCommand</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Command</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MoveUnitCommand</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Command</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="n">MoveUnitCommand</span><span class="p">(</span><span class="n">Unit</span><span class="o">*</span> <span class="n">unit</span><span class="p">,</span> <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
-  <span class="o">:</span> <span class="n">unit_</span><span class="p">(</span><span class="n">unit</span><span class="p">),</span>
-    <span class="n">xBefore_</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
-    <span class="n">yBefore_</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
-    <span class="n">x_</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
-    <span class="n">y_</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-  <span class="p">{}</span>
+<span class="w">  </span><span class="n">MoveUnitCommand</span><span class="p">(</span><span class="n">Unit</span><span class="o">*</span><span class="w"> </span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">unit_</span><span class="p">(</span><span class="n">unit</span><span class="p">),</span>
+<span class="w">    </span><span class="n">xBefore_</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+<span class="w">    </span><span class="n">yBefore_</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+<span class="w">    </span><span class="n">x_</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+<span class="w">    </span><span class="n">y_</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{}</span>
 
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">execute</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="c1">// Remember the unit&#39;s position before the move</span>
-    <span class="c1">// so we can restore it.</span>
-    <span class="n">xBefore_</span> <span class="o">=</span> <span class="n">unit_</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">();</span>
-    <span class="n">yBefore_</span> <span class="o">=</span> <span class="n">unit_</span><span class="o">-&gt;</span><span class="n">y</span><span class="p">();</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">execute</span><span class="p">()</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Remember the unit&#39;s position before the move</span>
+<span class="w">    </span><span class="c1">// so we can restore it.</span>
+<span class="w">    </span><span class="n">xBefore_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit_</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">();</span>
+<span class="w">    </span><span class="n">yBefore_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit_</span><span class="o">-&gt;</span><span class="n">y</span><span class="p">();</span>
 
-    <span class="n">unit_</span><span class="o">-&gt;</span><span class="n">moveTo</span><span class="p">(</span><span class="n">x_</span><span class="p">,</span> <span class="n">y_</span><span class="p">);</span>
-  <span class="p">}</span>
+<span class="w">    </span><span class="n">unit_</span><span class="o">-&gt;</span><span class="n">moveTo</span><span class="p">(</span><span class="n">x_</span><span class="p">,</span><span class="w"> </span><span class="n">y_</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">undo</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="n">unit_</span><span class="o">-&gt;</span><span class="n">moveTo</span><span class="p">(</span><span class="n">xBefore_</span><span class="p">,</span> <span class="n">yBefore_</span><span class="p">);</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">undo</span><span class="p">()</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">unit_</span><span class="o">-&gt;</span><span class="n">moveTo</span><span class="p">(</span><span class="n">xBefore_</span><span class="p">,</span><span class="w"> </span><span class="n">yBefore_</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-  <span class="n">Unit</span><span class="o">*</span> <span class="n">unit_</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">xBefore_</span><span class="p">,</span> <span class="n">yBefore_</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">x_</span><span class="p">,</span> <span class="n">y_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Unit</span><span class="o">*</span><span class="w"> </span><span class="n">unit_</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">xBefore_</span><span class="p">,</span><span class="w"> </span><span class="n">yBefore_</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">x_</span><span class="p">,</span><span class="w"> </span><span class="n">y_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -470,27 +470,27 @@ state they&#8217;re actually holding.</p>
 </aside>
 <p>For example, if we were building a game in JavaScript, we could create a move
 unit command just like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">function</span> <span class="nx">makeMoveUnitCommand</span><span class="p">(</span><span class="nx">unit</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// This function here is the command object:</span>
-  <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">unit</span><span class="p">.</span><span class="nx">moveTo</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
-  <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">makeMoveUnitCommand</span><span class="p">(</span><span class="nx">unit</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// This function here is the command object:</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">unit</span><span class="p">.</span><span class="nx">moveTo</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p>We could add support for undo as well using a pair of closures:</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">function</span> <span class="nx">makeMoveUnitCommand</span><span class="p">(</span><span class="nx">unit</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">xBefore</span><span class="p">,</span> <span class="nx">yBefore</span><span class="p">;</span>
-  <span class="k">return</span> <span class="p">{</span>
-    <span class="nx">execute</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nx">xBefore</span> <span class="o">=</span> <span class="nx">unit</span><span class="p">.</span><span class="nx">x</span><span class="p">();</span>
-      <span class="nx">yBefore</span> <span class="o">=</span> <span class="nx">unit</span><span class="p">.</span><span class="nx">y</span><span class="p">();</span>
-      <span class="nx">unit</span><span class="p">.</span><span class="nx">moveTo</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
-    <span class="p">},</span>
-    <span class="nx">undo</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nx">unit</span><span class="p">.</span><span class="nx">moveTo</span><span class="p">(</span><span class="nx">xBefore</span><span class="p">,</span> <span class="nx">yBefore</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">};</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">makeMoveUnitCommand</span><span class="p">(</span><span class="nx">unit</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">xBefore</span><span class="p">,</span><span class="w"> </span><span class="nx">yBefore</span><span class="p">;</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">execute</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">xBefore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">unit</span><span class="p">.</span><span class="nx">x</span><span class="p">();</span>
+<span class="w">      </span><span class="nx">yBefore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">unit</span><span class="p">.</span><span class="nx">y</span><span class="p">();</span>
+<span class="w">      </span><span class="nx">unit</span><span class="p">.</span><span class="nx">moveTo</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">);</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">undo</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">unit</span><span class="p">.</span><span class="nx">moveTo</span><span class="p">(</span><span class="nx">xBefore</span><span class="p">,</span><span class="w"> </span><span class="nx">yBefore</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">};</span>
 <span class="p">}</span>
 </code></pre></div>
 

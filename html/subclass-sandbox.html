@@ -189,28 +189,28 @@ class="pattern" href="component.html">Component</a> pattern can help here.</p>
 doesn&#8217;t mean it isn&#8217;t useful&#8202;&mdash;&#8202;the pattern is about the <em>intent</em>, not the
 complexity of its implementation.</p>
 <p>We&#8217;ll start with our <code>Superpower</code> base class:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Superpower</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Superpower</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="o">~</span><span class="n">Superpower</span><span class="p">()</span> <span class="p">{}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Superpower</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 
 <span class="k">protected</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">activate</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">activate</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-  <span class="kt">void</span> <span class="nf">move</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">,</span> <span class="kt">double</span> <span class="n">z</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="c1">// Code here...</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">move</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">z</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Code here...</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="kt">void</span> <span class="nf">playSound</span><span class="p">(</span><span class="n">SoundId</span> <span class="n">sound</span><span class="p">,</span> <span class="kt">double</span> <span class="n">volume</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="c1">// Code here...</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">playSound</span><span class="p">(</span><span class="n">SoundId</span><span class="w"> </span><span class="n">sound</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">volume</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Code here...</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="kt">void</span> <span class="nf">spawnParticles</span><span class="p">(</span><span class="n">ParticleType</span> <span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">count</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="c1">// Code here...</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">spawnParticles</span><span class="p">(</span><span class="n">ParticleType</span><span class="w"> </span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Code here...</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -227,16 +227,16 @@ will talk to the audio engine, etc. Since this is all in the <em>implementation<
 the base class, it keeps that coupling encapsulated within <code>Superpower</code> itself.</p>
 <p>OK, now let&#8217;s get our radioactive spiders out and create a power. Here&#8217;s one:</p>
 <p><span name="jump"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">SkyLaunch</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Superpower</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SkyLaunch</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Superpower</span>
 <span class="p">{</span>
 <span class="k">protected</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">activate</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="c1">// Spring into the air.</span>
-    <span class="n">playSound</span><span class="p">(</span><span class="n">SOUND_SPROING</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
-    <span class="n">spawnParticles</span><span class="p">(</span><span class="n">PARTICLE_DUST</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
-    <span class="n">move</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">activate</span><span class="p">()</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Spring into the air.</span>
+<span class="w">    </span><span class="n">playSound</span><span class="p">(</span><span class="n">SOUND_SPROING</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">);</span>
+<span class="w">    </span><span class="n">spawnParticles</span><span class="p">(</span><span class="n">PARTICLE_DUST</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="w">    </span><span class="n">move</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -251,56 +251,56 @@ need this pattern at all. Instead, <code>Superpower</code> could have a baked-in
 implementation of <code>activate()</code> that accesses fields for the sound ID, particle
 type, and movement. But that only works when every power essentially works the
 same way with only some differences in data. Let&#8217;s elaborate on it a bit:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Superpower</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Superpower</span>
 <span class="p">{</span>
 <span class="k">protected</span><span class="o">:</span>
-  <span class="kt">double</span> <span class="n">getHeroX</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="c1">// Code here...</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">getHeroX</span><span class="p">()</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Code here...</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="kt">double</span> <span class="n">getHeroY</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="c1">// Code here...</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">getHeroY</span><span class="p">()</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Code here...</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="kt">double</span> <span class="n">getHeroZ</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="c1">// Code here...</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">getHeroZ</span><span class="p">()</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Code here...</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// Existing stuff...</span>
+<span class="w">  </span><span class="c1">// Existing stuff...</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>Here, we&#8217;ve added a couple of methods to get the hero&#8217;s position. Our
 <code>SkyLaunch</code> subclass can now use those:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">SkyLaunch</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Superpower</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SkyLaunch</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Superpower</span>
 <span class="p">{</span>
 <span class="k">protected</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">activate</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">getHeroZ</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="c1">// On the ground, so spring into the air.</span>
-      <span class="n">playSound</span><span class="p">(</span><span class="n">SOUND_SPROING</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
-      <span class="n">spawnParticles</span><span class="p">(</span><span class="n">PARTICLE_DUST</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
-      <span class="n">move</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">getHeroZ</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">10.0f</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="c1">// Near the ground, so do a double jump.</span>
-      <span class="n">playSound</span><span class="p">(</span><span class="n">SOUND_SWOOP</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">);</span>
-      <span class="n">move</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">getHeroZ</span><span class="p">()</span> <span class="o">+</span> <span class="mi">20</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">else</span>
-    <span class="p">{</span>
-      <span class="c1">// Way up in the air, so do a dive attack.</span>
-      <span class="n">playSound</span><span class="p">(</span><span class="n">SOUND_DIVE</span><span class="p">,</span> <span class="mf">0.7f</span><span class="p">);</span>
-      <span class="n">spawnParticles</span><span class="p">(</span><span class="n">PARTICLE_SPARKLES</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-      <span class="n">move</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">getHeroZ</span><span class="p">());</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">activate</span><span class="p">()</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">getHeroZ</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// On the ground, so spring into the air.</span>
+<span class="w">      </span><span class="n">playSound</span><span class="p">(</span><span class="n">SOUND_SPROING</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">);</span>
+<span class="w">      </span><span class="n">spawnParticles</span><span class="p">(</span><span class="n">PARTICLE_DUST</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="w">      </span><span class="n">move</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">getHeroZ</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">10.0f</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Near the ground, so do a double jump.</span>
+<span class="w">      </span><span class="n">playSound</span><span class="p">(</span><span class="n">SOUND_SWOOP</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">);</span>
+<span class="w">      </span><span class="n">move</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">getHeroZ</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">20</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Way up in the air, so do a dive attack.</span>
+<span class="w">      </span><span class="n">playSound</span><span class="p">(</span><span class="n">SOUND_DIVE</span><span class="p">,</span><span class="w"> </span><span class="mf">0.7f</span><span class="p">);</span>
+<span class="w">      </span><span class="n">spawnParticles</span><span class="p">(</span><span class="n">PARTICLE_SPARKLES</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">      </span><span class="n">move</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">getHeroZ</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -379,9 +379,9 @@ the more visible base class.</p>
 <p>However, even simple forwarding can still be useful&#8202;&mdash;&#8202;those methods often
 access state that the base class doesn&#8217;t want to directly expose to
 subclasses. For example, let&#8217;s say <code>Superpower</code> provided this:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">playSound</span><span class="p">(</span><span class="n">SoundId</span> <span class="n">sound</span><span class="p">,</span> <span class="kt">double</span> <span class="n">volume</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">playSound</span><span class="p">(</span><span class="n">SoundId</span><span class="w"> </span><span class="n">sound</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">volume</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">soundEngine_</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="n">sound</span><span class="p">,</span> <span class="n">volume</span><span class="p">);</span>
+<span class="w">  </span><span class="n">soundEngine_</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="n">sound</span><span class="p">,</span><span class="w"> </span><span class="n">volume</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -397,63 +397,63 @@ some of those methods over to other classes. The provided operations in the base
 class then just return one of those objects.</p>
 <p>For example, to let a power play sounds, we could add these directly to
 <code>Superpower</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Superpower</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Superpower</span>
 <span class="p">{</span>
 <span class="k">protected</span><span class="o">:</span>
-  <span class="kt">void</span> <span class="n">playSound</span><span class="p">(</span><span class="n">SoundId</span> <span class="n">sound</span><span class="p">,</span> <span class="kt">double</span> <span class="n">volume</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="c1">// Code here...</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">playSound</span><span class="p">(</span><span class="n">SoundId</span><span class="w"> </span><span class="n">sound</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">volume</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Code here...</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="kt">void</span> <span class="n">stopSound</span><span class="p">(</span><span class="n">SoundId</span> <span class="n">sound</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="c1">// Code here...</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">stopSound</span><span class="p">(</span><span class="n">SoundId</span><span class="w"> </span><span class="n">sound</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Code here...</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="kt">void</span> <span class="n">setVolume</span><span class="p">(</span><span class="n">SoundId</span> <span class="n">sound</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="c1">// Code here...</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">setVolume</span><span class="p">(</span><span class="n">SoundId</span><span class="w"> </span><span class="n">sound</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Code here...</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// Sandbox method and other operations...</span>
+<span class="w">  </span><span class="c1">// Sandbox method and other operations...</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>But if <code>Superpower</code> is already getting large and unwieldy, we might want to
 avoid that. Instead, we create a <code>SoundPlayer</code> class that exposes that
 functionality:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">SoundPlayer</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SoundPlayer</span>
 <span class="p">{</span>
-  <span class="kt">void</span> <span class="nf">playSound</span><span class="p">(</span><span class="n">SoundId</span> <span class="n">sound</span><span class="p">,</span> <span class="kt">double</span> <span class="n">volume</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="c1">// Code here...</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">playSound</span><span class="p">(</span><span class="n">SoundId</span><span class="w"> </span><span class="n">sound</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">volume</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Code here...</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="kt">void</span> <span class="nf">stopSound</span><span class="p">(</span><span class="n">SoundId</span> <span class="n">sound</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="c1">// Code here...</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">stopSound</span><span class="p">(</span><span class="n">SoundId</span><span class="w"> </span><span class="n">sound</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Code here...</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="kt">void</span> <span class="nf">setVolume</span><span class="p">(</span><span class="n">SoundId</span> <span class="n">sound</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="c1">// Code here...</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">setVolume</span><span class="p">(</span><span class="n">SoundId</span><span class="w"> </span><span class="n">sound</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Code here...</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>Then <code>Superpower</code> provides access to it:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Superpower</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Superpower</span>
 <span class="p">{</span>
 <span class="k">protected</span><span class="o">:</span>
-  <span class="n">SoundPlayer</span><span class="o">&amp;</span> <span class="n">getSoundPlayer</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="k">return</span> <span class="n">soundPlayer_</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="n">SoundPlayer</span><span class="o">&amp;</span><span class="w"> </span><span class="n">getSoundPlayer</span><span class="p">()</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">soundPlayer_</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// Sandbox method and other operations...</span>
+<span class="w">  </span><span class="c1">// Sandbox method and other operations...</span>
 
 <span class="k">private</span><span class="o">:</span>
-  <span class="n">SoundPlayer</span> <span class="n">soundPlayer_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">SoundPlayer</span><span class="w"> </span><span class="n">soundPlayer_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -490,28 +490,28 @@ particle system object, how would it get one?</p>
 <p><strong>Pass it to the base class constructor:</strong></p>
 <p>The simplest solution is to have the base class take it as a constructor
 argument:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Superpower</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Superpower</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="n">Superpower</span><span class="p">(</span><span class="n">ParticleSystem</span><span class="o">*</span> <span class="n">particles</span><span class="p">)</span>
-  <span class="o">:</span> <span class="n">particles_</span><span class="p">(</span><span class="n">particles</span><span class="p">)</span>
-  <span class="p">{}</span>
+<span class="w">  </span><span class="n">Superpower</span><span class="p">(</span><span class="n">ParticleSystem</span><span class="o">*</span><span class="w"> </span><span class="n">particles</span><span class="p">)</span>
+<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">particles_</span><span class="p">(</span><span class="n">particles</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{}</span>
 
-  <span class="c1">// Sandbox method and other operations...</span>
+<span class="w">  </span><span class="c1">// Sandbox method and other operations...</span>
 
 <span class="k">private</span><span class="o">:</span>
-  <span class="n">ParticleSystem</span><span class="o">*</span> <span class="n">particles_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ParticleSystem</span><span class="o">*</span><span class="w"> </span><span class="n">particles_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>This safely ensures that every superpower does have a particle system by the
 time it&#8217;s constructed. But let&#8217;s look at a derived class:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">SkyLaunch</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Superpower</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SkyLaunch</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Superpower</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="n">SkyLaunch</span><span class="p">(</span><span class="n">ParticleSystem</span><span class="o">*</span> <span class="n">particles</span><span class="p">)</span>
-  <span class="o">:</span> <span class="n">Superpower</span><span class="p">(</span><span class="n">particles</span><span class="p">)</span>
-  <span class="p">{}</span>
+<span class="w">  </span><span class="n">SkyLaunch</span><span class="p">(</span><span class="n">ParticleSystem</span><span class="o">*</span><span class="w"> </span><span class="n">particles</span><span class="p">)</span>
+<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">Superpower</span><span class="p">(</span><span class="n">particles</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{}</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -529,7 +529,7 @@ have to be modified to pass it along.</p>
 initialization into two steps. The constructor will take no parameters and
 just create the object. Then, we call a separate method defined directly on
 the base class to pass in the rest of the data that it needs:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Superpower</span><span class="o">*</span> <span class="n">power</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SkyLaunch</span><span class="p">();</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Superpower</span><span class="o">*</span><span class="w"> </span><span class="n">power</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SkyLaunch</span><span class="p">();</span>
 <span class="n">power</span><span class="o">-&gt;</span><span class="n">init</span><span class="p">(</span><span class="n">particles</span><span class="p">);</span>
 </code></pre></div>
 
@@ -541,11 +541,11 @@ have a power that&#8217;s in some twilight half-created state and won&#8217;t wo
 <p>You can fix that by encapsulating the entire process into a single function,
 like so:</p>
 <p><span name="friend"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="n">Superpower</span><span class="o">*</span> <span class="nf">createSkyLaunch</span><span class="p">(</span><span class="n">ParticleSystem</span><span class="o">*</span> <span class="n">particles</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Superpower</span><span class="o">*</span><span class="w"> </span><span class="nf">createSkyLaunch</span><span class="p">(</span><span class="n">ParticleSystem</span><span class="o">*</span><span class="w"> </span><span class="n">particles</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">Superpower</span><span class="o">*</span> <span class="n">power</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SkyLaunch</span><span class="p">();</span>
-  <span class="n">power</span><span class="o">-&gt;</span><span class="n">init</span><span class="p">(</span><span class="n">particles</span><span class="p">);</span>
-  <span class="k">return</span> <span class="n">power</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Superpower</span><span class="o">*</span><span class="w"> </span><span class="n">power</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SkyLaunch</span><span class="p">();</span>
+<span class="w">  </span><span class="n">power</span><span class="o">-&gt;</span><span class="n">init</span><span class="p">(</span><span class="n">particles</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">power</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -574,18 +574,18 @@ got some state shared between lots and lots of objects (all of the
 globally <em>visible</em>, which is good, but it can still make reasoning about
 powers harder because they can all poke at the same object.</p>
 </aside>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Superpower</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Superpower</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">static</span> <span class="kt">void</span> <span class="n">init</span><span class="p">(</span><span class="n">ParticleSystem</span><span class="o">*</span> <span class="n">particles</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">particles_</span> <span class="o">=</span> <span class="n">particles</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">init</span><span class="p">(</span><span class="n">ParticleSystem</span><span class="o">*</span><span class="w"> </span><span class="n">particles</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">particles_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">particles</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// Sandbox method and other operations...</span>
+<span class="w">  </span><span class="c1">// Sandbox method and other operations...</span>
 
 <span class="k">private</span><span class="o">:</span>
-  <span class="k">static</span> <span class="n">ParticleSystem</span><span class="o">*</span> <span class="n">particles_</span><span class="p">;</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">ParticleSystem</span><span class="o">*</span><span class="w"> </span><span class="n">particles_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -605,16 +605,16 @@ burden of initialization on the surrounding code. Another option is to let
 the base class handle it by pulling in the state it needs. One way to do
 that is by using the <a class="pattern" href="service-locator.html">Service
 Locator</a> pattern:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Superpower</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Superpower</span>
 <span class="p">{</span>
 <span class="k">protected</span><span class="o">:</span>
-  <span class="kt">void</span> <span class="n">spawnParticles</span><span class="p">(</span><span class="n">ParticleType</span> <span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">count</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">ParticleSystem</span><span class="o">&amp;</span> <span class="n">particles</span> <span class="o">=</span> <span class="n">Locator</span><span class="o">::</span><span class="n">getParticles</span><span class="p">();</span>
-    <span class="n">particles</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">type</span><span class="p">,</span> <span class="n">count</span><span class="p">);</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">spawnParticles</span><span class="p">(</span><span class="n">ParticleType</span><span class="w"> </span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ParticleSystem</span><span class="o">&amp;</span><span class="w"> </span><span class="n">particles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Locator</span><span class="o">::</span><span class="n">getParticles</span><span class="p">();</span>
+<span class="w">    </span><span class="n">particles</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// Sandbox method and other operations...</span>
+<span class="w">  </span><span class="c1">// Sandbox method and other operations...</span>
 <span class="p">};</span>
 </code></pre></div>
 

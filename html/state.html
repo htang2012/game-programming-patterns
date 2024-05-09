@@ -56,13 +56,13 @@ parsing human languages.</p>
 <p>We&#8217;re working on a little side-scrolling platformer. Our job is to implement the
 heroine that is the player&#8217;s avatar in the game world. That means making her
 respond to user input. Push the B button and she should jump. Simple enough:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Heroine::handleInput</span><span class="p">(</span><span class="n">Input</span> <span class="n">input</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Heroine::handleInput</span><span class="p">(</span><span class="n">Input</span><span class="w"> </span><span class="n">input</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">PRESS_B</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">yVelocity_</span> <span class="o">=</span> <span class="n">JUMP_VELOCITY</span><span class="p">;</span>
-    <span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_JUMP</span><span class="p">);</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PRESS_B</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">yVelocity_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JUMP_VELOCITY</span><span class="p">;</span>
+<span class="w">    </span><span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_JUMP</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -71,16 +71,16 @@ respond to user input. Push the B button and she should jump. Simple enough:</p>
 air, and she will float forever. The simple <span name="landing">fix</span> is to
 add an <code>isJumping_</code> Boolean field to <code>Heroine</code> that tracks when she&#8217;s jumping,
 and then do:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Heroine::handleInput</span><span class="p">(</span><span class="n">Input</span> <span class="n">input</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Heroine::handleInput</span><span class="p">(</span><span class="n">Input</span><span class="w"> </span><span class="n">input</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">PRESS_B</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">isJumping_</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">isJumping_</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-      <span class="c1">// Jump...</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PRESS_B</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isJumping_</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">isJumping_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">      </span><span class="c1">// Jump...</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -90,23 +90,23 @@ heroine touches the ground. I&#8217;ve omitted that here for brevity&#8217;s sak
 </aside>
 <p>Next, we want the heroine to duck if the player presses down while she&#8217;s on the
 ground and stand back up when the button is released:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Heroine::handleInput</span><span class="p">(</span><span class="n">Input</span> <span class="n">input</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Heroine::handleInput</span><span class="p">(</span><span class="n">Input</span><span class="w"> </span><span class="n">input</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">PRESS_B</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="c1">// Jump if not jumping...</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">PRESS_DOWN</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">isJumping_</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_DUCK</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">RELEASE_DOWN</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_STAND</span><span class="p">);</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PRESS_B</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Jump if not jumping...</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PRESS_DOWN</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isJumping_</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_DUCK</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RELEASE_DOWN</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_STAND</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -119,65 +119,65 @@ ground and stand back up when the button is released:</p>
 </ol>
 <p>The heroine will switch to her standing graphic in the middle of the jump. Time
 for another flag&#8230;</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Heroine::handleInput</span><span class="p">(</span><span class="n">Input</span> <span class="n">input</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Heroine::handleInput</span><span class="p">(</span><span class="n">Input</span><span class="w"> </span><span class="n">input</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">PRESS_B</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">isJumping_</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">isDucking_</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="c1">// Jump...</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">PRESS_DOWN</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">isJumping_</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">isDucking_</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-      <span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_DUCK</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">RELEASE_DOWN</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">isDucking_</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">isDucking_</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-      <span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_STAND</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PRESS_B</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isJumping_</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">isDucking_</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Jump...</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PRESS_DOWN</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isJumping_</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">isDucking_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">      </span><span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_DUCK</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RELEASE_DOWN</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isDucking_</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">isDucking_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">      </span><span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_STAND</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p>Next, it would be cool if the heroine did a dive attack if the player presses
 down in the middle of a jump:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Heroine::handleInput</span><span class="p">(</span><span class="n">Input</span> <span class="n">input</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Heroine::handleInput</span><span class="p">(</span><span class="n">Input</span><span class="w"> </span><span class="n">input</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">PRESS_B</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">isJumping_</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">isDucking_</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="c1">// Jump...</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">PRESS_DOWN</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">isJumping_</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">isDucking_</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-      <span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_DUCK</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">else</span>
-    <span class="p">{</span>
-      <span class="n">isJumping_</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-      <span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_DIVE</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">RELEASE_DOWN</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">isDucking_</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="c1">// Stand...</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PRESS_B</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isJumping_</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">isDucking_</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Jump...</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PRESS_DOWN</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isJumping_</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">isDucking_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">      </span><span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_DUCK</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">isJumping_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">      </span><span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_DIVE</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RELEASE_DOWN</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isDucking_</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Stand...</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -248,12 +248,12 @@ example. When you have a handful of flags where only one is <code>true</code> at
 that&#8217;s a hint that what you really want is an <code>enum</code>.</p>
 <p>In this case, that <code>enum</code> is exactly the set of states for our FSM, so let&#8217;s
 define that:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">enum</span> <span class="nc">State</span>
+<div class="codehilite"><pre><span></span><code><span class="k">enum</span><span class="w"> </span><span class="nc">State</span>
 <span class="p">{</span>
-  <span class="n">STATE_STANDING</span><span class="p">,</span>
-  <span class="n">STATE_JUMPING</span><span class="p">,</span>
-  <span class="n">STATE_DUCKING</span><span class="p">,</span>
-  <span class="n">STATE_DIVING</span>
+<span class="w">  </span><span class="n">STATE_STANDING</span><span class="p">,</span>
+<span class="w">  </span><span class="n">STATE_JUMPING</span><span class="p">,</span>
+<span class="w">  </span><span class="n">STATE_DUCKING</span><span class="p">,</span>
+<span class="w">  </span><span class="n">STATE_DIVING</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -262,40 +262,40 @@ also flip the order of our branching. In the previous code, we switched on
 input, <em>then</em> on state. This kept the code for handling one button press
 together, but it smeared around the code for one state. We want to keep that
 together, so we switch on state first. That gives us:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Heroine::handleInput</span><span class="p">(</span><span class="n">Input</span> <span class="n">input</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Heroine::handleInput</span><span class="p">(</span><span class="n">Input</span><span class="w"> </span><span class="n">input</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="k">switch</span> <span class="p">(</span><span class="n">state_</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">case</span> <span class="nl">STATE_STANDING</span><span class="p">:</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">PRESS_B</span><span class="p">)</span>
-      <span class="p">{</span>
-        <span class="n">state_</span> <span class="o">=</span> <span class="n">STATE_JUMPING</span><span class="p">;</span>
-        <span class="n">yVelocity_</span> <span class="o">=</span> <span class="n">JUMP_VELOCITY</span><span class="p">;</span>
-        <span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_JUMP</span><span class="p">);</span>
-      <span class="p">}</span>
-      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">PRESS_DOWN</span><span class="p">)</span>
-      <span class="p">{</span>
-        <span class="n">state_</span> <span class="o">=</span> <span class="n">STATE_DUCKING</span><span class="p">;</span>
-        <span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_DUCK</span><span class="p">);</span>
-      <span class="p">}</span>
-      <span class="k">break</span><span class="p">;</span>
+<span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">state_</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">STATE_STANDING</span><span class="p">:</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PRESS_B</span><span class="p">)</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="n">state_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">STATE_JUMPING</span><span class="p">;</span>
+<span class="w">        </span><span class="n">yVelocity_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JUMP_VELOCITY</span><span class="p">;</span>
+<span class="w">        </span><span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_JUMP</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PRESS_DOWN</span><span class="p">)</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="n">state_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">STATE_DUCKING</span><span class="p">;</span>
+<span class="w">        </span><span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_DUCK</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
 
-    <span class="k">case</span> <span class="nl">STATE_JUMPING</span><span class="p">:</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">PRESS_DOWN</span><span class="p">)</span>
-      <span class="p">{</span>
-        <span class="n">state_</span> <span class="o">=</span> <span class="n">STATE_DIVING</span><span class="p">;</span>
-        <span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_DIVE</span><span class="p">);</span>
-      <span class="p">}</span>
-      <span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">STATE_JUMPING</span><span class="p">:</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PRESS_DOWN</span><span class="p">)</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="n">state_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">STATE_DIVING</span><span class="p">;</span>
+<span class="w">        </span><span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_DIVE</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
 
-    <span class="k">case</span> <span class="nl">STATE_DUCKING</span><span class="p">:</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">RELEASE_DOWN</span><span class="p">)</span>
-      <span class="p">{</span>
-        <span class="n">state_</span> <span class="o">=</span> <span class="n">STATE_STANDING</span><span class="p">;</span>
-        <span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_STAND</span><span class="p">);</span>
-      <span class="p">}</span>
-      <span class="k">break</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">STATE_DUCKING</span><span class="p">:</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RELEASE_DOWN</span><span class="p">)</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="n">state_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">STATE_STANDING</span><span class="p">;</span>
+<span class="w">        </span><span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_STAND</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -315,16 +315,16 @@ While she&#8217;s ducking, we need to track the charge time.</p>
 <p>We add a <code>chargeTime_</code> field to <code>Heroine</code> to store how long the attack has
 charged. Assume we already have an <span name="update"><code>update()</code></span> that
 gets called each frame. In there, we add:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Heroine::update</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Heroine::update</span><span class="p">()</span>
 <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">state_</span> <span class="o">==</span> <span class="n">STATE_DUCKING</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">chargeTime_</span><span class="o">++</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">chargeTime_</span> <span class="o">&gt;</span> <span class="n">MAX_CHARGE</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">superBomb</span><span class="p">();</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">state_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">STATE_DUCKING</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">chargeTime_</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">chargeTime_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">MAX_CHARGE</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">superBomb</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -334,22 +334,22 @@ class="pattern">Update Method</a> pattern, you win a prize!</p>
 </aside>
 <p>We need to reset the timer when she starts ducking, so we modify
 <code>handleInput()</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Heroine::handleInput</span><span class="p">(</span><span class="n">Input</span> <span class="n">input</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Heroine::handleInput</span><span class="p">(</span><span class="n">Input</span><span class="w"> </span><span class="n">input</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="k">switch</span> <span class="p">(</span><span class="n">state_</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">case</span> <span class="nl">STATE_STANDING</span><span class="p">:</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">PRESS_DOWN</span><span class="p">)</span>
-      <span class="p">{</span>
-        <span class="n">state_</span> <span class="o">=</span> <span class="n">STATE_DUCKING</span><span class="p">;</span>
-        <span class="n">chargeTime_</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_DUCK</span><span class="p">);</span>
-      <span class="p">}</span>
-      <span class="c1">// Handle other inputs...</span>
-      <span class="k">break</span><span class="p">;</span>
+<span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">state_</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">STATE_STANDING</span><span class="p">:</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PRESS_DOWN</span><span class="p">)</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="n">state_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">STATE_DUCKING</span><span class="p">;</span>
+<span class="w">        </span><span class="n">chargeTime_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_DUCK</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="c1">// Handle other inputs...</span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
 
-      <span class="c1">// Other states...</span>
-  <span class="p">}</span>
+<span class="w">      </span><span class="c1">// Other states...</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -380,12 +380,12 @@ they describe looks like this when applied to our heroine:</p>
 <p>First, we define an interface for the state. Every bit of behavior that is
 state-dependent&#8202;&mdash;&#8202;every place we had a <code>switch</code> before&#8202;&mdash;&#8202;becomes a virtual
 method in that interface. For us, that&#8217;s <code>handleInput()</code> and <code>update()</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">HeroineState</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">HeroineState</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="o">~</span><span class="n">HeroineState</span><span class="p">()</span> <span class="p">{}</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">handleInput</span><span class="p">(</span><span class="n">Heroine</span><span class="o">&amp;</span> <span class="n">heroine</span><span class="p">,</span> <span class="n">Input</span> <span class="n">input</span><span class="p">)</span> <span class="p">{}</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="n">Heroine</span><span class="o">&amp;</span> <span class="n">heroine</span><span class="p">)</span> <span class="p">{}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">HeroineState</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">handleInput</span><span class="p">(</span><span class="n">Heroine</span><span class="o">&amp;</span><span class="w"> </span><span class="n">heroine</span><span class="p">,</span><span class="w"> </span><span class="n">Input</span><span class="w"> </span><span class="n">input</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="n">Heroine</span><span class="o">&amp;</span><span class="w"> </span><span class="n">heroine</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -393,31 +393,31 @@ method in that interface. For us, that&#8217;s <code>handleInput()</code> and <c
 <p>For each state, we define a class that implements the interface. Its methods
 define the heroine&#8217;s behavior when in that state. In other words, take each <code>case</code>
 from the earlier <code>switch</code> statements and move them into their state&#8217;s class. For example:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">DuckingState</span> <span class="o">:</span> <span class="k">public</span> <span class="n">HeroineState</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DuckingState</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">HeroineState</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="n">DuckingState</span><span class="p">()</span>
-  <span class="o">:</span> <span class="n">chargeTime_</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-  <span class="p">{}</span>
+<span class="w">  </span><span class="n">DuckingState</span><span class="p">()</span>
+<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">chargeTime_</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{}</span>
 
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">handleInput</span><span class="p">(</span><span class="n">Heroine</span><span class="o">&amp;</span> <span class="n">heroine</span><span class="p">,</span> <span class="n">Input</span> <span class="n">input</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">RELEASE_DOWN</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="c1">// Change to standing state...</span>
-      <span class="n">heroine</span><span class="p">.</span><span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_STAND</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">handleInput</span><span class="p">(</span><span class="n">Heroine</span><span class="o">&amp;</span><span class="w"> </span><span class="n">heroine</span><span class="p">,</span><span class="w"> </span><span class="n">Input</span><span class="w"> </span><span class="n">input</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RELEASE_DOWN</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Change to standing state...</span>
+<span class="w">      </span><span class="n">heroine</span><span class="p">.</span><span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_STAND</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="n">Heroine</span><span class="o">&amp;</span> <span class="n">heroine</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">chargeTime_</span><span class="o">++</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">chargeTime_</span> <span class="o">&gt;</span> <span class="n">MAX_CHARGE</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">heroine</span><span class="p">.</span><span class="n">superBomb</span><span class="p">();</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="n">Heroine</span><span class="o">&amp;</span><span class="w"> </span><span class="n">heroine</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">chargeTime_</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">chargeTime_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">MAX_CHARGE</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">heroine</span><span class="p">.</span><span class="n">superBomb</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-  <span class="kt">int</span> <span class="n">chargeTime_</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">chargeTime_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -427,22 +427,22 @@ and now our object model reflects that explicitly.</p>
 <h3><a href="#delegate-to-the-state" name="delegate-to-the-state">Delegate to the state</a></h3>
 <p>Next, we give the <code>Heroine</code> a pointer to her current state, lose each big <code>switch</code>, and delegate to the state instead:</p>
 <p><span name="delegate"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Heroine</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Heroine</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">handleInput</span><span class="p">(</span><span class="n">Input</span> <span class="n">input</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">state_</span><span class="o">-&gt;</span><span class="n">handleInput</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">,</span> <span class="n">input</span><span class="p">);</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">handleInput</span><span class="p">(</span><span class="n">Input</span><span class="w"> </span><span class="n">input</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">state_</span><span class="o">-&gt;</span><span class="n">handleInput</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">update</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="n">state_</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">);</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">()</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">state_</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// Other methods...</span>
+<span class="w">  </span><span class="c1">// Other methods...</span>
 <span class="k">private</span><span class="o">:</span>
-  <span class="n">HeroineState</span><span class="o">*</span> <span class="n">state_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">HeroineState</span><span class="o">*</span><span class="w"> </span><span class="n">state_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -494,24 +494,24 @@ machine-specific about it.</p>
 </aside>
 <p><em>Where</em> you put that static instance is up to you. Find a place that makes
 sense. For no particular reason, let&#8217;s put ours inside the base state class:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">HeroineState</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">HeroineState</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">static</span> <span class="n">StandingState</span> <span class="n">standing</span><span class="p">;</span>
-  <span class="k">static</span> <span class="n">DuckingState</span> <span class="n">ducking</span><span class="p">;</span>
-  <span class="k">static</span> <span class="n">JumpingState</span> <span class="n">jumping</span><span class="p">;</span>
-  <span class="k">static</span> <span class="n">DivingState</span> <span class="n">diving</span><span class="p">;</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">StandingState</span><span class="w"> </span><span class="n">standing</span><span class="p">;</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">DuckingState</span><span class="w"> </span><span class="n">ducking</span><span class="p">;</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">JumpingState</span><span class="w"> </span><span class="n">jumping</span><span class="p">;</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">DivingState</span><span class="w"> </span><span class="n">diving</span><span class="p">;</span>
 
-  <span class="c1">// Other code...</span>
+<span class="w">  </span><span class="c1">// Other code...</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>Each of those static fields is the one instance of that state that the game
 uses. To make the heroine jump, the standing state would do something like:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">PRESS_B</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PRESS_B</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">heroine</span><span class="p">.</span><span class="n">state_</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">HeroineState</span><span class="o">::</span><span class="n">jumping</span><span class="p">;</span>
-  <span class="n">heroine</span><span class="p">.</span><span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_JUMP</span><span class="p">);</span>
+<span class="w">  </span><span class="n">heroine</span><span class="p">.</span><span class="n">state_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">HeroineState</span><span class="o">::</span><span class="n">jumping</span><span class="p">;</span>
+<span class="w">  </span><span class="n">heroine</span><span class="p">.</span><span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_JUMP</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -524,29 +524,29 @@ screen at the same time, we&#8217;ll have problems.</p>
 <p>In that case, we have to <span name="fragment">create</span> a state
 object when we transition to it. This lets each FSM have its own instance of the state. Of course, if we&#8217;re allocating a <em>new</em> state, that means we need to free the <em>current</em> one. We have to be careful here, since the code that&#8217;s triggering the change is in a method in the current state. We don&#8217;t want to delete <code>this</code> out from under ourselves.</p>
 <p>Instead, we&#8217;ll allow <code>handleInput()</code> in <code>HeroineState</code> to optionally return a new state. When it does, <code>Heroine</code> will delete the old one and swap in the new one, like so:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Heroine::handleInput</span><span class="p">(</span><span class="n">Input</span> <span class="n">input</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Heroine::handleInput</span><span class="p">(</span><span class="n">Input</span><span class="w"> </span><span class="n">input</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">HeroineState</span><span class="o">*</span> <span class="n">state</span> <span class="o">=</span> <span class="n">state_</span><span class="o">-&gt;</span><span class="n">handleInput</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">,</span> <span class="n">input</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">state</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">delete</span> <span class="n">state_</span><span class="p">;</span>
-    <span class="n">state_</span> <span class="o">=</span> <span class="n">state</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="n">HeroineState</span><span class="o">*</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state_</span><span class="o">-&gt;</span><span class="n">handleInput</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="n">state_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">state_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p>That way, we don&#8217;t delete the previous state until we&#8217;ve returned from its method. Now, the standing state can transition to ducking by creating a new instance:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">HeroineState</span><span class="o">*</span> <span class="nf">StandingState::handleInput</span><span class="p">(</span><span class="n">Heroine</span><span class="o">&amp;</span> <span class="n">heroine</span><span class="p">,</span>
-                                         <span class="n">Input</span> <span class="n">input</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">HeroineState</span><span class="o">*</span><span class="w"> </span><span class="nf">StandingState::handleInput</span><span class="p">(</span><span class="n">Heroine</span><span class="o">&amp;</span><span class="w"> </span><span class="n">heroine</span><span class="p">,</span>
+<span class="w">                                         </span><span class="n">Input</span><span class="w"> </span><span class="n">input</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">PRESS_DOWN</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="c1">// Other code...</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="n">DuckingState</span><span class="p">();</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PRESS_DOWN</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Other code...</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DuckingState</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// Stay in this state.</span>
-  <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Stay in this state.</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -562,59 +562,59 @@ The <a href="object-pool.html" class="pattern">Object Pool</a> pattern can help.
 one state in a single class. We&#8217;re partway there, but we still have
 some loose ends.</p>
 <p>When the heroine changes state, we also switch her sprite. Right now, that code is owned by the state she&#8217;s switching <em>from</em>. When she goes from ducking to standing, the ducking state sets her image:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">HeroineState</span><span class="o">*</span> <span class="nf">DuckingState::handleInput</span><span class="p">(</span><span class="n">Heroine</span><span class="o">&amp;</span> <span class="n">heroine</span><span class="p">,</span>
-                                        <span class="n">Input</span> <span class="n">input</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">HeroineState</span><span class="o">*</span><span class="w"> </span><span class="nf">DuckingState::handleInput</span><span class="p">(</span><span class="n">Heroine</span><span class="o">&amp;</span><span class="w"> </span><span class="n">heroine</span><span class="p">,</span>
+<span class="w">                                        </span><span class="n">Input</span><span class="w"> </span><span class="n">input</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">RELEASE_DOWN</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">heroine</span><span class="p">.</span><span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_STAND</span><span class="p">);</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="n">StandingState</span><span class="p">();</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RELEASE_DOWN</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">heroine</span><span class="p">.</span><span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_STAND</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StandingState</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// Other code...</span>
+<span class="w">  </span><span class="c1">// Other code...</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p>What we really want is each state to control its own graphics. We can
 handle that by giving the state an <em>entry action</em>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">StandingState</span> <span class="o">:</span> <span class="k">public</span> <span class="n">HeroineState</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">StandingState</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">HeroineState</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">enter</span><span class="p">(</span><span class="n">Heroine</span><span class="o">&amp;</span> <span class="n">heroine</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">heroine</span><span class="p">.</span><span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_STAND</span><span class="p">);</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">enter</span><span class="p">(</span><span class="n">Heroine</span><span class="o">&amp;</span><span class="w"> </span><span class="n">heroine</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">heroine</span><span class="p">.</span><span class="n">setGraphics</span><span class="p">(</span><span class="n">IMAGE_STAND</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// Other code...</span>
+<span class="w">  </span><span class="c1">// Other code...</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>Back in <code>Heroine</code>, we modify the code for handling state changes to call that
 on the new state:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Heroine::handleInput</span><span class="p">(</span><span class="n">Input</span> <span class="n">input</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Heroine::handleInput</span><span class="p">(</span><span class="n">Input</span><span class="w"> </span><span class="n">input</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">HeroineState</span><span class="o">*</span> <span class="n">state</span> <span class="o">=</span> <span class="n">state_</span><span class="o">-&gt;</span><span class="n">handleInput</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">,</span> <span class="n">input</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">state</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">delete</span> <span class="n">state_</span><span class="p">;</span>
-    <span class="n">state_</span> <span class="o">=</span> <span class="n">state</span><span class="p">;</span>
+<span class="w">  </span><span class="n">HeroineState</span><span class="o">*</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state_</span><span class="o">-&gt;</span><span class="n">handleInput</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="n">state_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">state_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">;</span>
 
-    <span class="c1">// Call the enter action on the new state.</span>
-    <span class="n">state_</span><span class="o">-&gt;</span><span class="n">enter</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">);</span>
-  <span class="p">}</span>
+<span class="w">    </span><span class="c1">// Call the enter action on the new state.</span>
+<span class="w">    </span><span class="n">state_</span><span class="o">-&gt;</span><span class="n">enter</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p>This lets us simplify the ducking code to:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">HeroineState</span><span class="o">*</span> <span class="nf">DuckingState::handleInput</span><span class="p">(</span><span class="n">Heroine</span><span class="o">&amp;</span> <span class="n">heroine</span><span class="p">,</span>
-                                        <span class="n">Input</span> <span class="n">input</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">HeroineState</span><span class="o">*</span><span class="w"> </span><span class="nf">DuckingState::handleInput</span><span class="p">(</span><span class="n">Heroine</span><span class="o">&amp;</span><span class="w"> </span><span class="n">heroine</span><span class="p">,</span>
+<span class="w">                                        </span><span class="n">Input</span><span class="w"> </span><span class="n">input</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">RELEASE_DOWN</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="n">StandingState</span><span class="p">();</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RELEASE_DOWN</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StandingState</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// Other code...</span>
+<span class="w">  </span><span class="c1">// Other code...</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -673,13 +673,13 @@ it&#8217;s just <em>n + m</em>.</p>
 we define a separate state machine for what she&#8217;s carrying. <code>Heroine</code> will have
 <em>two</em> &#8220;state&#8221; references, one for each, like:</p>
 <p><span name="equip-state"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Heroine</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Heroine</span>
 <span class="p">{</span>
-  <span class="c1">// Other code...</span>
+<span class="w">  </span><span class="c1">// Other code...</span>
 
 <span class="k">private</span><span class="o">:</span>
-  <span class="n">HeroineState</span><span class="o">*</span> <span class="n">state_</span><span class="p">;</span>
-  <span class="n">HeroineState</span><span class="o">*</span> <span class="n">equipment_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">HeroineState</span><span class="o">*</span><span class="w"> </span><span class="n">state_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">HeroineState</span><span class="o">*</span><span class="w"> </span><span class="n">equipment_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -689,10 +689,10 @@ In practice, since it only has two states, a Boolean flag would work too.</p>
 </aside>
 <p>When the heroine delegates inputs to the states, she hands it to both of them:</p>
 <p><span name="consume"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Heroine::handleInput</span><span class="p">(</span><span class="n">Input</span> <span class="n">input</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Heroine::handleInput</span><span class="p">(</span><span class="n">Input</span><span class="w"> </span><span class="n">input</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">state_</span><span class="o">-&gt;</span><span class="n">handleInput</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">,</span> <span class="n">input</span><span class="p">);</span>
-  <span class="n">equipment_</span><span class="o">-&gt;</span><span class="n">handleInput</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">,</span> <span class="n">input</span><span class="p">);</span>
+<span class="w">  </span><span class="n">state_</span><span class="o">-&gt;</span><span class="n">handleInput</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="p">);</span>
+<span class="w">  </span><span class="n">equipment_</span><span class="o">-&gt;</span><span class="n">handleInput</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -733,39 +733,39 @@ superstates. In other words, it works just like overriding inherited methods.</p
 <p>In fact, if we&#8217;re using the State pattern to implement our FSM, we can
 use class inheritance to implement the hierarchy. Define a base class for the
 superstate:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">OnGroundState</span> <span class="o">:</span> <span class="k">public</span> <span class="n">HeroineState</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">OnGroundState</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">HeroineState</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">handleInput</span><span class="p">(</span><span class="n">Heroine</span><span class="o">&amp;</span> <span class="n">heroine</span><span class="p">,</span> <span class="n">Input</span> <span class="n">input</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">PRESS_B</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="c1">// Jump...</span>
-    <span class="p">}</span>
-    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">PRESS_DOWN</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="c1">// Duck...</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">handleInput</span><span class="p">(</span><span class="n">Heroine</span><span class="o">&amp;</span><span class="w"> </span><span class="n">heroine</span><span class="p">,</span><span class="w"> </span><span class="n">Input</span><span class="w"> </span><span class="n">input</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PRESS_B</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Jump...</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PRESS_DOWN</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Duck...</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>And then each substate inherits it:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">DuckingState</span> <span class="o">:</span> <span class="k">public</span> <span class="n">OnGroundState</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DuckingState</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">OnGroundState</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">handleInput</span><span class="p">(</span><span class="n">Heroine</span><span class="o">&amp;</span> <span class="n">heroine</span><span class="p">,</span> <span class="n">Input</span> <span class="n">input</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="n">RELEASE_DOWN</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="c1">// Stand up...</span>
-    <span class="p">}</span>
-    <span class="k">else</span>
-    <span class="p">{</span>
-      <span class="c1">// Didn&#39;t handle input, so walk up hierarchy.</span>
-      <span class="n">OnGroundState</span><span class="o">::</span><span class="n">handleInput</span><span class="p">(</span><span class="n">heroine</span><span class="p">,</span> <span class="n">input</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">handleInput</span><span class="p">(</span><span class="n">Heroine</span><span class="o">&amp;</span><span class="w"> </span><span class="n">heroine</span><span class="p">,</span><span class="w"> </span><span class="n">Input</span><span class="w"> </span><span class="n">input</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RELEASE_DOWN</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Stand up...</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Didn&#39;t handle input, so walk up hierarchy.</span>
+<span class="w">      </span><span class="n">OnGroundState</span><span class="o">::</span><span class="n">handleInput</span><span class="p">(</span><span class="n">heroine</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
 

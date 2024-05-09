@@ -54,18 +54,18 @@ can start to be a performance bottleneck.</p>
 units will clash together on the field of battle. Warriors need to know which
 nearby enemy to swing their blades at. The na&iuml;ve way to handle this is by looking
 at every pair of units and seeing how close they are to each other:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">handleMelee</span><span class="p">(</span><span class="n">Unit</span><span class="o">*</span> <span class="n">units</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">numUnits</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">handleMelee</span><span class="p">(</span><span class="n">Unit</span><span class="o">*</span><span class="w"> </span><span class="n">units</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">numUnits</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">numUnits</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">a</span><span class="o">++</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">numUnits</span><span class="p">;</span> <span class="n">b</span><span class="o">++</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">units</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">position</span><span class="p">()</span> <span class="o">==</span> <span class="n">units</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">position</span><span class="p">())</span>
-      <span class="p">{</span>
-        <span class="n">handleAttack</span><span class="p">(</span><span class="n">units</span><span class="p">[</span><span class="n">a</span><span class="p">],</span> <span class="n">units</span><span class="p">[</span><span class="n">b</span><span class="p">]);</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numUnits</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">a</span><span class="o">++</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numUnits</span><span class="p">;</span><span class="w"> </span><span class="n">b</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">units</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">position</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">units</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">position</span><span class="p">())</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="n">handleAttack</span><span class="p">(</span><span class="n">units</span><span class="p">[</span><span class="n">a</span><span class="p">],</span><span class="w"> </span><span class="n">units</span><span class="p">[</span><span class="n">b</span><span class="p">]);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -155,22 +155,22 @@ battlefield into a bunch of smaller mini-battlefields, each with many fewer
 units.</p>
 <h3><a href="#a-grid-of-linked-units" name="a-grid-of-linked-units">A grid of linked units</a></h3>
 <p>OK, let&#8217;s get coding. First, some prep work. Here&#8217;s our basic <code>Unit</code> class:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Unit</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Unit</span>
 <span class="p">{</span>
-  <span class="k">friend</span> <span class="k">class</span> <span class="nc">Grid</span><span class="p">;</span>
+<span class="w">  </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Grid</span><span class="p">;</span>
 
 <span class="k">public</span><span class="o">:</span>
-  <span class="n">Unit</span><span class="p">(</span><span class="n">Grid</span><span class="o">*</span> <span class="n">grid</span><span class="p">,</span> <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">)</span>
-  <span class="o">:</span> <span class="n">grid_</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span>
-    <span class="n">x_</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
-    <span class="n">y_</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-  <span class="p">{}</span>
+<span class="w">  </span><span class="n">Unit</span><span class="p">(</span><span class="n">Grid</span><span class="o">*</span><span class="w"> </span><span class="n">grid</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">grid_</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span>
+<span class="w">    </span><span class="n">x_</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+<span class="w">    </span><span class="n">y_</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{}</span>
 
-  <span class="kt">void</span> <span class="n">move</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
 
 <span class="k">private</span><span class="o">:</span>
-  <span class="kt">double</span> <span class="n">x_</span><span class="p">,</span> <span class="n">y_</span><span class="p">;</span>
-  <span class="n">Grid</span><span class="o">*</span> <span class="n">grid_</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">x_</span><span class="p">,</span><span class="w"> </span><span class="n">y_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Grid</span><span class="o">*</span><span class="w"> </span><span class="n">grid_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -179,36 +179,36 @@ We make <code>Grid</code> a <code>friend</code> class because, as we&#8217;ll se
 changes, it has to do an intricate dance with the grid to make sure everything
 is updated correctly.</p>
 <p>Here&#8217;s a sketch of the grid:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Grid</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Grid</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="n">Grid</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="c1">// Clear the grid.</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">NUM_CELLS</span><span class="p">;</span> <span class="n">x</span><span class="o">++</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">NUM_CELLS</span><span class="p">;</span> <span class="n">y</span><span class="o">++</span><span class="p">)</span>
-      <span class="p">{</span>
-        <span class="n">cells_</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="n">Grid</span><span class="p">()</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Clear the grid.</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_CELLS</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_CELLS</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="o">++</span><span class="p">)</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cells_</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">NUM_CELLS</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-  <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">CELL_SIZE</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">NUM_CELLS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">CELL_SIZE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
 <span class="k">private</span><span class="o">:</span>
-  <span class="n">Unit</span><span class="o">*</span> <span class="n">cells_</span><span class="p">[</span><span class="n">NUM_CELLS</span><span class="p">][</span><span class="n">NUM_CELLS</span><span class="p">];</span>
+<span class="w">  </span><span class="n">Unit</span><span class="o">*</span><span class="w"> </span><span class="n">cells_</span><span class="p">[</span><span class="n">NUM_CELLS</span><span class="p">][</span><span class="n">NUM_CELLS</span><span class="p">];</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>Note that each cell is just a <span name="stl">pointer</span> to a unit. Next,
 we&#8217;ll extend <code>Unit</code> with <code>next</code> and <code>prev</code> pointers:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Unit</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Unit</span>
 <span class="p">{</span>
-  <span class="c1">// Previous code...</span>
+<span class="w">  </span><span class="c1">// Previous code...</span>
 <span class="k">private</span><span class="o">:</span>
-  <span class="n">Unit</span><span class="o">*</span> <span class="n">prev_</span><span class="p">;</span>
-  <span class="n">Unit</span><span class="o">*</span> <span class="n">next_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Unit</span><span class="o">*</span><span class="w"> </span><span class="n">prev_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Unit</span><span class="o">*</span><span class="w"> </span><span class="n">next_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -233,34 +233,34 @@ from scratch.</p>
 <p>The first thing we need to do is make sure new units are actually placed into
 the grid when they are created. We&#8217;ll make <code>Unit</code> handle this in its
 constructor:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Unit</span><span class="o">::</span><span class="n">Unit</span><span class="p">(</span><span class="n">Grid</span><span class="o">*</span> <span class="n">grid</span><span class="p">,</span> <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">)</span>
-<span class="o">:</span> <span class="n">grid_</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span>
-  <span class="n">x_</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
-  <span class="n">y_</span><span class="p">(</span><span class="n">y</span><span class="p">),</span>
-  <span class="n">prev_</span><span class="p">(</span><span class="nb">NULL</span><span class="p">),</span>
-  <span class="n">next_</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Unit</span><span class="o">::</span><span class="n">Unit</span><span class="p">(</span><span class="n">Grid</span><span class="o">*</span><span class="w"> </span><span class="n">grid</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="o">:</span><span class="w"> </span><span class="n">grid_</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span>
+<span class="w">  </span><span class="n">x_</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+<span class="w">  </span><span class="n">y_</span><span class="p">(</span><span class="n">y</span><span class="p">),</span>
+<span class="w">  </span><span class="n">prev_</span><span class="p">(</span><span class="nb">NULL</span><span class="p">),</span>
+<span class="w">  </span><span class="n">next_</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">grid_</span><span class="o">-&gt;</span><span class="n">add</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="w">  </span><span class="n">grid_</span><span class="o">-&gt;</span><span class="n">add</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p>This <code>add()</code> method is defined like so:</p>
 <p><span name="floor"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Grid::add</span><span class="p">(</span><span class="n">Unit</span><span class="o">*</span> <span class="n">unit</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Grid::add</span><span class="p">(</span><span class="n">Unit</span><span class="o">*</span><span class="w"> </span><span class="n">unit</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="c1">// Determine which grid cell it&#39;s in.</span>
-  <span class="kt">int</span> <span class="n">cellX</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">x_</span> <span class="o">/</span> <span class="n">Grid</span><span class="o">::</span><span class="n">CELL_SIZE</span><span class="p">);</span>
-  <span class="kt">int</span> <span class="n">cellY</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">y_</span> <span class="o">/</span> <span class="n">Grid</span><span class="o">::</span><span class="n">CELL_SIZE</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Determine which grid cell it&#39;s in.</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">cellX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">x_</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Grid</span><span class="o">::</span><span class="n">CELL_SIZE</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">cellY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">y_</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Grid</span><span class="o">::</span><span class="n">CELL_SIZE</span><span class="p">);</span>
 
-  <span class="c1">// Add to the front of list for the cell it&#39;s in.</span>
-  <span class="n">unit</span><span class="o">-&gt;</span><span class="n">prev_</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-  <span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span> <span class="o">=</span> <span class="n">cells_</span><span class="p">[</span><span class="n">cellX</span><span class="p">][</span><span class="n">cellY</span><span class="p">];</span>
-  <span class="n">cells_</span><span class="p">[</span><span class="n">cellX</span><span class="p">][</span><span class="n">cellY</span><span class="p">]</span> <span class="o">=</span> <span class="n">unit</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Add to the front of list for the cell it&#39;s in.</span>
+<span class="w">  </span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">prev_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">  </span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cells_</span><span class="p">[</span><span class="n">cellX</span><span class="p">][</span><span class="n">cellY</span><span class="p">];</span>
+<span class="w">  </span><span class="n">cells_</span><span class="p">[</span><span class="n">cellX</span><span class="p">][</span><span class="n">cellY</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">;</span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="o">-&gt;</span><span class="n">prev_</span> <span class="o">=</span> <span class="n">unit</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="o">-&gt;</span><span class="n">prev_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -276,38 +276,38 @@ after the new unit.</p>
 <p>Once all of the units are nestled in their cells, we can let them start hacking
 at each other. With this new grid, the main method for handling combat looks like
 this:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Grid::handleMelee</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Grid::handleMelee</span><span class="p">()</span>
 <span class="p">{</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">NUM_CELLS</span><span class="p">;</span> <span class="n">x</span><span class="o">++</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">NUM_CELLS</span><span class="p">;</span> <span class="n">y</span><span class="o">++</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">handleCell</span><span class="p">(</span><span class="n">cells_</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]);</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_CELLS</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="o">++</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_CELLS</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">handleCell</span><span class="p">(</span><span class="n">cells_</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p>It walks each cell and then calls <code>handleCell()</code> on it. As you can see, we
 really have partitioned the battlefield into little isolated skirmishes. Each
 cell then handles its combat like so:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Grid::handleCell</span><span class="p">(</span><span class="n">Unit</span><span class="o">*</span> <span class="n">unit</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Grid::handleCell</span><span class="p">(</span><span class="n">Unit</span><span class="o">*</span><span class="w"> </span><span class="n">unit</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="k">while</span> <span class="p">(</span><span class="n">unit</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">Unit</span><span class="o">*</span> <span class="n">other</span> <span class="o">=</span> <span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">other</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">x_</span> <span class="o">==</span> <span class="n">other</span><span class="o">-&gt;</span><span class="n">x_</span> <span class="o">&amp;&amp;</span>
-          <span class="n">unit</span><span class="o">-&gt;</span><span class="n">y_</span> <span class="o">==</span> <span class="n">other</span><span class="o">-&gt;</span><span class="n">y_</span><span class="p">)</span>
-      <span class="p">{</span>
-        <span class="n">handleAttack</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">other</span><span class="p">);</span>
-      <span class="p">}</span>
-      <span class="n">other</span> <span class="o">=</span> <span class="n">other</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
-    <span class="p">}</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Unit</span><span class="o">*</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">x_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">other</span><span class="o">-&gt;</span><span class="n">x_</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">          </span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">y_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">other</span><span class="o">-&gt;</span><span class="n">y_</span><span class="p">)</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="n">handleAttack</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="n">other</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">other</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="n">unit</span> <span class="o">=</span> <span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="w">    </span><span class="n">unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -335,50 +335,50 @@ neither will anyone else. Our battlefield is a little <em>too</em> partitioned.<
 <p>To fix that, we&#8217;ll need to do a little work each time a unit moves. If it
 crosses a cell&#8217;s boundary lines, we need to remove it from that cell and add it
 to the new one. First, we&#8217;ll give <code>Unit</code> a method for changing its position:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Unit::move</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Unit::move</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">grid_</span><span class="o">-&gt;</span><span class="n">move</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+<span class="w">  </span><span class="n">grid_</span><span class="o">-&gt;</span><span class="n">move</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p>Presumably, this gets called by the AI code for computer-controlled units and by
 the user input code for the player&#8217;s units. All it does is hand off control to
 the grid, which then does:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Grid::move</span><span class="p">(</span><span class="n">Unit</span><span class="o">*</span> <span class="n">unit</span><span class="p">,</span> <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Grid::move</span><span class="p">(</span><span class="n">Unit</span><span class="o">*</span><span class="w"> </span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="c1">// See which cell it was in.</span>
-  <span class="kt">int</span> <span class="n">oldCellX</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">x_</span> <span class="o">/</span> <span class="n">Grid</span><span class="o">::</span><span class="n">CELL_SIZE</span><span class="p">);</span>
-  <span class="kt">int</span> <span class="n">oldCellY</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">y_</span> <span class="o">/</span> <span class="n">Grid</span><span class="o">::</span><span class="n">CELL_SIZE</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// See which cell it was in.</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">oldCellX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">x_</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Grid</span><span class="o">::</span><span class="n">CELL_SIZE</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">oldCellY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">y_</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Grid</span><span class="o">::</span><span class="n">CELL_SIZE</span><span class="p">);</span>
 
-  <span class="c1">// See which cell it&#39;s moving to.</span>
-  <span class="kt">int</span> <span class="n">cellX</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">x</span> <span class="o">/</span> <span class="n">Grid</span><span class="o">::</span><span class="n">CELL_SIZE</span><span class="p">);</span>
-  <span class="kt">int</span> <span class="n">cellY</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">y</span> <span class="o">/</span> <span class="n">Grid</span><span class="o">::</span><span class="n">CELL_SIZE</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// See which cell it&#39;s moving to.</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">cellX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Grid</span><span class="o">::</span><span class="n">CELL_SIZE</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">cellY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Grid</span><span class="o">::</span><span class="n">CELL_SIZE</span><span class="p">);</span>
 
-  <span class="n">unit</span><span class="o">-&gt;</span><span class="n">x_</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
-  <span class="n">unit</span><span class="o">-&gt;</span><span class="n">y_</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
+<span class="w">  </span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">x_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">  </span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">y_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
 
-  <span class="c1">// If it didn&#39;t change cells, we&#39;re done.</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">oldCellX</span> <span class="o">==</span> <span class="n">cellX</span> <span class="o">&amp;&amp;</span> <span class="n">oldCellY</span> <span class="o">==</span> <span class="n">cellY</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// If it didn&#39;t change cells, we&#39;re done.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">oldCellX</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">cellX</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">oldCellY</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">cellY</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
 
-  <span class="c1">// Unlink it from the list of its old cell.</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">prev_</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">unit</span><span class="o">-&gt;</span><span class="n">prev_</span><span class="o">-&gt;</span><span class="n">next_</span> <span class="o">=</span> <span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="c1">// Unlink it from the list of its old cell.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">prev_</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">prev_</span><span class="o">-&gt;</span><span class="n">next_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="o">-&gt;</span><span class="n">prev_</span> <span class="o">=</span> <span class="n">unit</span><span class="o">-&gt;</span><span class="n">prev_</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="o">-&gt;</span><span class="n">prev_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">prev_</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// If it&#39;s the head of a list, remove it.</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">cells_</span><span class="p">[</span><span class="n">oldCellX</span><span class="p">][</span><span class="n">oldCellY</span><span class="p">]</span> <span class="o">==</span> <span class="n">unit</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">cells_</span><span class="p">[</span><span class="n">oldCellX</span><span class="p">][</span><span class="n">oldCellY</span><span class="p">]</span> <span class="o">=</span> <span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="c1">// If it&#39;s the head of a list, remove it.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cells_</span><span class="p">[</span><span class="n">oldCellX</span><span class="p">][</span><span class="n">oldCellY</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">unit</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cells_</span><span class="p">[</span><span class="n">oldCellX</span><span class="p">][</span><span class="n">oldCellY</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// Add it back to the grid at its new cell.</span>
-  <span class="n">add</span><span class="p">(</span><span class="n">unit</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Add it back to the grid at its new cell.</span>
+<span class="w">  </span><span class="n">add</span><span class="p">(</span><span class="n">unit</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -398,9 +398,9 @@ That&#8217;s true for checkers and chess, but less true for more realistic games
 Those usually have attack <em>distances</em> to take into account.</p>
 <p>This pattern still works fine. Instead of just checking for an exact location
 match, we&#8217;ll do something more like:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="n">distance</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">ATTACK_DISTANCE</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">distance</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ATTACK_DISTANCE</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">handleAttack</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">other</span><span class="p">);</span>
+<span class="w">  </span><span class="n">handleAttack</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -411,57 +411,57 @@ different cells may still be close enough to interact.</p>
 different cells. To handle this, we will need to compare units not only in the
 same cell, but in neighboring cells too. To do this, first we&#8217;ll split the inner
 loop out of <code>handleCell()</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Grid::handleUnit</span><span class="p">(</span><span class="n">Unit</span><span class="o">*</span> <span class="n">unit</span><span class="p">,</span> <span class="n">Unit</span><span class="o">*</span> <span class="n">other</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Grid::handleUnit</span><span class="p">(</span><span class="n">Unit</span><span class="o">*</span><span class="w"> </span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">Unit</span><span class="o">*</span><span class="w"> </span><span class="n">other</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="k">while</span> <span class="p">(</span><span class="n">other</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">distance</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">ATTACK_DISTANCE</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">handleAttack</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">other</span><span class="p">);</span>
-    <span class="p">}</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">distance</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ATTACK_DISTANCE</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">handleAttack</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="n">other</span> <span class="o">=</span> <span class="n">other</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="w">    </span><span class="n">other</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">other</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p>Now we have a function that will take a single unit and a list of other units
 and see if there are any hits. Then we&#8217;ll make <code>handleCell()</code> use that:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Grid::handleCell</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Grid::handleCell</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">Unit</span><span class="o">*</span> <span class="n">unit</span> <span class="o">=</span> <span class="n">cells_</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">];</span>
-  <span class="k">while</span> <span class="p">(</span><span class="n">unit</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="c1">// Handle other units in this cell.</span>
-    <span class="n">handleUnit</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Unit</span><span class="o">*</span><span class="w"> </span><span class="n">unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cells_</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">];</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Handle other units in this cell.</span>
+<span class="w">    </span><span class="n">handleUnit</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">);</span>
 
-    <span class="n">unit</span> <span class="o">=</span> <span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="w">    </span><span class="n">unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p>Note that we now also pass in the coordinates of the cell, not just its unit
 list. Right now, this doesn&#8217;t do anything differently from the previous example,
 but we&#8217;ll expand it slightly:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Grid::handleCell</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Grid::handleCell</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">Unit</span><span class="o">*</span> <span class="n">unit</span> <span class="o">=</span> <span class="n">cells_</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">];</span>
-  <span class="k">while</span> <span class="p">(</span><span class="n">unit</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="c1">// Handle other units in this cell.</span>
-    <span class="n">handleUnit</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Unit</span><span class="o">*</span><span class="w"> </span><span class="n">unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cells_</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">];</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Handle other units in this cell.</span>
+<span class="w">    </span><span class="n">handleUnit</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">);</span>
 
-    <span class="c1">// Also try the neighboring cells.</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">handleUnit</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">cells_</span><span class="p">[</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">handleUnit</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">cells_</span><span class="p">[</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">y</span><span class="p">]);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">handleUnit</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">cells_</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">NUM_CELLS</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">handleUnit</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">cells_</span><span class="p">[</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]);</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="c1">// Also try the neighboring cells.</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">handleUnit</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">cells_</span><span class="p">[</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">handleUnit</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">cells_</span><span class="p">[</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">y</span><span class="p">]);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">handleUnit</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">cells_</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_CELLS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">handleUnit</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">cells_</span><span class="p">[</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="n">unit</span> <span class="o">=</span> <span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="w">    </span><span class="n">unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 

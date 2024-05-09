@@ -58,12 +58,12 @@ slow way to get the bugs out of a program. They wanted immediate feedback.
 <em>Interactive</em> programs were born. Some of the first interactive programs were
 games:</p>
 <p><span name="cave"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="n">YOU</span><span class="w"> </span><span class="k">ARE</span><span class="w"> </span><span class="n">STANDING</span><span class="w"> </span><span class="k">AT</span><span class="w"> </span><span class="n">THE</span><span class="w"> </span><span class="k">END</span><span class="w"> </span><span class="k">OF</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">ROAD</span><span class="w"> </span><span class="k">BEFORE</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">SMALL</span><span class="w"> </span><span class="n">BRICK</span><span class="w"></span>
-<span class="n">BUILDING</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="n">AROUND</span><span class="w"> </span><span class="n">YOU</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">FOREST</span><span class="p">.</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">SMALL</span><span class="w"></span>
-<span class="n">STREAM</span><span class="w"> </span><span class="n">FLOWS</span><span class="w"> </span><span class="k">OUT</span><span class="w"> </span><span class="k">OF</span><span class="w"> </span><span class="n">THE</span><span class="w"> </span><span class="n">BUILDING</span><span class="w"> </span><span class="ow">AND</span><span class="w"> </span><span class="n">DOWN</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">GULLY</span><span class="p">.</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><code><span class="n">YOU</span><span class="w"> </span><span class="k">ARE</span><span class="w"> </span><span class="n">STANDING</span><span class="w"> </span><span class="k">AT</span><span class="w"> </span><span class="n">THE</span><span class="w"> </span><span class="k">END</span><span class="w"> </span><span class="k">OF</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">ROAD</span><span class="w"> </span><span class="k">BEFORE</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">SMALL</span><span class="w"> </span><span class="n">BRICK</span>
+<span class="n">BUILDING</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="n">AROUND</span><span class="w"> </span><span class="n">YOU</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">FOREST</span><span class="p">.</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">SMALL</span>
+<span class="n">STREAM</span><span class="w"> </span><span class="n">FLOWS</span><span class="w"> </span><span class="k">OUT</span><span class="w"> </span><span class="k">OF</span><span class="w"> </span><span class="n">THE</span><span class="w"> </span><span class="n">BUILDING</span><span class="w"> </span><span class="ow">AND</span><span class="w"> </span><span class="n">DOWN</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">GULLY</span><span class="p">.</span>
 
-<span class="o">&gt;</span><span class="w"> </span><span class="k">GO</span><span class="w"> </span><span class="ow">IN</span><span class="w"></span>
-<span class="n">YOU</span><span class="w"> </span><span class="k">ARE</span><span class="w"> </span><span class="n">INSIDE</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">BUILDING</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">WELL</span><span class="w"> </span><span class="n">HOUSE</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="k">LARGE</span><span class="w"> </span><span class="n">SPRING</span><span class="p">.</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">GO</span><span class="w"> </span><span class="ow">IN</span>
+<span class="n">YOU</span><span class="w"> </span><span class="k">ARE</span><span class="w"> </span><span class="n">INSIDE</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">BUILDING</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">WELL</span><span class="w"> </span><span class="n">HOUSE</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="k">LARGE</span><span class="w"> </span><span class="n">SPRING</span><span class="p">.</span>
 </code></pre></div>
 
 <aside name="cave">
@@ -76,10 +76,10 @@ then it would respond to you. You would reply back, taking turns just like you
 learned to do in kindergarten. When it was your turn, it sat there doing
 nothing. Something like:</p>
 <p><span name="exit"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="kt">char</span><span class="o">*</span> <span class="n">command</span> <span class="o">=</span> <span class="n">readCommand</span><span class="p">();</span>
-  <span class="n">handleCommand</span><span class="p">(</span><span class="n">command</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">readCommand</span><span class="p">();</span>
+<span class="w">  </span><span class="n">handleCommand</span><span class="p">(</span><span class="n">command</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -92,10 +92,10 @@ things simple.</p>
 <p>Modern graphic UI applications are surprisingly similar to old adventure games
 once you shuck their skin off. Your word processor usually just sits there doing
 nothing until you press a key or click something:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">Event</span><span class="o">*</span> <span class="n">event</span> <span class="o">=</span> <span class="n">waitForEvent</span><span class="p">();</span>
-  <span class="n">dispatchEvent</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Event</span><span class="o">*</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">waitForEvent</span><span class="p">();</span>
+<span class="w">  </span><span class="n">dispatchEvent</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -114,11 +114,11 @@ but too rudimentary for games.</p>
 </aside>
 <p>This is the first key part of a real game loop: <em>it processes user input, but
 doesn&#8217;t wait for it</em>. The loop always keeps spinning:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">processInput</span><span class="p">();</span>
-  <span class="n">update</span><span class="p">();</span>
-  <span class="n">render</span><span class="p">();</span>
+<span class="w">  </span><span class="n">processInput</span><span class="p">();</span>
+<span class="w">  </span><span class="n">update</span><span class="p">();</span>
+<span class="w">  </span><span class="n">render</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -224,11 +224,11 @@ Actually implementing <code>render()</code>, <code>update()</code> and others is
 (challenging!) exercise for the reader.</p>
 <h3><a href="#run,-run-as-fast-as-you-can" name="run,-run-as-fast-as-you-can">Run, run as fast as you can</a></h3>
 <p>We&#8217;ve already seen the simplest possible game loop:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">processInput</span><span class="p">();</span>
-  <span class="n">update</span><span class="p">();</span>
-  <span class="n">render</span><span class="p">();</span>
+<span class="w">  </span><span class="n">processInput</span><span class="p">();</span>
+<span class="w">  </span><span class="n">update</span><span class="p">();</span>
+<span class="w">  </span><span class="n">render</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -248,14 +248,14 @@ the frame and then <em>wait</em> until it&#8217;s time for the next one, like so
 <aside name="16">
 <p><em>1000 ms / FPS = ms per frame</em>.</p>
 </aside>
-<div class="codehilite"><pre><span></span><code><span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="kt">double</span> <span class="n">start</span> <span class="o">=</span> <span class="n">getCurrentTime</span><span class="p">();</span>
-  <span class="n">processInput</span><span class="p">();</span>
-  <span class="n">update</span><span class="p">();</span>
-  <span class="n">render</span><span class="p">();</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getCurrentTime</span><span class="p">();</span>
+<span class="w">  </span><span class="n">processInput</span><span class="p">();</span>
+<span class="w">  </span><span class="n">update</span><span class="p">();</span>
+<span class="w">  </span><span class="n">render</span><span class="p">();</span>
 
-  <span class="n">sleep</span><span class="p">(</span><span class="n">start</span> <span class="o">+</span> <span class="n">MS_PER_FRAME</span> <span class="o">-</span> <span class="n">getCurrentTime</span><span class="p">());</span>
+<span class="w">  </span><span class="n">sleep</span><span class="p">(</span><span class="n">start</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">MS_PER_FRAME</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">getCurrentTime</span><span class="p">());</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -287,15 +287,15 @@ passed since the last frame. The longer the frame takes, the bigger steps the
 game takes. It always keeps up with real time because it will take bigger and
 bigger steps to get there. They call this a <em>variable</em> or <em>fluid</em> time step. It
 looks like:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">double</span> <span class="n">lastTime</span> <span class="o">=</span> <span class="n">getCurrentTime</span><span class="p">();</span>
-<span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">double</span><span class="w"> </span><span class="n">lastTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getCurrentTime</span><span class="p">();</span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="kt">double</span> <span class="n">current</span> <span class="o">=</span> <span class="n">getCurrentTime</span><span class="p">();</span>
-  <span class="kt">double</span> <span class="n">elapsed</span> <span class="o">=</span> <span class="n">current</span> <span class="o">-</span> <span class="n">lastTime</span><span class="p">;</span>
-  <span class="n">processInput</span><span class="p">();</span>
-  <span class="n">update</span><span class="p">(</span><span class="n">elapsed</span><span class="p">);</span>
-  <span class="n">render</span><span class="p">();</span>
-  <span class="n">lastTime</span> <span class="o">=</span> <span class="n">current</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getCurrentTime</span><span class="p">();</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">elapsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">lastTime</span><span class="p">;</span>
+<span class="w">  </span><span class="n">processInput</span><span class="p">();</span>
+<span class="w">  </span><span class="n">update</span><span class="p">(</span><span class="n">elapsed</span><span class="p">);</span>
+<span class="w">  </span><span class="n">render</span><span class="p">();</span>
+<span class="w">  </span><span class="n">lastTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -369,24 +369,24 @@ processor time.</p>
 of the game loop. This is how much game time we need to simulate for the game&#8217;s
 &#8220;now&#8221; to catch up with the player&#8217;s. We do that using a <em>series</em> of <em>fixed</em> time
 steps. The code looks a bit like:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">double</span> <span class="n">previous</span> <span class="o">=</span> <span class="n">getCurrentTime</span><span class="p">();</span>
-<span class="kt">double</span> <span class="n">lag</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
-<span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">double</span><span class="w"> </span><span class="n">previous</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getCurrentTime</span><span class="p">();</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">lag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="kt">double</span> <span class="n">current</span> <span class="o">=</span> <span class="n">getCurrentTime</span><span class="p">();</span>
-  <span class="kt">double</span> <span class="n">elapsed</span> <span class="o">=</span> <span class="n">current</span> <span class="o">-</span> <span class="n">previous</span><span class="p">;</span>
-  <span class="n">previous</span> <span class="o">=</span> <span class="n">current</span><span class="p">;</span>
-  <span class="n">lag</span> <span class="o">+=</span> <span class="n">elapsed</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getCurrentTime</span><span class="p">();</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">elapsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">previous</span><span class="p">;</span>
+<span class="w">  </span><span class="n">previous</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+<span class="w">  </span><span class="n">lag</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">elapsed</span><span class="p">;</span>
 
-  <span class="n">processInput</span><span class="p">();</span>
+<span class="w">  </span><span class="n">processInput</span><span class="p">();</span>
 
-  <span class="k">while</span> <span class="p">(</span><span class="n">lag</span> <span class="o">&gt;=</span> <span class="n">MS_PER_UPDATE</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">update</span><span class="p">();</span>
-    <span class="n">lag</span> <span class="o">-=</span> <span class="n">MS_PER_UPDATE</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">lag</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">MS_PER_UPDATE</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">update</span><span class="p">();</span>
+<span class="w">    </span><span class="n">lag</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">MS_PER_UPDATE</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="n">render</span><span class="p">();</span>
+<span class="w">  </span><span class="n">render</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -438,7 +438,7 @@ less than the update time step, not when it&#8217;s <em>zero</em>. That leftover
 That&#8217;s how far into the next frame we are.</p>
 <p>When we go to render, we&#8217;ll pass that in:</p>
 <p><span name="normal"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="n">render</span><span class="p">(</span><span class="n">lag</span> <span class="o">/</span> <span class="n">MS_PER_UPDATE</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="n">render</span><span class="p">(</span><span class="n">lag</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">MS_PER_UPDATE</span><span class="p">);</span>
 </code></pre></div>
 
 <aside name="normal">

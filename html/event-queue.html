@@ -57,10 +57,10 @@ programming</em></a>.</p>
 </aside>
 <p>In order to receive these missives, somewhere deep in the bowels of your code is
 an <em>event loop</em>. It looks roughly like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">while</span> <span class="p">(</span><span class="n">running</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">running</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">Event</span> <span class="n">event</span> <span class="o">=</span> <span class="n">getNextEvent</span><span class="p">();</span>
-  <span class="c1">// Handle event...</span>
+<span class="w">  </span><span class="n">Event</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getNextEvent</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// Handle event...</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -139,10 +139,10 @@ class="gof-pattern">Singleton</a> pattern, this is one of the places where it
 may fit since the machine likely only has one set of speakers. I&#8217;m taking a
 simpler approach and just making the method static.</p>
 </aside>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Audio</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Audio</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">static</span> <span class="kt">void</span> <span class="n">playSound</span><span class="p">(</span><span class="n">SoundId</span> <span class="n">id</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">);</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">playSound</span><span class="p">(</span><span class="n">SoundId</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">volume</span><span class="p">);</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -150,26 +150,26 @@ simpler approach and just making the method static.</p>
 available channel to play it on, and starting it up. This chapter isn&#8217;t about
 some platform&#8217;s real audio API, so I&#8217;ll conjure one up that we can presume is
 implemented elsewhere. Using it, we write our method like so:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Audio::playSound</span><span class="p">(</span><span class="n">SoundId</span> <span class="n">id</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Audio::playSound</span><span class="p">(</span><span class="n">SoundId</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">volume</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">ResourceId</span> <span class="n">resource</span> <span class="o">=</span> <span class="n">loadSound</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
-  <span class="kt">int</span> <span class="n">channel</span> <span class="o">=</span> <span class="n">findOpenChannel</span><span class="p">();</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">channel</span> <span class="o">==</span> <span class="mi">-1</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-  <span class="n">startSound</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">volume</span><span class="p">);</span>
+<span class="w">  </span><span class="n">ResourceId</span><span class="w"> </span><span class="n">resource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loadSound</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">channel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findOpenChannel</span><span class="p">();</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">channel</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="n">startSound</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span><span class="w"> </span><span class="n">channel</span><span class="p">,</span><span class="w"> </span><span class="n">volume</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p>We check that in, create a few sound files, and start sprinkling <code>playSound()</code>
 calls through our codebase like some magical audio fairy. For example, in our UI
 code, we play a little bloop when the selected menu item changes:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Menu</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Menu</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="kt">void</span> <span class="n">onSelect</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">Audio</span><span class="o">::</span><span class="n">playSound</span><span class="p">(</span><span class="n">SOUND_BLOOP</span><span class="p">,</span> <span class="n">VOL_MAX</span><span class="p">);</span>
-    <span class="c1">// Other stuff...</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onSelect</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Audio</span><span class="o">::</span><span class="n">playSound</span><span class="p">(</span><span class="n">SOUND_BLOOP</span><span class="p">,</span><span class="w"> </span><span class="n">VOL_MAX</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Other stuff...</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -315,10 +315,10 @@ starts making the speaker wiggle.</p>
 To do that, we need to <em>reify</em> the request to play a sound. We need a little
 structure that stores the details of a pending request so we can keep it around
 until later:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">struct</span> <span class="nc">PlayMessage</span>
+<div class="codehilite"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">PlayMessage</span>
 <span class="p">{</span>
-  <span class="n">SoundId</span> <span class="n">id</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">volume</span><span class="p">;</span>
+<span class="w">  </span><span class="n">SoundId</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">volume</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -349,32 +349,32 @@ They aren&#8217;t exactly incentivized to stick to the basics.</p>
 href="data-locality.html" class="pattern">Data Locality</a>.</p>
 </aside>
 <p>So let&#8217;s do that:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Audio</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Audio</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">static</span> <span class="kt">void</span> <span class="n">init</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="n">numPending_</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">init</span><span class="p">()</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">numPending_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// Other stuff...</span>
+<span class="w">  </span><span class="c1">// Other stuff...</span>
 <span class="k">private</span><span class="o">:</span>
-  <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">MAX_PENDING</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAX_PENDING</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">16</span><span class="p">;</span>
 
-  <span class="k">static</span> <span class="n">PlayMessage</span> <span class="n">pending_</span><span class="p">[</span><span class="n">MAX_PENDING</span><span class="p">];</span>
-  <span class="k">static</span> <span class="kt">int</span> <span class="n">numPending_</span><span class="p">;</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">PlayMessage</span><span class="w"> </span><span class="n">pending_</span><span class="p">[</span><span class="n">MAX_PENDING</span><span class="p">];</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">numPending_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>We can tune the array size to cover our worst case. To play a sound, we simply
 slot a new message in there at the end:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Audio::playSound</span><span class="p">(</span><span class="n">SoundId</span> <span class="n">id</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Audio::playSound</span><span class="p">(</span><span class="n">SoundId</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">volume</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">assert</span><span class="p">(</span><span class="n">numPending_</span> <span class="o">&lt;</span> <span class="n">MAX_PENDING</span><span class="p">);</span>
+<span class="w">  </span><span class="n">assert</span><span class="p">(</span><span class="n">numPending_</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAX_PENDING</span><span class="p">);</span>
 
-  <span class="n">pending_</span><span class="p">[</span><span class="n">numPending_</span><span class="p">].</span><span class="n">id</span> <span class="o">=</span> <span class="n">id</span><span class="p">;</span>
-  <span class="n">pending_</span><span class="p">[</span><span class="n">numPending_</span><span class="p">].</span><span class="n">volume</span> <span class="o">=</span> <span class="n">volume</span><span class="p">;</span>
-  <span class="n">numPending_</span><span class="o">++</span><span class="p">;</span>
+<span class="w">  </span><span class="n">pending_</span><span class="p">[</span><span class="n">numPending_</span><span class="p">].</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">  </span><span class="n">pending_</span><span class="p">[</span><span class="n">numPending_</span><span class="p">].</span><span class="n">volume</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">volume</span><span class="p">;</span>
+<span class="w">  </span><span class="n">numPending_</span><span class="o">++</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -382,23 +382,23 @@ slot a new message in there at the end:</p>
 the sound, of course. That code needs to go somewhere, and that somewhere is an
 <code>update()</code> method:</p>
 <p><span name="update"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Audio</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Audio</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">static</span> <span class="kt">void</span> <span class="n">update</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numPending_</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">ResourceId</span> <span class="n">resource</span> <span class="o">=</span> <span class="n">loadSound</span><span class="p">(</span><span class="n">pending_</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">id</span><span class="p">);</span>
-      <span class="kt">int</span> <span class="n">channel</span> <span class="o">=</span> <span class="n">findOpenChannel</span><span class="p">();</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">channel</span> <span class="o">==</span> <span class="mi">-1</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-      <span class="n">startSound</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">pending_</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">volume</span><span class="p">);</span>
-    <span class="p">}</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">()</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numPending_</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">ResourceId</span><span class="w"> </span><span class="n">resource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loadSound</span><span class="p">(</span><span class="n">pending_</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">id</span><span class="p">);</span>
+<span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">channel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findOpenChannel</span><span class="p">();</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">channel</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+<span class="w">      </span><span class="n">startSound</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span><span class="w"> </span><span class="n">channel</span><span class="p">,</span><span class="w"> </span><span class="n">pending_</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">volume</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="n">numPending_</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="w">    </span><span class="n">numPending_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// Other stuff...</span>
+<span class="w">  </span><span class="c1">// Other stuff...</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -442,49 +442,49 @@ starts at element zero and the tail grows to the right.</p>
 <p><img src="images/event-queue-queue.png" alt="An array of events. The head points to the first element, and the tail grows to the right." /></p>
 <p>Let&#8217;s code that up. First, we&#8217;ll tweak our fields a bit to make these two
 markers explicit in the class:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Audio</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Audio</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="k">static</span> <span class="kt">void</span> <span class="n">init</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="n">head_</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="n">tail_</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">init</span><span class="p">()</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">head_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">tail_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// Methods...</span>
+<span class="w">  </span><span class="c1">// Methods...</span>
 <span class="k">private</span><span class="o">:</span>
-  <span class="k">static</span> <span class="kt">int</span> <span class="n">head_</span><span class="p">;</span>
-  <span class="k">static</span> <span class="kt">int</span> <span class="n">tail_</span><span class="p">;</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">head_</span><span class="p">;</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">tail_</span><span class="p">;</span>
 
-  <span class="c1">// Array...</span>
+<span class="w">  </span><span class="c1">// Array...</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>In the implementation of <code>playSound()</code>, <code>numPending_</code> has been replaced with
 <code>tail_</code>, but otherwise it&#8217;s the same:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Audio::playSound</span><span class="p">(</span><span class="n">SoundId</span> <span class="n">id</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Audio::playSound</span><span class="p">(</span><span class="n">SoundId</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">volume</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">assert</span><span class="p">(</span><span class="n">tail_</span> <span class="o">&lt;</span> <span class="n">MAX_PENDING</span><span class="p">);</span>
+<span class="w">  </span><span class="n">assert</span><span class="p">(</span><span class="n">tail_</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAX_PENDING</span><span class="p">);</span>
 
-  <span class="c1">// Add to the end of the list.</span>
-  <span class="n">pending_</span><span class="p">[</span><span class="n">tail_</span><span class="p">].</span><span class="n">id</span> <span class="o">=</span> <span class="n">id</span><span class="p">;</span>
-  <span class="n">pending_</span><span class="p">[</span><span class="n">tail_</span><span class="p">].</span><span class="n">volume</span> <span class="o">=</span> <span class="n">volume</span><span class="p">;</span>
-  <span class="n">tail_</span><span class="o">++</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Add to the end of the list.</span>
+<span class="w">  </span><span class="n">pending_</span><span class="p">[</span><span class="n">tail_</span><span class="p">].</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">  </span><span class="n">pending_</span><span class="p">[</span><span class="n">tail_</span><span class="p">].</span><span class="n">volume</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">volume</span><span class="p">;</span>
+<span class="w">  </span><span class="n">tail_</span><span class="o">++</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p>The more interesting change is in <code>update()</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Audio::update</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Audio::update</span><span class="p">()</span>
 <span class="p">{</span>
-  <span class="c1">// If there are no pending requests, do nothing.</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">head_</span> <span class="o">==</span> <span class="n">tail_</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// If there are no pending requests, do nothing.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">head_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">tail_</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
 
-  <span class="n">ResourceId</span> <span class="n">resource</span> <span class="o">=</span> <span class="n">loadSound</span><span class="p">(</span><span class="n">pending_</span><span class="p">[</span><span class="n">head_</span><span class="p">].</span><span class="n">id</span><span class="p">);</span>
-  <span class="kt">int</span> <span class="n">channel</span> <span class="o">=</span> <span class="n">findOpenChannel</span><span class="p">();</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">channel</span> <span class="o">==</span> <span class="mi">-1</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-  <span class="n">startSound</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">pending_</span><span class="p">[</span><span class="n">head_</span><span class="p">].</span><span class="n">volume</span><span class="p">);</span>
+<span class="w">  </span><span class="n">ResourceId</span><span class="w"> </span><span class="n">resource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loadSound</span><span class="p">(</span><span class="n">pending_</span><span class="p">[</span><span class="n">head_</span><span class="p">].</span><span class="n">id</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">channel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findOpenChannel</span><span class="p">();</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">channel</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="n">startSound</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span><span class="w"> </span><span class="n">channel</span><span class="p">,</span><span class="w"> </span><span class="n">pending_</span><span class="p">[</span><span class="n">head_</span><span class="p">].</span><span class="n">volume</span><span class="p">);</span>
 
-  <span class="n">head_</span><span class="o">++</span><span class="p">;</span>
+<span class="w">  </span><span class="n">head_</span><span class="o">++</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -513,14 +513,14 @@ like a circular array of cells.</p>
 <p>Implementing that is remarkably easy. When we enqueue an item, we just need to
 make sure the tail wraps around to the beginning of the array when it reaches
 the end:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Audio::playSound</span><span class="p">(</span><span class="n">SoundId</span> <span class="n">id</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Audio::playSound</span><span class="p">(</span><span class="n">SoundId</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">volume</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="n">assert</span><span class="p">((</span><span class="n">tail_</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">MAX_PENDING</span> <span class="o">!=</span> <span class="n">head_</span><span class="p">);</span>
+<span class="w">  </span><span class="n">assert</span><span class="p">((</span><span class="n">tail_</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">MAX_PENDING</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">head_</span><span class="p">);</span>
 
-  <span class="c1">// Add to the end of the list.</span>
-  <span class="n">pending_</span><span class="p">[</span><span class="n">tail_</span><span class="p">].</span><span class="n">id</span> <span class="o">=</span> <span class="n">id</span><span class="p">;</span>
-  <span class="n">pending_</span><span class="p">[</span><span class="n">tail_</span><span class="p">].</span><span class="n">volume</span> <span class="o">=</span> <span class="n">volume</span><span class="p">;</span>
-  <span class="n">tail_</span> <span class="o">=</span> <span class="p">(</span><span class="n">tail_</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">MAX_PENDING</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Add to the end of the list.</span>
+<span class="w">  </span><span class="n">pending_</span><span class="p">[</span><span class="n">tail_</span><span class="p">].</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">  </span><span class="n">pending_</span><span class="p">[</span><span class="n">tail_</span><span class="p">].</span><span class="n">volume</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">volume</span><span class="p">;</span>
+<span class="w">  </span><span class="n">tail_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">tail_</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">MAX_PENDING</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -532,17 +532,17 @@ queue fills up, those will be gone and, like some weird backwards Ouroboros, the
 tail will collide with the head and start overwriting it. The assertion ensures
 that this doesn&#8217;t happen.</p>
 <p>In <code>update()</code>, we wrap the head around too:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Audio::update</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Audio::update</span><span class="p">()</span>
 <span class="p">{</span>
-  <span class="c1">// If there are no pending requests, do nothing.</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">head_</span> <span class="o">==</span> <span class="n">tail_</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// If there are no pending requests, do nothing.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">head_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">tail_</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
 
-  <span class="n">ResourceId</span> <span class="n">resource</span> <span class="o">=</span> <span class="n">loadSound</span><span class="p">(</span><span class="n">pending_</span><span class="p">[</span><span class="n">head_</span><span class="p">].</span><span class="n">id</span><span class="p">);</span>
-  <span class="kt">int</span> <span class="n">channel</span> <span class="o">=</span> <span class="n">findOpenChannel</span><span class="p">();</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">channel</span> <span class="o">==</span> <span class="mi">-1</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-  <span class="n">startSound</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">pending_</span><span class="p">[</span><span class="n">head_</span><span class="p">].</span><span class="n">volume</span><span class="p">);</span>
+<span class="w">  </span><span class="n">ResourceId</span><span class="w"> </span><span class="n">resource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loadSound</span><span class="p">(</span><span class="n">pending_</span><span class="p">[</span><span class="n">head_</span><span class="p">].</span><span class="n">id</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">channel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findOpenChannel</span><span class="p">();</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">channel</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="n">startSound</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span><span class="w"> </span><span class="n">channel</span><span class="p">,</span><span class="w"> </span><span class="n">pending_</span><span class="p">[</span><span class="n">head_</span><span class="p">].</span><span class="n">volume</span><span class="p">);</span>
 
-  <span class="n">head_</span> <span class="o">=</span> <span class="p">(</span><span class="n">head_</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">MAX_PENDING</span><span class="p">;</span>
+<span class="w">  </span><span class="n">head_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">head_</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">MAX_PENDING</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -560,23 +560,23 @@ other multiple), then copy the items over.</p>
 first is that multiple requests to play the same sound end up too loud. Since we
 know which requests are waiting to be processed now, all we need to do is merge
 a request if it matches an already pending one:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Audio::playSound</span><span class="p">(</span><span class="n">SoundId</span> <span class="n">id</span><span class="p">,</span> <span class="kt">int</span> <span class="n">volume</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Audio::playSound</span><span class="p">(</span><span class="n">SoundId</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">volume</span><span class="p">)</span>
 <span class="p">{</span>
-  <span class="c1">// Walk the pending requests.</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">head_</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">tail_</span><span class="p">;</span>
-       <span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">MAX_PENDING</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">pending_</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">id</span> <span class="o">==</span> <span class="n">id</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="c1">// Use the larger of the two volumes.</span>
-      <span class="n">pending_</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">volume</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">volume</span><span class="p">,</span> <span class="n">pending_</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">volume</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Walk the pending requests.</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head_</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">tail_</span><span class="p">;</span>
+<span class="w">       </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">MAX_PENDING</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pending_</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">id</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">id</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Use the larger of the two volumes.</span>
+<span class="w">      </span><span class="n">pending_</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">volume</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">volume</span><span class="p">,</span><span class="w"> </span><span class="n">pending_</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">volume</span><span class="p">);</span>
 
-      <span class="c1">// Don&#39;t need to enqueue.</span>
-      <span class="k">return</span><span class="p">;</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
+<span class="w">      </span><span class="c1">// Don&#39;t need to enqueue.</span>
+<span class="w">      </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 
-  <span class="c1">// Previous code...</span>
+<span class="w">  </span><span class="c1">// Previous code...</span>
 <span class="p">}</span>
 </code></pre></div>
 
