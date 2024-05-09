@@ -39,8 +39,8 @@ teacher found a printout of some simple BASIC programs for us to tinker with.</p
 run some code, we&#8217;d have to carefully type it in from scratch. This led us
 to prefer programs that were only a few lines long:</p>
 <p><span name="radical"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="mf">10</span><span class="w"> </span><span class="kr">PRINT</span><span class="w"> </span><span class="s">&quot;BOBBY IS RADICAL!!!&quot;</span>
-<span class="mf">20</span><span class="w"> </span><span class="kr">GOTO</span><span class="w"> </span><span class="mf">10</span>
+<div class="codehilite"><pre><span></span><code><span class="mf">10</span> <span class="kr">PRINT</span> <span class="s">&quot;BOBBY IS RADICAL!!!&quot;</span>
+<span class="mf">20</span> <span class="kr">GOTO</span> <span class="mf">10</span>
 </code></pre></div>
 
 <aside name="radical">
@@ -283,10 +283,10 @@ ellipsis will be placed in the sample to show where the missing code goes.</p>
 <p>Consider a function that will do some work and then return a value. The
 pattern being explained is only concerned with the return value, and not the
 work being done. In that case, the sample code will look like:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="nf">update</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">bool</span> <span class="nf">update</span><span class="p">()</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="c1">// Do work...</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">isDone</span><span class="p">();</span>
+  <span class="c1">// Do work...</span>
+  <span class="k">return</span> <span class="n">isDone</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
 

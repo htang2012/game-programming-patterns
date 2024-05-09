@@ -62,19 +62,19 @@ dragon &#8220;is-a&#8221; monster, we model that by making <code>Dragon</code> a
 we&#8217;ll see, subclassing is only one way of enshrining a conceptual relation like
 that into code.</p>
 </aside>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Monster</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Monster</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Monster</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">getAttack</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">Monster</span><span class="p">()</span> <span class="p">{}</span>
+  <span class="k">virtual</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">getAttack</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
 <span class="k">protected</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Monster</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">startingHealth</span><span class="p">)</span>
-<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">health_</span><span class="p">(</span><span class="n">startingHealth</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{}</span>
+  <span class="n">Monster</span><span class="p">(</span><span class="kt">int</span> <span class="n">startingHealth</span><span class="p">)</span>
+  <span class="o">:</span> <span class="n">health_</span><span class="p">(</span><span class="n">startingHealth</span><span class="p">)</span>
+  <span class="p">{}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">health_</span><span class="p">;</span><span class="w"> </span><span class="c1">// Current health.</span>
+  <span class="kt">int</span> <span class="n">health_</span><span class="p">;</span> <span class="c1">// Current health.</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -87,26 +87,26 @@ constructors that call this one, passing in the starting health that is
 appropriate for that breed.</p>
 <p>Now let&#8217;s see a couple of breed subclasses:</p>
 <p><span name="exclaim"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Dragon</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Monster</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Dragon</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Monster</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Dragon</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Monster</span><span class="p">(</span><span class="mi">230</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+  <span class="n">Dragon</span><span class="p">()</span> <span class="o">:</span> <span class="n">Monster</span><span class="p">(</span><span class="mi">230</span><span class="p">)</span> <span class="p">{}</span>
 
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">getAttack</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;The dragon breathes fire!&quot;</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">virtual</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">getAttack</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="s">&quot;The dragon breathes fire!&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
 <span class="p">};</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">Troll</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Monster</span>
+<span class="k">class</span> <span class="nc">Troll</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Monster</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Troll</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Monster</span><span class="p">(</span><span class="mi">48</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+  <span class="n">Troll</span><span class="p">()</span> <span class="o">:</span> <span class="n">Monster</span><span class="p">(</span><span class="mi">48</span><span class="p">)</span> <span class="p">{}</span>
 
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">getAttack</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;The troll clubs you!&quot;</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">virtual</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">getAttack</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="s">&quot;The troll clubs you!&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -301,41 +301,41 @@ that trade-off starts to make more and more sense.</p>
 <p>For our first pass at an implementation, let&#8217;s start simple and build the basic
 system described in the motivation section. We&#8217;ll start with the <code>Breed</code>
 class:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Breed</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Breed</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Breed</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">health</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">attack</span><span class="p">)</span>
-<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">health_</span><span class="p">(</span><span class="n">health</span><span class="p">),</span>
-<span class="w">    </span><span class="n">attack_</span><span class="p">(</span><span class="n">attack</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{}</span>
+  <span class="n">Breed</span><span class="p">(</span><span class="kt">int</span> <span class="n">health</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">attack</span><span class="p">)</span>
+  <span class="o">:</span> <span class="n">health_</span><span class="p">(</span><span class="n">health</span><span class="p">),</span>
+    <span class="n">attack_</span><span class="p">(</span><span class="n">attack</span><span class="p">)</span>
+  <span class="p">{}</span>
 
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">getHealth</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">health_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">getAttack</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">attack_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+  <span class="kt">int</span> <span class="n">getHealth</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">health_</span><span class="p">;</span> <span class="p">}</span>
+  <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">getAttack</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">attack_</span><span class="p">;</span> <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">health_</span><span class="p">;</span><span class="w"> </span><span class="c1">// Starting health.</span>
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">attack_</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">health_</span><span class="p">;</span> <span class="c1">// Starting health.</span>
+  <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">attack_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>Very simple. It&#8217;s basically just a container for two data fields: the starting
 health and the attack string. Let&#8217;s see how monsters use it:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Monster</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Monster</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Monster</span><span class="p">(</span><span class="n">Breed</span><span class="o">&amp;</span><span class="w"> </span><span class="n">breed</span><span class="p">)</span>
-<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">health_</span><span class="p">(</span><span class="n">breed</span><span class="p">.</span><span class="n">getHealth</span><span class="p">()),</span>
-<span class="w">    </span><span class="n">breed_</span><span class="p">(</span><span class="n">breed</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{}</span>
+  <span class="n">Monster</span><span class="p">(</span><span class="n">Breed</span><span class="o">&amp;</span> <span class="n">breed</span><span class="p">)</span>
+  <span class="o">:</span> <span class="n">health_</span><span class="p">(</span><span class="n">breed</span><span class="p">.</span><span class="n">getHealth</span><span class="p">()),</span>
+    <span class="n">breed_</span><span class="p">(</span><span class="n">breed</span><span class="p">)</span>
+  <span class="p">{}</span>
 
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">getAttack</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">breed_</span><span class="p">.</span><span class="n">getAttack</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">getAttack</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="n">breed_</span><span class="p">.</span><span class="n">getAttack</span><span class="p">();</span>
+  <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">int</span><span class="w">    </span><span class="n">health_</span><span class="p">;</span><span class="w"> </span><span class="c1">// Current health.</span>
-<span class="w">  </span><span class="n">Breed</span><span class="o">&amp;</span><span class="w"> </span><span class="n">breed_</span><span class="p">;</span>
+  <span class="kt">int</span>    <span class="n">health_</span><span class="p">;</span> <span class="c1">// Current health.</span>
+  <span class="n">Breed</span><span class="o">&amp;</span> <span class="n">breed_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -352,12 +352,12 @@ instantiated in most OOP languages&#8202;&mdash;&#8202;we don&#8217;t usually al
 memory and then <em>give</em> it its class. Instead, we call a constructor function on
 the class itself, and it&#8217;s responsible for giving us a new instance.</p>
 <p>We can apply this same <span name="pattern">pattern</span> to our type objects:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Breed</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Breed</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Monster</span><span class="o">*</span><span class="w"> </span><span class="n">newMonster</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Monster</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+  <span class="n">Monster</span><span class="o">*</span> <span class="n">newMonster</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">Monster</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">);</span> <span class="p">}</span>
 
-<span class="w">  </span><span class="c1">// Previous Breed code...</span>
+  <span class="c1">// Previous Breed code...</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -370,21 +370,21 @@ Ruby, Smalltalk, Objective-C, and other languages where classes are objects, you
 construct new instances by calling a method on the class object itself.</p>
 </aside>
 <p>And the class that uses them:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Monster</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Monster</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Breed</span><span class="p">;</span>
+  <span class="k">friend</span> <span class="k">class</span> <span class="nc">Breed</span><span class="p">;</span>
 
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">getAttack</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">breed_</span><span class="p">.</span><span class="n">getAttack</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+  <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">getAttack</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">breed_</span><span class="p">.</span><span class="n">getAttack</span><span class="p">();</span> <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Monster</span><span class="p">(</span><span class="n">Breed</span><span class="o">&amp;</span><span class="w"> </span><span class="n">breed</span><span class="p">)</span>
-<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">health_</span><span class="p">(</span><span class="n">breed</span><span class="p">.</span><span class="n">getHealth</span><span class="p">()),</span>
-<span class="w">    </span><span class="n">breed_</span><span class="p">(</span><span class="n">breed</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{}</span>
+  <span class="n">Monster</span><span class="p">(</span><span class="n">Breed</span><span class="o">&amp;</span> <span class="n">breed</span><span class="p">)</span>
+  <span class="o">:</span> <span class="n">health_</span><span class="p">(</span><span class="n">breed</span><span class="p">.</span><span class="n">getHealth</span><span class="p">()),</span>
+    <span class="n">breed_</span><span class="p">(</span><span class="n">breed</span><span class="p">)</span>
+  <span class="p">{}</span>
 
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">health_</span><span class="p">;</span><span class="w"> </span><span class="c1">// Current health.</span>
-<span class="w">  </span><span class="n">Breed</span><span class="o">&amp;</span><span class="w"> </span><span class="n">breed_</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">health_</span><span class="p">;</span> <span class="c1">// Current health.</span>
+  <span class="n">Breed</span><span class="o">&amp;</span> <span class="n">breed_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -399,11 +399,11 @@ calling it directly. Friend classes sidestep that restriction so <code>Breed</co
 still access it. This means the <em>only</em> way to create monsters is by going
 through <code>newMonster()</code>.</p>
 </aside>
-<div class="codehilite"><pre><span></span><code><span class="n">Monster</span><span class="o">*</span><span class="w"> </span><span class="n">monster</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Monster</span><span class="p">(</span><span class="n">someBreed</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Monster</span><span class="o">*</span> <span class="n">monster</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Monster</span><span class="p">(</span><span class="n">someBreed</span><span class="p">);</span>
 </code></pre></div>
 
 <p>After our changes, it&#8217;s like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Monster</span><span class="o">*</span><span class="w"> </span><span class="n">monster</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">someBreed</span><span class="p">.</span><span class="n">newMonster</span><span class="p">();</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Monster</span><span class="o">*</span> <span class="n">monster</span> <span class="o">=</span> <span class="n">someBreed</span><span class="p">.</span><span class="n">newMonster</span><span class="p">();</span>
 </code></pre></div>
 
 <p>So, why do this? There are two steps to creating an object: allocation and
@@ -437,22 +437,22 @@ mechanism, we&#8217;ll implement it ourselves within our type objects.</p>
 <p>To keep things simple, we&#8217;ll only support single inheritance. In the same way
 that a class can have a parent base class, we&#8217;ll allow a breed to have a parent
 breed:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Breed</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Breed</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Breed</span><span class="p">(</span><span class="n">Breed</span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">health</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">attack</span><span class="p">)</span>
-<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">parent_</span><span class="p">(</span><span class="n">parent</span><span class="p">),</span>
-<span class="w">    </span><span class="n">health_</span><span class="p">(</span><span class="n">health</span><span class="p">),</span>
-<span class="w">    </span><span class="n">attack_</span><span class="p">(</span><span class="n">attack</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{}</span>
+  <span class="n">Breed</span><span class="p">(</span><span class="n">Breed</span><span class="o">*</span> <span class="n">parent</span><span class="p">,</span> <span class="kt">int</span> <span class="n">health</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">attack</span><span class="p">)</span>
+  <span class="o">:</span> <span class="n">parent_</span><span class="p">(</span><span class="n">parent</span><span class="p">),</span>
+    <span class="n">health_</span><span class="p">(</span><span class="n">health</span><span class="p">),</span>
+    <span class="n">attack_</span><span class="p">(</span><span class="n">attack</span><span class="p">)</span>
+  <span class="p">{}</span>
 
-<span class="w">  </span><span class="kt">int</span><span class="w">         </span><span class="n">getHealth</span><span class="p">();</span>
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="nf">getAttack</span><span class="p">();</span>
+  <span class="kt">int</span>         <span class="n">getHealth</span><span class="p">();</span>
+  <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="nf">getAttack</span><span class="p">();</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Breed</span><span class="o">*</span><span class="w">      </span><span class="n">parent_</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">int</span><span class="w">         </span><span class="n">health_</span><span class="p">;</span><span class="w"> </span><span class="c1">// Starting health.</span>
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">attack_</span><span class="p">;</span>
+  <span class="n">Breed</span><span class="o">*</span>      <span class="n">parent_</span><span class="p">;</span>
+  <span class="kt">int</span>         <span class="n">health_</span><span class="p">;</span> <span class="c1">// Starting health.</span>
+  <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">attack_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -465,22 +465,22 @@ a non-zero value and overrides the attack by having a non-<code>NULL</code> stri
 Otherwise, the attribute will be inherited from its parent.</p>
 <p>There are two ways we can implement this. One is to handle the delegation
 dynamically every time the attribute is requested, like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">Breed::getHealth</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">int</span> <span class="nf">Breed::getHealth</span><span class="p">()</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="c1">// Override.</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">health_</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">parent_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">health_</span><span class="p">;</span>
+  <span class="c1">// Override.</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">health_</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">parent_</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="n">health_</span><span class="p">;</span>
 
-<span class="w">  </span><span class="c1">// Inherit.</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">parent_</span><span class="o">-&gt;</span><span class="n">getHealth</span><span class="p">();</span>
+  <span class="c1">// Inherit.</span>
+  <span class="k">return</span> <span class="n">parent_</span><span class="o">-&gt;</span><span class="n">getHealth</span><span class="p">();</span>
 <span class="p">}</span>
 
-<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="nf">Breed::getAttack</span><span class="p">()</span>
+<span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="nf">Breed::getAttack</span><span class="p">()</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="c1">// Override.</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">attack_</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">parent_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">attack_</span><span class="p">;</span>
+  <span class="c1">// Override.</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">attack_</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">parent_</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="n">attack_</span><span class="p">;</span>
 
-<span class="w">  </span><span class="c1">// Inherit.</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">parent_</span><span class="o">-&gt;</span><span class="n">getAttack</span><span class="p">();</span>
+  <span class="c1">// Inherit.</span>
+  <span class="k">return</span> <span class="n">parent_</span><span class="o">-&gt;</span><span class="n">getAttack</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -493,44 +493,44 @@ attribute.</p>
 apply the inheritance at <em>construction time</em>. This is called &#8220;copy-down&#8221;
 delegation because we <em>copy</em> inherited attributes <em>down</em> into the derived type
 when it&#8217;s created. It looks like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Breed</span><span class="p">(</span><span class="n">Breed</span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">health</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">attack</span><span class="p">)</span>
-<span class="o">:</span><span class="w"> </span><span class="n">health_</span><span class="p">(</span><span class="n">health</span><span class="p">),</span>
-<span class="w">  </span><span class="n">attack_</span><span class="p">(</span><span class="n">attack</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Breed</span><span class="p">(</span><span class="n">Breed</span><span class="o">*</span> <span class="n">parent</span><span class="p">,</span> <span class="kt">int</span> <span class="n">health</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">attack</span><span class="p">)</span>
+<span class="o">:</span> <span class="n">health_</span><span class="p">(</span><span class="n">health</span><span class="p">),</span>
+  <span class="n">attack_</span><span class="p">(</span><span class="n">attack</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="c1">// Inherit non-overridden attributes.</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">parent</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">health</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">health_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">getHealth</span><span class="p">();</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">attack</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="n">attack_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">getAttack</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="c1">// Inherit non-overridden attributes.</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">parent</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">health</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">health_</span> <span class="o">=</span> <span class="n">parent</span><span class="o">-&gt;</span><span class="n">getHealth</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">attack</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="n">attack_</span> <span class="o">=</span> <span class="n">parent</span><span class="o">-&gt;</span><span class="n">getAttack</span><span class="p">();</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p>Note that we no longer need a field for the parent breed. Once the constructor
 is done, we can forget the parent since we&#8217;ve already copied all of its
 attributes in. To access a breed&#8217;s attribute, now we just return the field:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">int</span><span class="w">         </span><span class="nf">getHealth</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">health_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="nf">getAttack</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">attack_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">int</span>         <span class="nf">getHealth</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">health_</span><span class="p">;</span> <span class="p">}</span>
+<span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="nf">getAttack</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">attack_</span><span class="p">;</span> <span class="p">}</span>
 </code></pre></div>
 
 <p>Nice and fast!</p>
 <p>Let&#8217;s say our game engine is set up to create the breeds by loading a JSON file
 that defines them. It could look like:</p>
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;Troll&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;health&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;attack&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The troll hits you!&quot;</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;Troll Archer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;parent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Troll&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;health&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;attack&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The troll archer fires an arrow!&quot;</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;Troll Wizard&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;parent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Troll&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;health&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;attack&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The troll wizard casts a spell on you!&quot;</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="nt">&quot;Troll&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;health&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
+    <span class="nt">&quot;attack&quot;</span><span class="p">:</span> <span class="s2">&quot;The troll hits you!&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;Troll Archer&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;parent&quot;</span><span class="p">:</span> <span class="s2">&quot;Troll&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;health&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;attack&quot;</span><span class="p">:</span> <span class="s2">&quot;The troll archer fires an arrow!&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;Troll Wizard&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;parent&quot;</span><span class="p">:</span> <span class="s2">&quot;Troll&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;health&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;attack&quot;</span><span class="p">:</span> <span class="s2">&quot;The troll wizard casts a spell on you!&quot;</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -562,12 +562,12 @@ breed. From the codebase&#8217;s perspective, monsters are essentially typeless,
 the fact that they have breeds is an implementation detail.</p>
 <p>We can easily change this and allow <code>Monster</code> to return its <code>Breed</code>:</p>
 <p><span name="null"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Monster</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Monster</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Breed</span><span class="o">&amp;</span><span class="w"> </span><span class="n">getBreed</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">breed_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+  <span class="n">Breed</span><span class="o">&amp;</span> <span class="n">getBreed</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">breed_</span><span class="p">;</span> <span class="p">}</span>
 
-<span class="w">  </span><span class="c1">// Existing code...</span>
+  <span class="c1">// Existing code...</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -593,14 +593,14 @@ choice.</p>
     object</em>. Let&#8217;s say we wanted to change the monster&#8217;s attack string when
     it&#8217;s near death. Since the attack string is always accessed through
     <code>Monster</code>, we have a convenient place to put that code:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="nf">Monster::getAttack</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="nf">Monster::getAttack</span><span class="p">()</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">health_</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">LOW_HEALTH</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;The monster flails weakly.&quot;</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">health_</span> <span class="o">&lt;</span> <span class="n">LOW_HEALTH</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="s">&quot;The monster flails weakly.&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">breed_</span><span class="p">.</span><span class="n">getAttack</span><span class="p">();</span>
+  <span class="k">return</span> <span class="n">breed_</span><span class="p">.</span><span class="n">getAttack</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
 

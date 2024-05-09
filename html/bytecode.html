@@ -117,30 +117,30 @@ it. The way it works is pretty clever. Each object in the tree is an expression
 or a subexpression. In true object-oriented fashion, we&#8217;ll let expressions
 evaluate themselves.</p>
 <p>First, we define a base interface that all expressions implement:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Expression</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Expression</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Expression</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">evaluate</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">Expression</span><span class="p">()</span> <span class="p">{}</span>
+  <span class="k">virtual</span> <span class="kt">double</span> <span class="n">evaluate</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>Then, we define a class that implements this interface for each kind of expression in our
 language&#8217;s grammar. The simplest one is numbers:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">NumberExpression</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Expression</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">NumberExpression</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Expression</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">NumberExpression</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
-<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">value_</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{}</span>
+  <span class="n">NumberExpression</span><span class="p">(</span><span class="kt">double</span> <span class="n">value</span><span class="p">)</span>
+  <span class="o">:</span> <span class="n">value_</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+  <span class="p">{}</span>
 
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">evaluate</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">value_</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">virtual</span> <span class="kt">double</span> <span class="n">evaluate</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="n">value_</span><span class="p">;</span>
+  <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">value_</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">value_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -149,27 +149,27 @@ multiplication are a bit more complex because they contain subexpressions.
 Before they can evaluate themselves, they need to recursively evaluate their
 subexpressions. Like so:</p>
 <p><span name="addition"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AdditionExpression</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Expression</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">AdditionExpression</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Expression</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">AdditionExpression</span><span class="p">(</span><span class="n">Expression</span><span class="o">*</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">Expression</span><span class="o">*</span><span class="w"> </span><span class="n">right</span><span class="p">)</span>
-<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">left_</span><span class="p">(</span><span class="n">left</span><span class="p">),</span>
-<span class="w">    </span><span class="n">right_</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{}</span>
+  <span class="n">AdditionExpression</span><span class="p">(</span><span class="n">Expression</span><span class="o">*</span> <span class="n">left</span><span class="p">,</span> <span class="n">Expression</span><span class="o">*</span> <span class="n">right</span><span class="p">)</span>
+  <span class="o">:</span> <span class="n">left_</span><span class="p">(</span><span class="n">left</span><span class="p">),</span>
+    <span class="n">right_</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+  <span class="p">{}</span>
 
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">evaluate</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Evaluate the operands.</span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">left_</span><span class="o">-&gt;</span><span class="n">evaluate</span><span class="p">();</span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">right_</span><span class="o">-&gt;</span><span class="n">evaluate</span><span class="p">();</span>
+  <span class="k">virtual</span> <span class="kt">double</span> <span class="n">evaluate</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="c1">// Evaluate the operands.</span>
+    <span class="kt">double</span> <span class="n">left</span> <span class="o">=</span> <span class="n">left_</span><span class="o">-&gt;</span><span class="n">evaluate</span><span class="p">();</span>
+    <span class="kt">double</span> <span class="n">right</span> <span class="o">=</span> <span class="n">right_</span><span class="o">-&gt;</span><span class="n">evaluate</span><span class="p">();</span>
 
-<span class="w">    </span><span class="c1">// Add them.</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">right</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+    <span class="c1">// Add them.</span>
+    <span class="k">return</span> <span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">;</span>
+  <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Expression</span><span class="o">*</span><span class="w"> </span><span class="n">left_</span><span class="p">;</span>
-<span class="w">  </span><span class="n">Expression</span><span class="o">*</span><span class="w"> </span><span class="n">right_</span><span class="p">;</span>
+  <span class="n">Expression</span><span class="o">*</span> <span class="n">left_</span><span class="p">;</span>
+  <span class="n">Expression</span><span class="o">*</span> <span class="n">right_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -369,9 +369,9 @@ for that code to call into? What are the basic operations in the game engine
 that spells are defined in terms of?</p>
 <p>Most spells ultimately change one of the stats of a wizard, so we&#8217;ll start with
 a couple for that:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">setHealth</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">wizard</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">amount</span><span class="p">);</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">setWisdom</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">wizard</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">amount</span><span class="p">);</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">setAgility</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">wizard</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">amount</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">setHealth</span><span class="p">(</span><span class="kt">int</span> <span class="n">wizard</span><span class="p">,</span> <span class="kt">int</span> <span class="n">amount</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">setWisdom</span><span class="p">(</span><span class="kt">int</span> <span class="n">wizard</span><span class="p">,</span> <span class="kt">int</span> <span class="n">amount</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">setAgility</span><span class="p">(</span><span class="kt">int</span> <span class="n">wizard</span><span class="p">,</span> <span class="kt">int</span> <span class="n">amount</span><span class="p">);</span>
 </code></pre></div>
 
 <p>The first parameter identifies which wizard is affected, say <code>0</code> for the
@@ -380,8 +380,8 @@ player&#8217;s own wizard, while damaging attacks harm their nemesis. These thre
 little methods cover a surprisingly wide variety of magical effects.</p>
 <p>If the spells just silently tweaked stats, the game logic would be fine, but
 playing it would bore players to tears. Let&#8217;s fix that:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">playSound</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">soundId</span><span class="p">);</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">spawnParticles</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">particleType</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">playSound</span><span class="p">(</span><span class="kt">int</span> <span class="n">soundId</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">spawnParticles</span><span class="p">(</span><span class="kt">int</span> <span class="n">particleType</span><span class="p">);</span>
 </code></pre></div>
 
 <p>These don&#8217;t affect gameplay, but they crank up the intensity of the gameplay
@@ -396,13 +396,13 @@ always max out the stat. Likewise, the FX operations always play a single
 hard-coded sound and particle effect.</p>
 <p>Given that, a spell is just a series of instructions. Each one identifies which
 operation you want to perform. We can enumerate them:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">enum</span><span class="w"> </span><span class="nc">Instruction</span>
+<div class="codehilite"><pre><span></span><code><span class="k">enum</span> <span class="nc">Instruction</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="n">INST_SET_HEALTH</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="mh">0x00</span><span class="p">,</span>
-<span class="w">  </span><span class="n">INST_SET_WISDOM</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="mh">0x01</span><span class="p">,</span>
-<span class="w">  </span><span class="n">INST_SET_AGILITY</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mh">0x02</span><span class="p">,</span>
-<span class="w">  </span><span class="n">INST_PLAY_SOUND</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="mh">0x03</span><span class="p">,</span>
-<span class="w">  </span><span class="n">INST_SPAWN_PARTICLES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x04</span>
+  <span class="n">INST_SET_HEALTH</span>      <span class="o">=</span> <span class="mh">0x00</span><span class="p">,</span>
+  <span class="n">INST_SET_WISDOM</span>      <span class="o">=</span> <span class="mh">0x01</span><span class="p">,</span>
+  <span class="n">INST_SET_AGILITY</span>     <span class="o">=</span> <span class="mh">0x02</span><span class="p">,</span>
+  <span class="n">INST_PLAY_SOUND</span>      <span class="o">=</span> <span class="mh">0x03</span><span class="p">,</span>
+  <span class="n">INST_SPAWN_PARTICLES</span> <span class="o">=</span> <span class="mh">0x04</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -422,46 +422,46 @@ which forms the backbone of the .NET platform, and it&#8217;s good enough for us
 </aside>
 <p>To execute a single instruction, we see which primitive it is and dispatch to
 the right API method:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">instruction</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="k">switch</span> <span class="p">(</span><span class="n">instruction</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">INST_SET_HEALTH</span><span class="p">:</span>
-<span class="w">    </span><span class="n">setHealth</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
-<span class="w">    </span><span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">INST_SET_HEALTH</span><span class="p">:</span>
+    <span class="n">setHealth</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">INST_SET_WISDOM</span><span class="p">:</span>
-<span class="w">    </span><span class="n">setWisdom</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
-<span class="w">    </span><span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">INST_SET_WISDOM</span><span class="p">:</span>
+    <span class="n">setWisdom</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">INST_SET_AGILITY</span><span class="p">:</span>
-<span class="w">    </span><span class="n">setAgility</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
-<span class="w">    </span><span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">INST_SET_AGILITY</span><span class="p">:</span>
+    <span class="n">setAgility</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">INST_PLAY_SOUND</span><span class="p">:</span>
-<span class="w">    </span><span class="n">playSound</span><span class="p">(</span><span class="n">SOUND_BANG</span><span class="p">);</span>
-<span class="w">    </span><span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">INST_PLAY_SOUND</span><span class="p">:</span>
+    <span class="n">playSound</span><span class="p">(</span><span class="n">SOUND_BANG</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">INST_SPAWN_PARTICLES</span><span class="p">:</span>
-<span class="w">    </span><span class="n">spawnParticles</span><span class="p">(</span><span class="n">PARTICLE_FLAME</span><span class="p">);</span>
-<span class="w">    </span><span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">INST_SPAWN_PARTICLES</span><span class="p">:</span>
+    <span class="n">spawnParticles</span><span class="p">(</span><span class="n">PARTICLE_FLAME</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p>In this way, our interpreter forms the bridge between code world and data world.
 We can wrap this in a little VM that executes an entire spell like so:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">VM</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">VM</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">interpret</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">bytecode</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="kt">char</span><span class="w"> </span><span class="n">instruction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bytecode</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-<span class="w">      </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">instruction</span><span class="p">)</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// Cases for each instruction...</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="kt">void</span> <span class="n">interpret</span><span class="p">(</span><span class="kt">char</span> <span class="n">bytecode</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">size</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="kt">char</span> <span class="n">instruction</span> <span class="o">=</span> <span class="n">bytecode</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+      <span class="k">switch</span> <span class="p">(</span><span class="n">instruction</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="c1">// Cases for each instruction...</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -489,19 +489,19 @@ like <a href="http://en.wikipedia.org/wiki/Forth_(programming_language)">Forth</
 <a href="http://en.wikipedia.org/wiki/Factor_(programming_language)">Factor</a> expose this
 model directly to the user.</p>
 </aside>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">VM</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">VM</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">VM</span><span class="p">()</span>
-<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">stackSize_</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{}</span>
+  <span class="n">VM</span><span class="p">()</span>
+  <span class="o">:</span> <span class="n">stackSize_</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+  <span class="p">{}</span>
 
-<span class="w">  </span><span class="c1">// Other stuff...</span>
+  <span class="c1">// Other stuff...</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAX_STACK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">128</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">stackSize_</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">stack_</span><span class="p">[</span><span class="n">MAX_STACK</span><span class="p">];</span>
+  <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">MAX_STACK</span> <span class="o">=</span> <span class="mi">128</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">stackSize_</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">stack_</span><span class="p">[</span><span class="n">MAX_STACK</span><span class="p">];</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -511,50 +511,50 @@ of <code>int</code>s. Whenever a bit of data needs to work its way from one inst
 another, it gets there through the stack.</p>
 <p>Like the name implies, values can be pushed onto or popped off of the stack, so
 let&#8217;s add a couple of methods for that:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">VM</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">VM</span>
 <span class="p">{</span>
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">push</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Check for stack overflow.</span>
-<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">stackSize_</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAX_STACK</span><span class="p">);</span>
-<span class="w">    </span><span class="n">stack_</span><span class="p">[</span><span class="n">stackSize_</span><span class="o">++</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="kt">void</span> <span class="n">push</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// Check for stack overflow.</span>
+    <span class="n">assert</span><span class="p">(</span><span class="n">stackSize_</span> <span class="o">&lt;</span> <span class="n">MAX_STACK</span><span class="p">);</span>
+    <span class="n">stack_</span><span class="p">[</span><span class="n">stackSize_</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">pop</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Make sure the stack isn&#39;t empty.</span>
-<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">stackSize_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">stack_</span><span class="p">[</span><span class="o">--</span><span class="n">stackSize_</span><span class="p">];</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="kt">int</span> <span class="n">pop</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="c1">// Make sure the stack isn&#39;t empty.</span>
+    <span class="n">assert</span><span class="p">(</span><span class="n">stackSize_</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">stack_</span><span class="p">[</span><span class="o">--</span><span class="n">stackSize_</span><span class="p">];</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="c1">// Other stuff...</span>
+  <span class="c1">// Other stuff...</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>When an instruction needs to receive parameters, it pops them off the stack like
 so:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">instruction</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="k">switch</span> <span class="p">(</span><span class="n">instruction</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">INST_SET_HEALTH</span><span class="p">:</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pop</span><span class="p">();</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">wizard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pop</span><span class="p">();</span>
-<span class="w">    </span><span class="n">setHealth</span><span class="p">(</span><span class="n">wizard</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="p">);</span>
-<span class="w">    </span><span class="k">break</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">case</span> <span class="nl">INST_SET_HEALTH</span><span class="p">:</span>
+  <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">amount</span> <span class="o">=</span> <span class="n">pop</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">wizard</span> <span class="o">=</span> <span class="n">pop</span><span class="p">();</span>
+    <span class="n">setHealth</span><span class="p">(</span><span class="n">wizard</span><span class="p">,</span> <span class="n">amount</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">INST_SET_WISDOM</span><span class="p">:</span>
-<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">INST_SET_AGILITY</span><span class="p">:</span>
-<span class="w">    </span><span class="c1">// Same as above...</span>
+  <span class="k">case</span> <span class="nl">INST_SET_WISDOM</span><span class="p">:</span>
+  <span class="k">case</span> <span class="nl">INST_SET_AGILITY</span><span class="p">:</span>
+    <span class="c1">// Same as above...</span>
 
-<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">INST_PLAY_SOUND</span><span class="p">:</span>
-<span class="w">    </span><span class="n">playSound</span><span class="p">(</span><span class="n">pop</span><span class="p">());</span>
-<span class="w">    </span><span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">INST_PLAY_SOUND</span><span class="p">:</span>
+    <span class="n">playSound</span><span class="p">(</span><span class="n">pop</span><span class="p">());</span>
+    <span class="k">break</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">INST_SPAWN_PARTICLES</span><span class="p">:</span>
-<span class="w">    </span><span class="n">spawnParticles</span><span class="p">(</span><span class="n">pop</span><span class="p">());</span>
-<span class="w">    </span><span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">INST_SPAWN_PARTICLES</span><span class="p">:</span>
+    <span class="n">spawnParticles</span><span class="p">(</span><span class="n">pop</span><span class="p">());</span>
+    <span class="k">break</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -564,12 +564,12 @@ do we avoid some turtles-all-the-way-down infinite regress here?</p>
 <p>The trick is to take advantage of the fact that our instruction stream is a
 sequence of bytes&#8202;&mdash;&#8202;we can stuff the number directly in the byte array.
 We define another instruction type for a number literal like so:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">case</span><span class="w"> </span><span class="no">INST_LITERAL</span><span class="p">:</span>
+<div class="codehilite"><pre><span></span><code><span class="k">case</span> <span class="nl">INST_LITERAL</span><span class="p">:</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="c1">// Read the next byte from the bytecode.</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bytecode</span><span class="p">[</span><span class="o">++</span><span class="n">i</span><span class="p">];</span>
-<span class="w">  </span><span class="n">push</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
-<span class="w">  </span><span class="k">break</span><span class="p">;</span>
+  <span class="c1">// Read the next byte from the bytecode.</span>
+  <span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="n">bytecode</span><span class="p">[</span><span class="o">++</span><span class="n">i</span><span class="p">];</span>
+  <span class="n">push</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+  <span class="k">break</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -609,16 +609,16 @@ values in interesting ways. For a simple example, they want spells that modify a
 stat <em>by</em> a certain amount instead of <em>to</em> a certain amount.</p>
 <p>That requires taking into account a stat&#8217;s current value. We have instructions
 for <em>writing</em> a stat, but we need to add a couple to <em>read</em> stats:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">case</span><span class="w"> </span><span class="no">INST_GET_HEALTH</span><span class="p">:</span>
+<div class="codehilite"><pre><span></span><code><span class="k">case</span> <span class="nl">INST_GET_HEALTH</span><span class="p">:</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">wizard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pop</span><span class="p">();</span>
-<span class="w">  </span><span class="n">push</span><span class="p">(</span><span class="n">getHealth</span><span class="p">(</span><span class="n">wizard</span><span class="p">));</span>
-<span class="w">  </span><span class="k">break</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">wizard</span> <span class="o">=</span> <span class="n">pop</span><span class="p">();</span>
+  <span class="n">push</span><span class="p">(</span><span class="n">getHealth</span><span class="p">(</span><span class="n">wizard</span><span class="p">));</span>
+  <span class="k">break</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="k">case</span><span class="w"> </span><span class="no">INST_GET_WISDOM</span><span class="p">:</span>
-<span class="k">case</span><span class="w"> </span><span class="no">INST_GET_AGILITY</span><span class="p">:</span>
-<span class="w">  </span><span class="c1">// You get the idea...</span>
+<span class="k">case</span> <span class="nl">INST_GET_WISDOM</span><span class="p">:</span>
+<span class="k">case</span> <span class="nl">INST_GET_AGILITY</span><span class="p">:</span>
+  <span class="c1">// You get the idea...</span>
 </code></pre></div>
 
 <p>As you can see, these work with the stack in both directions. They pop a
@@ -631,12 +631,12 @@ wizard&#8217;s health to mirror his opponent&#8217;s.</p>
 learned how to add 1 + 1. We&#8217;ll add a few more instructions. By now, you&#8217;ve
 probably got the hang of it and can guess how they look. I&#8217;ll just show
 addition:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">case</span><span class="w"> </span><span class="no">INST_ADD</span><span class="p">:</span>
+<div class="codehilite"><pre><span></span><code><span class="k">case</span> <span class="nl">INST_ADD</span><span class="p">:</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pop</span><span class="p">();</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pop</span><span class="p">();</span>
-<span class="w">  </span><span class="n">push</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
-<span class="w">  </span><span class="k">break</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">pop</span><span class="p">();</span>
+  <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">pop</span><span class="p">();</span>
+  <span class="n">push</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">);</span>
+  <span class="k">break</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -648,8 +648,8 @@ arithmetic expressions.</p>
 <p>Let&#8217;s walk through a slightly more complex example. Say we want a spell that
 increases the player&#8217;s wizard&#8217;s health by the average of their agility and
 wisdom. In code, that&#8217;s:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">setHealth</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">getHealth</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
-<span class="w">    </span><span class="p">(</span><span class="n">getAgility</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">getWisdom</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="n">setHealth</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">getHealth</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span>
+    <span class="p">(</span><span class="n">getAgility</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">getWisdom</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
 </code></pre></div>
 
 <p>You might think we&#8217;d need instructions to handle the explicit grouping that
@@ -914,22 +914,22 @@ those are stored internally.</p>
 value has two pieces. The first is a type tag&#8202;&mdash;&#8202;an <code>enum</code>&#8202;&mdash;&#8202;that identifies
 what data type is being stored. The rest of the bits are then interpreted
 appropriately according to that type, like:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">enum</span><span class="w"> </span><span class="nc">ValueType</span>
+<div class="codehilite"><pre><span></span><code><span class="k">enum</span> <span class="nc">ValueType</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="n">TYPE_INT</span><span class="p">,</span>
-<span class="w">  </span><span class="n">TYPE_DOUBLE</span><span class="p">,</span>
-<span class="w">  </span><span class="n">TYPE_STRING</span>
+  <span class="n">TYPE_INT</span><span class="p">,</span>
+  <span class="n">TYPE_DOUBLE</span><span class="p">,</span>
+  <span class="n">TYPE_STRING</span>
 <span class="p">};</span>
 
-<span class="k">struct</span><span class="w"> </span><span class="nc">Value</span>
+<span class="k">struct</span> <span class="nc">Value</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="n">ValueType</span><span class="w"> </span><span class="n">type</span><span class="p">;</span>
-<span class="w">  </span><span class="k">union</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">int</span><span class="w">    </span><span class="n">intValue</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">doubleValue</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w">  </span><span class="n">stringValue</span><span class="p">;</span>
-<span class="w">  </span><span class="p">};</span>
+  <span class="n">ValueType</span> <span class="n">type</span><span class="p">;</span>
+  <span class="k">union</span>
+  <span class="p">{</span>
+    <span class="kt">int</span>    <span class="n">intValue</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">doubleValue</span><span class="p">;</span>
+    <span class="kt">char</span><span class="o">*</span>  <span class="n">stringValue</span><span class="p">;</span>
+  <span class="p">};</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -992,36 +992,36 @@ verification</em> when it loads a program.</p>
 <p>The object-oriented solution for a value that maybe be one of several
 different types is through polymorphism. An interface provides virtual
 methods for the various type tests and conversions, along the lines of:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Value</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Value</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Value</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">Value</span><span class="p">()</span> <span class="p">{}</span>
 
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">ValueType</span><span class="w"> </span><span class="n">type</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="n">ValueType</span> <span class="n">type</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">asInt</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Can only call this on ints.</span>
-<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">virtual</span> <span class="kt">int</span> <span class="nf">asInt</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Can only call this on ints.</span>
+    <span class="n">assert</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="c1">// Other conversion methods...</span>
+  <span class="c1">// Other conversion methods...</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>Then you have concrete classes for each specific data type, like:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">IntValue</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Value</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">IntValue</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Value</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">IntValue</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
-<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">value_</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{}</span>
+  <span class="n">IntValue</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">)</span>
+  <span class="o">:</span> <span class="n">value_</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+  <span class="p">{}</span>
 
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">ValueType</span><span class="w"> </span><span class="n">type</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">TYPE_INT</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">asInt</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">value_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+  <span class="k">virtual</span> <span class="n">ValueType</span> <span class="n">type</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">TYPE_INT</span><span class="p">;</span> <span class="p">}</span>
+  <span class="k">virtual</span> <span class="kt">int</span> <span class="n">asInt</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">value_</span><span class="p">;</span> <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">value_</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">value_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 

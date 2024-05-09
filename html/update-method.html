@@ -52,19 +52,19 @@ that skeleton lurch back and forth is something like:</p>
 <p>If the sorcerer-king wanted more intelligent behavior, he should have
 re-animated something that still had brain tissue.</p>
 </aside>
-<div class="codehilite"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="c1">// Patrol right.</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="o">++</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">skeleton</span><span class="p">.</span><span class="n">setX</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="c1">// Patrol right.</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="n">x</span><span class="o">++</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">skeleton</span><span class="p">.</span><span class="n">setX</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="c1">// Patrol left.</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="o">--</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">skeleton</span><span class="p">.</span><span class="n">setX</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="c1">// Patrol left.</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">x</span><span class="o">--</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">skeleton</span><span class="p">.</span><span class="n">setX</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -80,27 +80,27 @@ Like:</p>
 <p>Naturally, <a href="game-loop.html" class="pattern">Game Loop</a> is another
 pattern in this book.</p>
 </aside>
-<div class="codehilite"><pre><span></span><code><span class="n">Entity</span><span class="w"> </span><span class="n">skeleton</span><span class="p">;</span>
-<span class="kt">bool</span><span class="w"> </span><span class="n">patrollingLeft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Entity</span> <span class="n">skeleton</span><span class="p">;</span>
+<span class="kt">bool</span> <span class="n">patrollingLeft</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
 <span class="c1">// Main game loop:</span>
-<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+<span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">patrollingLeft</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">x</span><span class="o">--</span><span class="p">;</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">patrollingLeft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="k">else</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">x</span><span class="o">++</span><span class="p">;</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="n">patrollingLeft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">patrollingLeft</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">x</span><span class="o">--</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">patrollingLeft</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+  <span class="p">{</span>
+    <span class="n">x</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">100</span><span class="p">)</span> <span class="n">patrollingLeft</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="n">skeleton</span><span class="p">.</span><span class="n">setX</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+  <span class="n">skeleton</span><span class="p">.</span><span class="n">setX</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 
-<span class="w">  </span><span class="c1">// Handle user input and render game...</span>
+  <span class="c1">// Handle user input and render game...</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -116,29 +116,29 @@ couple of enchanted statues. These will fire bolts of lightning at her every so
 often to keep her on her toes.</p>
 <p>Continuing our, &#8220;what&#8217;s the simplest way to code this&#8221; style, we end up with:</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">// Skeleton variables...</span>
-<span class="n">Entity</span><span class="w"> </span><span class="n">leftStatue</span><span class="p">;</span>
-<span class="n">Entity</span><span class="w"> </span><span class="n">rightStatue</span><span class="p">;</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">leftStatueFrames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">rightStatueFrames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">Entity</span> <span class="n">leftStatue</span><span class="p">;</span>
+<span class="n">Entity</span> <span class="n">rightStatue</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">leftStatueFrames</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">rightStatueFrames</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
 <span class="c1">// Main game loop:</span>
-<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+<span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="c1">// Skeleton code...</span>
+  <span class="c1">// Skeleton code...</span>
 
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">++</span><span class="n">leftStatueFrames</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">90</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">leftStatueFrames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">    </span><span class="n">leftStatue</span><span class="p">.</span><span class="n">shootLightning</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">++</span><span class="n">leftStatueFrames</span> <span class="o">==</span> <span class="mi">90</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">leftStatueFrames</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">leftStatue</span><span class="p">.</span><span class="n">shootLightning</span><span class="p">();</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">++</span><span class="n">rightStatueFrames</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">80</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">rightStatueFrames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">    </span><span class="n">rightStatue</span><span class="p">.</span><span class="n">shootLightning</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">++</span><span class="n">rightStatueFrames</span> <span class="o">==</span> <span class="mi">80</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">rightStatueFrames</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">rightStatue</span><span class="p">.</span><span class="n">shootLightning</span><span class="p">();</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="c1">// Handle user input and render game...</span>
+  <span class="c1">// Handle user input and render game...</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -284,10 +284,10 @@ that it was spawned, before the player has even had a chance to see it. If you
 don&#8217;t want that to happen, one simple fix is to cache the number of objects in
 the list at the beginning of the update loop and only update that many before
 stopping:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">numObjectsThisTurn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">numObjects_</span><span class="p">;</span>
-<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numObjectsThisTurn</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">int</span> <span class="n">numObjectsThisTurn</span> <span class="o">=</span> <span class="n">numObjects_</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numObjectsThisTurn</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="n">objects_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">();</span>
+  <span class="n">objects_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -300,9 +300,9 @@ frame.</p>
 some foul beast and now it needs to get yanked out of the object list. If it
 happens to be before the current object you&#8217;re updating in the list, you can
 accidentally skip an object:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numObjects_</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numObjects_</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="n">objects_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">();</span>
+  <span class="n">objects_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -335,25 +335,25 @@ That doesn&#8217;t mean the pattern isn&#8217;t <em>useful</em>. It&#8217;s usef
 simple: it&#8217;s a clean solution to a problem without a lot of ornamentation.</p>
 <p>But to keep things concrete, let&#8217;s walk through a basic implementation.
 We&#8217;ll start with an <code>Entity</code> class that will represent the skeletons and statues:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Entity</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Entity</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Entity</span><span class="p">()</span>
-<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">x_</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">y_</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{}</span>
+  <span class="n">Entity</span><span class="p">()</span>
+  <span class="o">:</span> <span class="n">x_</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">y_</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+  <span class="p">{}</span>
 
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Entity</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">Entity</span><span class="p">()</span> <span class="p">{}</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">update</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="nf">x</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">x_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="nf">y</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">y_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+  <span class="kt">double</span> <span class="nf">x</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x_</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kt">double</span> <span class="nf">y</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">y_</span><span class="p">;</span> <span class="p">}</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">setX</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">setY</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">y_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+  <span class="kt">void</span> <span class="nf">setX</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="n">x_</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kt">void</span> <span class="nf">setY</span><span class="p">(</span><span class="kt">double</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span> <span class="n">y_</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span> <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">x_</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">y_</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">x_</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">y_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -364,18 +364,18 @@ physics. The important bit for this pattern is that it has an abstract
 <p>The game maintains a collection of these entities. In our sample, we&#8217;ll put that
 in a class representing the game world:</p>
 <p><span name="array"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">World</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">World</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">World</span><span class="p">()</span>
-<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">numEntities_</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{}</span>
+  <span class="n">World</span><span class="p">()</span>
+  <span class="o">:</span> <span class="n">numEntities_</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+  <span class="p">{}</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">gameLoop</span><span class="p">();</span>
+  <span class="kt">void</span> <span class="n">gameLoop</span><span class="p">();</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Entity</span><span class="o">*</span><span class="w"> </span><span class="n">entities_</span><span class="p">[</span><span class="n">MAX_ENTITIES</span><span class="p">];</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">numEntities_</span><span class="p">;</span>
+  <span class="n">Entity</span><span class="o">*</span> <span class="n">entities_</span><span class="p">[</span><span class="n">MAX_ENTITIES</span><span class="p">];</span>
+  <span class="kt">int</span> <span class="n">numEntities_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -386,20 +386,20 @@ just using a vanilla array here to keep things simple.</p>
 <p>Now that everything is set up, the game implements the pattern by updating each
 entity every frame:</p>
 <p><span name="game-loop"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">World::gameLoop</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">World::gameLoop</span><span class="p">()</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Handle user input...</span>
+  <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// Handle user input...</span>
 
-<span class="w">    </span><span class="c1">// Update each entity.</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numEntities_</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="n">entities_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
+    <span class="c1">// Update each entity.</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numEntities_</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">entities_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">();</span>
+    <span class="p">}</span>
 
-<span class="w">    </span><span class="c1">// Physics and rendering...</span>
-<span class="w">  </span><span class="p">}</span>
+    <span class="c1">// Physics and rendering...</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -446,29 +446,29 @@ subclasses.</p>
 patrolling skeleton guard and some lightning-bolt-unleashing magical statues.
 Let&#8217;s start with our bony friend. To define his patrolling behavior, we make a
 new entity that implements <code>update()</code> appropriately:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Skeleton</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Entity</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Skeleton</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Entity</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Skeleton</span><span class="p">()</span>
-<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">patrollingLeft_</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{}</span>
+  <span class="n">Skeleton</span><span class="p">()</span>
+  <span class="o">:</span> <span class="n">patrollingLeft_</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span>
+  <span class="p">{}</span>
 
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">patrollingLeft_</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="n">setX</span><span class="p">(</span><span class="n">x</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">patrollingLeft_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">else</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="n">setX</span><span class="p">(</span><span class="n">x</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="n">patrollingLeft_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">update</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">patrollingLeft_</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">setX</span><span class="p">(</span><span class="n">x</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">patrollingLeft_</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+      <span class="n">setX</span><span class="p">(</span><span class="n">x</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">()</span> <span class="o">==</span> <span class="mi">100</span><span class="p">)</span> <span class="n">patrollingLeft_</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">patrollingLeft_</span><span class="p">;</span>
+  <span class="kt">bool</span> <span class="n">patrollingLeft_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -478,33 +478,33 @@ The one minor difference is that <code>patrollingLeft_</code> has been made into
 instead of a local variable. That way, its value sticks around between calls to
 <code>update()</code>.</p>
 <p>Let&#8217;s do this again with the statue:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Statue</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Entity</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Statue</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Entity</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Statue</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">delay</span><span class="p">)</span>
-<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">frames_</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
-<span class="w">    </span><span class="n">delay_</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{}</span>
+  <span class="n">Statue</span><span class="p">(</span><span class="kt">int</span> <span class="n">delay</span><span class="p">)</span>
+  <span class="o">:</span> <span class="n">frames_</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">delay_</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+  <span class="p">{}</span>
 
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">++</span><span class="n">frames_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">delay_</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="n">shootLightning</span><span class="p">();</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">update</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">++</span><span class="n">frames_</span> <span class="o">==</span> <span class="n">delay_</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">shootLightning</span><span class="p">();</span>
 
-<span class="w">      </span><span class="c1">// Reset the timer.</span>
-<span class="w">      </span><span class="n">frames_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
+      <span class="c1">// Reset the timer.</span>
+      <span class="n">frames_</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">frames_</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">delay_</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">frames_</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">delay_</span><span class="p">;</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">shootLightning</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Shoot the lightning...</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="kt">void</span> <span class="nf">shootLightning</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="c1">// Shoot the lightning...</span>
+  <span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -541,26 +541,26 @@ more on the advantages and disadvantages of fixed and variable time steps.</p>
 virtual clock has swung, so you&#8217;ll often see the elapsed time passed in. For
 example, we can make our patrolling skeleton handle a variable time step like
 so:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Skeleton::update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">elapsed</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Skeleton::update</span><span class="p">(</span><span class="kt">double</span> <span class="n">elapsed</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">patrollingLeft_</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">elapsed</span><span class="p">;</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="n">patrollingLeft_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">      </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">x</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="k">else</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">elapsed</span><span class="p">;</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="n">patrollingLeft_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
-<span class="w">      </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">patrollingLeft_</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">x</span> <span class="o">-=</span> <span class="n">elapsed</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">patrollingLeft_</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+      <span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+  <span class="p">{</span>
+    <span class="n">x</span> <span class="o">+=</span> <span class="n">elapsed</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">patrollingLeft_</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+      <span class="n">x</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">100</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -608,10 +608,10 @@ of entities of the same &#8220;kind&#8221;.</p>
 that delegated class. In that case, you may still have the <code>update()</code> method
 on the main class, but it will be non-virtual and will simply forward to the
 delegated object. Something like:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Entity::update</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Entity::update</span><span class="p">()</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="c1">// Forward to state object.</span>
-<span class="w">  </span><span class="n">state_</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">();</span>
+  <span class="c1">// Forward to state object.</span>
+  <span class="n">state_</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
 

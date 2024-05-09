@@ -58,17 +58,17 @@ to the GPU.</p>
 <li>Tuning parameters like size and tint so that each tree looks different.</li>
 </ul>
 <p>If you were to sketch it out in code, you&#8217;d have something like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Tree</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Tree</span>
 <span class="p">{</span>
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Mesh</span><span class="w"> </span><span class="n">mesh_</span><span class="p">;</span>
-<span class="w">  </span><span class="n">Texture</span><span class="w"> </span><span class="n">bark_</span><span class="p">;</span>
-<span class="w">  </span><span class="n">Texture</span><span class="w"> </span><span class="n">leaves_</span><span class="p">;</span>
-<span class="w">  </span><span class="n">Vector</span><span class="w"> </span><span class="n">position_</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">height_</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">thickness_</span><span class="p">;</span>
-<span class="w">  </span><span class="n">Color</span><span class="w"> </span><span class="n">barkTint_</span><span class="p">;</span>
-<span class="w">  </span><span class="n">Color</span><span class="w"> </span><span class="n">leafTint_</span><span class="p">;</span>
+  <span class="n">Mesh</span> <span class="n">mesh_</span><span class="p">;</span>
+  <span class="n">Texture</span> <span class="n">bark_</span><span class="p">;</span>
+  <span class="n">Texture</span> <span class="n">leaves_</span><span class="p">;</span>
+  <span class="n">Vector</span> <span class="n">position_</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">height_</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">thickness_</span><span class="p">;</span>
+  <span class="n">Color</span> <span class="n">barkTint_</span><span class="p">;</span>
+  <span class="n">Color</span> <span class="n">leafTint_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -91,12 +91,12 @@ individually model each tree in an entire forest.</p>
 <p>We can model that explicitly by splitting the object in half. First, we pull
 out the data that all trees have <span name="type">in common</span> and move it
 into a separate class:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TreeModel</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">TreeModel</span>
 <span class="p">{</span>
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Mesh</span><span class="w"> </span><span class="n">mesh_</span><span class="p">;</span>
-<span class="w">  </span><span class="n">Texture</span><span class="w"> </span><span class="n">bark_</span><span class="p">;</span>
-<span class="w">  </span><span class="n">Texture</span><span class="w"> </span><span class="n">leaves_</span><span class="p">;</span>
+  <span class="n">Mesh</span> <span class="n">mesh_</span><span class="p">;</span>
+  <span class="n">Texture</span> <span class="n">bark_</span><span class="p">;</span>
+  <span class="n">Texture</span> <span class="n">leaves_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -104,16 +104,16 @@ into a separate class:</p>
 same meshes and textures in memory a thousand times. Then, each <em>instance</em> of a
 tree in the world has a <em>reference</em> to that shared <code>TreeModel</code>. What remains in
 <code>Tree</code> is the state that is instance-specific:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Tree</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Tree</span>
 <span class="p">{</span>
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="n">TreeModel</span><span class="o">*</span><span class="w"> </span><span class="n">model_</span><span class="p">;</span>
+  <span class="n">TreeModel</span><span class="o">*</span> <span class="n">model_</span><span class="p">;</span>
 
-<span class="w">  </span><span class="n">Vector</span><span class="w"> </span><span class="n">position_</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">height_</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">thickness_</span><span class="p">;</span>
-<span class="w">  </span><span class="n">Color</span><span class="w"> </span><span class="n">barkTint_</span><span class="p">;</span>
-<span class="w">  </span><span class="n">Color</span><span class="w"> </span><span class="n">leafTint_</span><span class="p">;</span>
+  <span class="n">Vector</span> <span class="n">position_</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">height_</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">thickness_</span><span class="p">;</span>
+  <span class="n">Color</span> <span class="n">barkTint_</span><span class="p">;</span>
+  <span class="n">Color</span> <span class="n">leafTint_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -194,21 +194,21 @@ Instead, a common approach is to use an enum for terrain types:</p>
 <aside name="learned">
 <p>After all, we already learned our lesson with those trees.</p>
 </aside>
-<div class="codehilite"><pre><span></span><code><span class="k">enum</span><span class="w"> </span><span class="nc">Terrain</span>
+<div class="codehilite"><pre><span></span><code><span class="k">enum</span> <span class="nc">Terrain</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="n">TERRAIN_GRASS</span><span class="p">,</span>
-<span class="w">  </span><span class="n">TERRAIN_HILL</span><span class="p">,</span>
-<span class="w">  </span><span class="n">TERRAIN_RIVER</span>
-<span class="w">  </span><span class="c1">// Other terrains...</span>
+  <span class="n">TERRAIN_GRASS</span><span class="p">,</span>
+  <span class="n">TERRAIN_HILL</span><span class="p">,</span>
+  <span class="n">TERRAIN_RIVER</span>
+  <span class="c1">// Other terrains...</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>Then the world maintains a huge grid of those:</p>
 <p><span name="grid"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">World</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">World</span>
 <span class="p">{</span>
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Terrain</span><span class="w"> </span><span class="n">tiles_</span><span class="p">[</span><span class="n">WIDTH</span><span class="p">][</span><span class="n">HEIGHT</span><span class="p">];</span>
+  <span class="n">Terrain</span> <span class="n">tiles_</span><span class="p">[</span><span class="n">WIDTH</span><span class="p">][</span><span class="n">HEIGHT</span><span class="p">];</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -223,26 +223,26 @@ detail behind a nice 2D grid data structure. I&#8217;m doing this here just to k
 simple.</p>
 </aside>
 <p>To actually get the useful data about a tile, we do something like:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">World::getMovementCost</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">int</span> <span class="nf">World::getMovementCost</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">tiles_</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">])</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">TERRAIN_GRASS</span><span class="p">:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">TERRAIN_HILL</span><span class="p">:</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">TERRAIN_RIVER</span><span class="p">:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
-<span class="w">      </span><span class="c1">// Other terrains...</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="n">tiles_</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">])</span>
+  <span class="p">{</span>
+    <span class="k">case</span> <span class="nl">TERRAIN_GRASS</span><span class="p">:</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">TERRAIN_HILL</span><span class="p">:</span>  <span class="k">return</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">TERRAIN_RIVER</span><span class="p">:</span> <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
+      <span class="c1">// Other terrains...</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kt">bool</span><span class="w"> </span><span class="nf">World::isWater</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="kt">bool</span> <span class="nf">World::isWater</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">tiles_</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">])</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">TERRAIN_GRASS</span><span class="p">:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">TERRAIN_HILL</span><span class="p">:</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">TERRAIN_RIVER</span><span class="p">:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
-<span class="w">      </span><span class="c1">// Other terrains...</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="n">tiles_</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">])</span>
+  <span class="p">{</span>
+    <span class="k">case</span> <span class="nl">TERRAIN_GRASS</span><span class="p">:</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">TERRAIN_HILL</span><span class="p">:</span>  <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">TERRAIN_RIVER</span><span class="p">:</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+      <span class="c1">// Other terrains...</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -253,25 +253,25 @@ really nice to keep all of that encapsulated together. After all, that&#8217;s w
 objects are designed for.</p>
 <p>It would be great if we could have an actual terrain <em>class</em>, like:</p>
 <p><span name="const"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Terrain</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Terrain</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Terrain</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">movementCost</span><span class="p">,</span>
-<span class="w">          </span><span class="kt">bool</span><span class="w"> </span><span class="n">isWater</span><span class="p">,</span>
-<span class="w">          </span><span class="n">Texture</span><span class="w"> </span><span class="n">texture</span><span class="p">)</span>
-<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">movementCost_</span><span class="p">(</span><span class="n">movementCost</span><span class="p">),</span>
-<span class="w">    </span><span class="n">isWater_</span><span class="p">(</span><span class="n">isWater</span><span class="p">),</span>
-<span class="w">    </span><span class="n">texture_</span><span class="p">(</span><span class="n">texture</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{}</span>
+  <span class="n">Terrain</span><span class="p">(</span><span class="kt">int</span> <span class="n">movementCost</span><span class="p">,</span>
+          <span class="kt">bool</span> <span class="n">isWater</span><span class="p">,</span>
+          <span class="n">Texture</span> <span class="n">texture</span><span class="p">)</span>
+  <span class="o">:</span> <span class="n">movementCost_</span><span class="p">(</span><span class="n">movementCost</span><span class="p">),</span>
+    <span class="n">isWater_</span><span class="p">(</span><span class="n">isWater</span><span class="p">),</span>
+    <span class="n">texture_</span><span class="p">(</span><span class="n">texture</span><span class="p">)</span>
+  <span class="p">{}</span>
 
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">getMovementCost</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">movementCost_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">isWater</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">isWater_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">Texture</span><span class="o">&amp;</span><span class="w"> </span><span class="n">getTexture</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">texture_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+  <span class="kt">int</span> <span class="n">getMovementCost</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">movementCost_</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kt">bool</span> <span class="n">isWater</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">isWater_</span><span class="p">;</span> <span class="p">}</span>
+  <span class="k">const</span> <span class="n">Texture</span><span class="o">&amp;</span> <span class="n">getTexture</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">texture_</span><span class="p">;</span> <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">movementCost_</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">isWater_</span><span class="p">;</span>
-<span class="w">  </span><span class="n">Texture</span><span class="w"> </span><span class="n">texture_</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">movementCost_</span><span class="p">;</span>
+  <span class="kt">bool</span> <span class="n">isWater_</span><span class="p">;</span>
+  <span class="n">Texture</span> <span class="n">texture_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -291,12 +291,12 @@ the world. If you look at that class, you&#8217;ll notice that there&#8217;s act
 grass tile on the ground is identical to every other one. Instead of having the
 world be a grid of enums or Terrain objects, it will be a grid of <em>pointers</em> to
 <code>Terrain</code> objects:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">World</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">World</span>
 <span class="p">{</span>
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Terrain</span><span class="o">*</span><span class="w"> </span><span class="n">tiles_</span><span class="p">[</span><span class="n">WIDTH</span><span class="p">][</span><span class="n">HEIGHT</span><span class="p">];</span>
+  <span class="n">Terrain</span><span class="o">*</span> <span class="n">tiles_</span><span class="p">[</span><span class="n">WIDTH</span><span class="p">][</span><span class="n">HEIGHT</span><span class="p">];</span>
 
-<span class="w">  </span><span class="c1">// Other stuff...</span>
+  <span class="c1">// Other stuff...</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -305,50 +305,50 @@ world be a grid of enums or Terrain objects, it will be a grid of <em>pointers</
 <p>Since the terrain instances are used in multiple places, their lifetimes would
 be a little more complex to manage if you were to dynamically allocate them.
 Instead, we&#8217;ll just store them directly in the world:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">World</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">World</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">World</span><span class="p">()</span>
-<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">grassTerrain_</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="n">GRASS_TEXTURE</span><span class="p">),</span>
-<span class="w">    </span><span class="n">hillTerrain_</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="n">HILL_TEXTURE</span><span class="p">),</span>
-<span class="w">    </span><span class="n">riverTerrain_</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">RIVER_TEXTURE</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{}</span>
+  <span class="n">World</span><span class="p">()</span>
+  <span class="o">:</span> <span class="n">grassTerrain_</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="n">GRASS_TEXTURE</span><span class="p">),</span>
+    <span class="n">hillTerrain_</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="n">HILL_TEXTURE</span><span class="p">),</span>
+    <span class="n">riverTerrain_</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">true</span><span class="p">,</span> <span class="n">RIVER_TEXTURE</span><span class="p">)</span>
+  <span class="p">{}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Terrain</span><span class="w"> </span><span class="n">grassTerrain_</span><span class="p">;</span>
-<span class="w">  </span><span class="n">Terrain</span><span class="w"> </span><span class="n">hillTerrain_</span><span class="p">;</span>
-<span class="w">  </span><span class="n">Terrain</span><span class="w"> </span><span class="n">riverTerrain_</span><span class="p">;</span>
+  <span class="n">Terrain</span> <span class="n">grassTerrain_</span><span class="p">;</span>
+  <span class="n">Terrain</span> <span class="n">hillTerrain_</span><span class="p">;</span>
+  <span class="n">Terrain</span> <span class="n">riverTerrain_</span><span class="p">;</span>
 
-<span class="w">  </span><span class="c1">// Other stuff...</span>
+  <span class="c1">// Other stuff...</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>Then we can use those to paint the ground like this:</p>
 <p><span name="generate"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">World::generateTerrain</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">World::generateTerrain</span><span class="p">()</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="c1">// Fill the ground with grass.</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">WIDTH</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="o">++</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">HEIGHT</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="o">++</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="c1">// Sprinkle some hills.</span>
-<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="n">tiles_</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">hillTerrain_</span><span class="p">;</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">      </span><span class="k">else</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="n">tiles_</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">grassTerrain_</span><span class="p">;</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="c1">// Fill the ground with grass.</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">WIDTH</span><span class="p">;</span> <span class="n">x</span><span class="o">++</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">HEIGHT</span><span class="p">;</span> <span class="n">y</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="c1">// Sprinkle some hills.</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">random</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="n">tiles_</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">hillTerrain_</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">else</span>
+      <span class="p">{</span>
+        <span class="n">tiles_</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">grassTerrain_</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="c1">// Lay a river.</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">random</span><span class="p">(</span><span class="n">WIDTH</span><span class="p">);</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">HEIGHT</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">tiles_</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">riverTerrain_</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="c1">// Lay a river.</span>
+  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">random</span><span class="p">(</span><span class="n">WIDTH</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">HEIGHT</span><span class="p">;</span> <span class="n">y</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">tiles_</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">riverTerrain_</span><span class="p">;</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -358,15 +358,15 @@ algorithm.</p>
 </aside>
 <p>Now instead of methods on <code>World</code> for accessing the terrain properties, we can
 expose the <code>Terrain</code> object directly:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="n">Terrain</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">World::getTile</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="codehilite"><pre><span></span><code><span class="k">const</span> <span class="n">Terrain</span><span class="o">&amp;</span> <span class="nf">World::getTile</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="k">const</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="n">tiles_</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">];</span>
+  <span class="k">return</span> <span class="o">*</span><span class="n">tiles_</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">];</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p>This way, <code>World</code> is no longer coupled to all sorts of details of terrains. If
 you want some property of the tile, you can get it right from that object:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">cost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">world</span><span class="p">.</span><span class="n">getTile</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">).</span><span class="n">getMovementCost</span><span class="p">();</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">int</span> <span class="n">cost</span> <span class="o">=</span> <span class="n">world</span><span class="p">.</span><span class="n">getTile</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">).</span><span class="n">getMovementCost</span><span class="p">();</span>
 </code></pre></div>
 
 <p>We&#8217;re back to the pleasant API of working with real objects, and we did this

@@ -78,15 +78,15 @@ notification</em>.</p>
 bodies are relaxing on nice flat surfaces and which are plummeting toward sure
 demise. To implement the &#8220;Fall off a Bridge&#8221; badge, we could just jam the
 achievement code right in there, but that&#8217;s a mess. Instead, we can just do:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Physics::updateEntity</span><span class="p">(</span><span class="n">Entity</span><span class="o">&amp;</span><span class="w"> </span><span class="n">entity</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Physics::updateEntity</span><span class="p">(</span><span class="n">Entity</span><span class="o">&amp;</span> <span class="n">entity</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">wasOnSurface</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">entity</span><span class="p">.</span><span class="n">isOnSurface</span><span class="p">();</span>
-<span class="w">  </span><span class="n">entity</span><span class="p">.</span><span class="n">accelerate</span><span class="p">(</span><span class="n">GRAVITY</span><span class="p">);</span>
-<span class="w">  </span><span class="n">entity</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">wasOnSurface</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">entity</span><span class="p">.</span><span class="n">isOnSurface</span><span class="p">())</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">notify</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span><span class="w"> </span><span class="n">EVENT_START_FALL</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="kt">bool</span> <span class="n">wasOnSurface</span> <span class="o">=</span> <span class="n">entity</span><span class="p">.</span><span class="n">isOnSurface</span><span class="p">();</span>
+  <span class="n">entity</span><span class="p">.</span><span class="n">accelerate</span><span class="p">(</span><span class="n">GRAVITY</span><span class="p">);</span>
+  <span class="n">entity</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">wasOnSurface</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">entity</span><span class="p">.</span><span class="n">isOnSurface</span><span class="p">())</span>
+  <span class="p">{</span>
+    <span class="n">notify</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">EVENT_START_FALL</span><span class="p">);</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -121,11 +121,11 @@ through it quickly.</p>
 <p>We&#8217;ll start with the nosy class that wants to know when another object does
 something interesting. These inquisitive objects are defined by this interface:</p>
 <p><span name="signature"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Observer</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Observer</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Observer</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">onNotify</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Entity</span><span class="o">&amp;</span><span class="w"> </span><span class="n">entity</span><span class="p">,</span><span class="w"> </span><span class="n">Event</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">Observer</span><span class="p">()</span> <span class="p">{}</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">onNotify</span><span class="p">(</span><span class="k">const</span> <span class="n">Entity</span><span class="o">&amp;</span> <span class="n">entity</span><span class="p">,</span> <span class="n">Event</span> <span class="n">event</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -141,31 +141,31 @@ happened.</p>
 </aside>
 <p>Any concrete class that implements this becomes an observer. In our example,
 that&#8217;s the achievement system, so we&#8217;d have something like so:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Achievements</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Observer</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Achievements</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Observer</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">onNotify</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Entity</span><span class="o">&amp;</span><span class="w"> </span><span class="n">entity</span><span class="p">,</span><span class="w"> </span><span class="n">Event</span><span class="w"> </span><span class="n">event</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">EVENT_ENTITY_FELL</span><span class="p">:</span>
-<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">entity</span><span class="p">.</span><span class="n">isHero</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">heroIsOnBridge_</span><span class="p">)</span>
-<span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="n">unlock</span><span class="p">(</span><span class="n">ACHIEVEMENT_FELL_OFF_BRIDGE</span><span class="p">);</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">      </span><span class="k">break</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">onNotify</span><span class="p">(</span><span class="k">const</span> <span class="n">Entity</span><span class="o">&amp;</span> <span class="n">entity</span><span class="p">,</span> <span class="n">Event</span> <span class="n">event</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="n">event</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="k">case</span> <span class="nl">EVENT_ENTITY_FELL</span><span class="p">:</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">entity</span><span class="p">.</span><span class="n">isHero</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">heroIsOnBridge_</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="n">unlock</span><span class="p">(</span><span class="n">ACHIEVEMENT_FELL_OFF_BRIDGE</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
 
-<span class="w">      </span><span class="c1">// Handle other events, and update heroIsOnBridge_...</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
+      <span class="c1">// Handle other events, and update heroIsOnBridge_...</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">unlock</span><span class="p">(</span><span class="n">Achievement</span><span class="w"> </span><span class="n">achievement</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Unlock if not already unlocked...</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="kt">void</span> <span class="n">unlock</span><span class="p">(</span><span class="n">Achievement</span> <span class="n">achievement</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// Unlock if not already unlocked...</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">heroIsOnBridge_</span><span class="p">;</span>
+  <span class="kt">bool</span> <span class="n">heroIsOnBridge_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -174,11 +174,11 @@ that&#8217;s the achievement system, so we&#8217;d have something like so:</p>
 parlance, that object is called the &#8220;subject&#8221;. It has two jobs. First, it holds
 the list of observers that are waiting oh-so-patiently for a missive from it:</p>
 <p><span name="stl"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Subject</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Subject</span>
 <span class="p">{</span>
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Observer</span><span class="o">*</span><span class="w"> </span><span class="n">observers_</span><span class="p">[</span><span class="n">MAX_OBSERVERS</span><span class="p">];</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">numObservers_</span><span class="p">;</span>
+  <span class="n">Observer</span><span class="o">*</span> <span class="n">observers_</span><span class="p">[</span><span class="n">MAX_OBSERVERS</span><span class="p">];</span>
+  <span class="kt">int</span> <span class="n">numObservers_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -189,20 +189,20 @@ who don&#8217;t know C++&#8217;s standard library.</p>
 </aside>
 <p>The important bit is that the subject exposes a <em>public</em> API for modifying that
 list:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Subject</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Subject</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">addObserver</span><span class="p">(</span><span class="n">Observer</span><span class="o">*</span><span class="w"> </span><span class="n">observer</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Add to array...</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="kt">void</span> <span class="n">addObserver</span><span class="p">(</span><span class="n">Observer</span><span class="o">*</span> <span class="n">observer</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// Add to array...</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">removeObserver</span><span class="p">(</span><span class="n">Observer</span><span class="o">*</span><span class="w"> </span><span class="n">observer</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Remove from array...</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="kt">void</span> <span class="n">removeObserver</span><span class="p">(</span><span class="n">Observer</span><span class="o">*</span> <span class="n">observer</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// Remove from array...</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="c1">// Other stuff...</span>
+  <span class="c1">// Other stuff...</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -223,18 +223,18 @@ others. As far as they know, each is the only thing in the world with eyes on
 the subject.</p>
 <p>The other job of the subject is sending notifications:</p>
 <p><span name="concurrent"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Subject</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Subject</span>
 <span class="p">{</span>
 <span class="k">protected</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">notify</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Entity</span><span class="o">&amp;</span><span class="w"> </span><span class="n">entity</span><span class="p">,</span><span class="w"> </span><span class="n">Event</span><span class="w"> </span><span class="n">event</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numObservers_</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="n">observers_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">onNotify</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="kt">void</span> <span class="n">notify</span><span class="p">(</span><span class="k">const</span> <span class="n">Entity</span><span class="o">&amp;</span> <span class="n">entity</span><span class="p">,</span> <span class="n">Event</span> <span class="n">event</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numObservers_</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">observers_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">onNotify</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">event</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="c1">// Other stuff...</span>
+  <span class="c1">// Other stuff...</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -248,10 +248,10 @@ concurrent modification like that.</p>
 notifications and the achievement system can wire itself up to receive them.
 We&#8217;ll stay close to the original <em>Design Patterns</em> recipe and <span
 name="event">inherit</span> <code>Subject</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Physics</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Subject</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Physics</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Subject</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">updateEntity</span><span class="p">(</span><span class="n">Entity</span><span class="o">&amp;</span><span class="w"> </span><span class="n">entity</span><span class="p">);</span>
+  <span class="kt">void</span> <span class="n">updateEntity</span><span class="p">(</span><span class="n">Entity</span><span class="o">&amp;</span> <span class="n">entity</span><span class="p">);</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -265,7 +265,7 @@ anything that can get to the physics system can observe it.</p>
 the subject would be a separate &#8220;falling event&#8221; object. Observers could register
 themselves using something like:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">physics</span><span class="p">.</span><span class="n">entityFell</span><span class="p">()</span>
-<span class="w">  </span><span class="p">.</span><span class="n">addObserver</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="p">.</span><span class="n">addObserver</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
 </code></pre></div>
 
 <p>To me, this is the difference between &#8220;observer&#8221; systems and &#8220;event&#8221; systems.
@@ -368,31 +368,31 @@ the observer objects become nodes in a linked list:</p>
 <p><img src="images/observer-linked.png" alt="A linked list of Observers. Each has a next_ field pointing to the next one. A Subject has a head_ pointing to the first Observer." /></p>
 <p>To implement this, first we&#8217;ll get rid of the array in <code>Subject</code> and replace it
 with a pointer to the head of the list of observers:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Subject</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Subject</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="n">Subject</span><span class="p">()</span>
-<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">head_</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{}</span>
+  <span class="n">Subject</span><span class="p">()</span>
+  <span class="o">:</span> <span class="n">head_</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span>
+  <span class="p">{}</span>
 
-<span class="w">  </span><span class="c1">// Methods...</span>
+  <span class="c1">// Methods...</span>
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Observer</span><span class="o">*</span><span class="w"> </span><span class="n">head_</span><span class="p">;</span>
+  <span class="n">Observer</span><span class="o">*</span> <span class="n">head_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>Then we&#8217;ll extend <code>Observer</code> with a pointer to the next observer in the list:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Observer</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Observer</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Subject</span><span class="p">;</span>
+  <span class="k">friend</span> <span class="k">class</span> <span class="nc">Subject</span><span class="p">;</span>
 
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Observer</span><span class="p">()</span>
-<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">next_</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{}</span>
+  <span class="n">Observer</span><span class="p">()</span>
+  <span class="o">:</span> <span class="n">next_</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span>
+  <span class="p">{}</span>
 
-<span class="w">  </span><span class="c1">// Other stuff...</span>
+  <span class="c1">// Other stuff...</span>
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Observer</span><span class="o">*</span><span class="w"> </span><span class="n">next_</span><span class="p">;</span>
+  <span class="n">Observer</span><span class="o">*</span> <span class="n">next_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -402,10 +402,10 @@ and removing observers, but the list it will be managing is now inside the
 list is by making it a friend.</p>
 <p>Registering a new observer is just wiring it into the list. We&#8217;ll take the easy
 option and insert it at the front:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Subject::addObserver</span><span class="p">(</span><span class="n">Observer</span><span class="o">*</span><span class="w"> </span><span class="n">observer</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Subject::addObserver</span><span class="p">(</span><span class="n">Observer</span><span class="o">*</span> <span class="n">observer</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="n">observer</span><span class="o">-&gt;</span><span class="n">next_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head_</span><span class="p">;</span>
-<span class="w">  </span><span class="n">head_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">observer</span><span class="p">;</span>
+  <span class="n">observer</span><span class="o">-&gt;</span><span class="n">next_</span> <span class="o">=</span> <span class="n">head_</span><span class="p">;</span>
+  <span class="n">head_</span> <span class="o">=</span> <span class="n">observer</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -424,27 +424,27 @@ means those two observers have some subtle coupling that could end up biting
 you.</p>
 <p>Let&#8217;s get removal working:</p>
 <p><span name="remove"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Subject::removeObserver</span><span class="p">(</span><span class="n">Observer</span><span class="o">*</span><span class="w"> </span><span class="n">observer</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Subject::removeObserver</span><span class="p">(</span><span class="n">Observer</span><span class="o">*</span> <span class="n">observer</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">head_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">observer</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">head_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">observer</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">observer</span><span class="o">-&gt;</span><span class="n">next_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
-<span class="w">    </span><span class="k">return</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">head_</span> <span class="o">==</span> <span class="n">observer</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">head_</span> <span class="o">=</span> <span class="n">observer</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
+    <span class="n">observer</span><span class="o">-&gt;</span><span class="n">next_</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="n">Observer</span><span class="o">*</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head_</span><span class="p">;</span>
-<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">current</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">current</span><span class="o">-&gt;</span><span class="n">next_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">observer</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="n">current</span><span class="o">-&gt;</span><span class="n">next_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">observer</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
-<span class="w">      </span><span class="n">observer</span><span class="o">-&gt;</span><span class="n">next_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
-<span class="w">      </span><span class="k">return</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
+  <span class="n">Observer</span><span class="o">*</span> <span class="n">current</span> <span class="o">=</span> <span class="n">head_</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">current</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">current</span><span class="o">-&gt;</span><span class="n">next_</span> <span class="o">==</span> <span class="n">observer</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">current</span><span class="o">-&gt;</span><span class="n">next_</span> <span class="o">=</span> <span class="n">observer</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
+      <span class="n">observer</span><span class="o">-&gt;</span><span class="n">next_</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
 
-<span class="w">    </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -463,14 +463,14 @@ pointer to both the observer after it and before it, we can remove an observer
 in constant time. If this were real code, I&#8217;d do that.</p>
 <p>The <span name="chain">only</span> thing left to do is send a notification.
 That&#8217;s as simple as walking the list:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Subject::notify</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Entity</span><span class="o">&amp;</span><span class="w"> </span><span class="n">entity</span><span class="p">,</span><span class="w"> </span><span class="n">Event</span><span class="w"> </span><span class="n">event</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Subject::notify</span><span class="p">(</span><span class="k">const</span> <span class="n">Entity</span><span class="o">&amp;</span> <span class="n">entity</span><span class="p">,</span> <span class="n">Event</span> <span class="n">event</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="n">Observer</span><span class="o">*</span><span class="w"> </span><span class="n">observer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head_</span><span class="p">;</span>
-<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">observer</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">observer</span><span class="o">-&gt;</span><span class="n">onNotify</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">);</span>
-<span class="w">    </span><span class="n">observer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">observer</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="n">Observer</span><span class="o">*</span> <span class="n">observer</span> <span class="o">=</span> <span class="n">head_</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">observer</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">observer</span><span class="o">-&gt;</span><span class="n">onNotify</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">event</span><span class="p">);</span>
+    <span class="n">observer</span> <span class="o">=</span> <span class="n">observer</span><span class="o">-&gt;</span><span class="n">next_</span><span class="p">;</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 

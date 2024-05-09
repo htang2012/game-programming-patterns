@@ -212,34 +212,34 @@ very bare-bones graphics system that lets us draw pixels on a framebuffer. In
 most consoles and PCs, the video driver provides this low-level part of the
 graphics system, but implementing it by hand here will let us see what&#8217;s going on.
 First up is the buffer itself:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Framebuffer</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Framebuffer</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Framebuffer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">clear</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+  <span class="n">Framebuffer</span><span class="p">()</span> <span class="p">{</span> <span class="n">clear</span><span class="p">();</span> <span class="p">}</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">clear</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">WIDTH</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">HEIGHT</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="n">pixels_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WHITE</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="kt">void</span> <span class="n">clear</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">WIDTH</span> <span class="o">*</span> <span class="n">HEIGHT</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">pixels_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">WHITE</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">draw</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">pixels_</span><span class="p">[(</span><span class="n">WIDTH</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BLACK</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="kt">void</span> <span class="n">draw</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">pixels_</span><span class="p">[(</span><span class="n">WIDTH</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">BLACK</span><span class="p">;</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">getPixels</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">pixels_</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">getPixels</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="n">pixels_</span><span class="p">;</span>
+  <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">WIDTH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">160</span><span class="p">;</span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">HEIGHT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">120</span><span class="p">;</span>
+  <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">WIDTH</span> <span class="o">=</span> <span class="mi">160</span><span class="p">;</span>
+  <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">HEIGHT</span> <span class="o">=</span> <span class="mi">120</span><span class="p">;</span>
 
-<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="n">pixels_</span><span class="p">[</span><span class="n">WIDTH</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">HEIGHT</span><span class="p">];</span>
+  <span class="kt">char</span> <span class="n">pixels_</span><span class="p">[</span><span class="n">WIDTH</span> <span class="o">*</span> <span class="n">HEIGHT</span><span class="p">];</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -251,25 +251,25 @@ memory from the buffer onto the screen.</p>
 <p>We wrap this raw buffer in a <code>Scene</code> class. It&#8217;s job here is to render something
 by making a bunch of <code>draw()</code> calls on its buffer:</p>
 <p><span name="draw"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Scene</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Scene</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">draw</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">buffer_</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+  <span class="kt">void</span> <span class="n">draw</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">buffer_</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
 
-<span class="w">    </span><span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-<span class="w">    </span><span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-<span class="w">    </span><span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
-<span class="w">    </span><span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
-<span class="w">    </span><span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
-<span class="w">    </span><span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
+    <span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+    <span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+    <span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+    <span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="n">Framebuffer</span><span class="o">&amp;</span><span class="w"> </span><span class="n">getBuffer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">buffer_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+  <span class="n">Framebuffer</span><span class="o">&amp;</span> <span class="n">getBuffer</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">buffer_</span><span class="p">;</span> <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Framebuffer</span><span class="w"> </span><span class="n">buffer_</span><span class="p">;</span>
+  <span class="n">Framebuffer</span> <span class="n">buffer_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -283,52 +283,52 @@ internal buffer through <code>getBuffer()</code> so that the video driver can ge
 <p>This seems pretty straightforward, but if we leave it like this, we&#8217;ll run into
 problems. The trouble is that the video driver can call <code>getPixels()</code> on the
 buffer at <em>any</em> point in time, even here:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-<span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 <span class="c1">// &lt;- Video driver reads pixels here!</span>
-<span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
-<span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
-<span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
-<span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="n">buffer_</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
 </code></pre></div>
 
 <p>When that happens, the user will see the eyes of the face, but the mouth will
 disappear for a single frame. In the next frame, it could get interrupted at some
 other point. The end result is horribly flickering graphics. We&#8217;ll fix this with
 double buffering:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Scene</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Scene</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Scene</span><span class="p">()</span>
-<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">current_</span><span class="p">(</span><span class="o">&amp;</span><span class="n">buffers_</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
-<span class="w">    </span><span class="n">next_</span><span class="p">(</span><span class="o">&amp;</span><span class="n">buffers_</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="w">  </span><span class="p">{}</span>
+  <span class="n">Scene</span><span class="p">()</span>
+  <span class="o">:</span> <span class="n">current_</span><span class="p">(</span><span class="o">&amp;</span><span class="n">buffers_</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+    <span class="n">next_</span><span class="p">(</span><span class="o">&amp;</span><span class="n">buffers_</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+  <span class="p">{}</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">draw</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">next_</span><span class="o">-&gt;</span><span class="n">clear</span><span class="p">();</span>
+  <span class="kt">void</span> <span class="n">draw</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">next_</span><span class="o">-&gt;</span><span class="n">clear</span><span class="p">();</span>
 
-<span class="w">    </span><span class="n">next_</span><span class="o">-&gt;</span><span class="n">draw</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-<span class="w">    </span><span class="c1">// ...</span>
-<span class="w">    </span><span class="n">next_</span><span class="o">-&gt;</span><span class="n">draw</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+    <span class="n">next_</span><span class="o">-&gt;</span><span class="n">draw</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="c1">// ...</span>
+    <span class="n">next_</span><span class="o">-&gt;</span><span class="n">draw</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">swap</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
+    <span class="n">swap</span><span class="p">();</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="n">Framebuffer</span><span class="o">&amp;</span><span class="w"> </span><span class="n">getBuffer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="n">current_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+  <span class="n">Framebuffer</span><span class="o">&amp;</span> <span class="n">getBuffer</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="o">*</span><span class="n">current_</span><span class="p">;</span> <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">swap</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Just switch the pointers.</span>
-<span class="w">    </span><span class="n">Framebuffer</span><span class="o">*</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">current_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">next_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">next_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="kt">void</span> <span class="n">swap</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="c1">// Just switch the pointers.</span>
+    <span class="n">Framebuffer</span><span class="o">*</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">current_</span><span class="p">;</span>
+    <span class="n">current_</span> <span class="o">=</span> <span class="n">next_</span><span class="p">;</span>
+    <span class="n">next_</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="n">Framebuffer</span><span class="w">  </span><span class="n">buffers_</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
-<span class="w">  </span><span class="n">Framebuffer</span><span class="o">*</span><span class="w"> </span><span class="n">current_</span><span class="p">;</span>
-<span class="w">  </span><span class="n">Framebuffer</span><span class="o">*</span><span class="w"> </span><span class="n">next_</span><span class="p">;</span>
+  <span class="n">Framebuffer</span>  <span class="n">buffers_</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+  <span class="n">Framebuffer</span><span class="o">*</span> <span class="n">current_</span><span class="p">;</span>
+  <span class="n">Framebuffer</span><span class="o">*</span> <span class="n">next_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -356,20 +356,20 @@ interacting with each other. Double-buffering is often helpful here too.</p>
 <p>Let&#8217;s say we&#8217;re building the behavioral system for, of all things, a game based
 on slapstick comedy. The game has a stage containing a bunch of actors that run
 around and get up to various hijinks and shenanigans. Here&#8217;s our base actor:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Actor</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Actor</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Actor</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">slapped_</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+  <span class="n">Actor</span><span class="p">()</span> <span class="o">:</span> <span class="n">slapped_</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span> <span class="p">{}</span>
 
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Actor</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">Actor</span><span class="p">()</span> <span class="p">{}</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">update</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">reset</span><span class="p">()</span><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="n">slapped_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">slap</span><span class="p">()</span><span class="w">       </span><span class="p">{</span><span class="w"> </span><span class="n">slapped_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">wasSlapped</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">slapped_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+  <span class="kt">void</span> <span class="nf">reset</span><span class="p">()</span>      <span class="p">{</span> <span class="n">slapped_</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kt">void</span> <span class="nf">slap</span><span class="p">()</span>       <span class="p">{</span> <span class="n">slapped_</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kt">bool</span> <span class="nf">wasSlapped</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">slapped_</span><span class="p">;</span> <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">slapped_</span><span class="p">;</span>
+  <span class="kt">bool</span> <span class="n">slapped_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -385,27 +385,27 @@ Method</a> pattern.</p>
 slap each other around&#8221;. When updating, the actor can call <code>slap()</code> on another
 actor to slap it and call <code>wasSlapped()</code> to determine if it has been slapped.</p>
 <p>The actors need a stage where they can interact, so let&#8217;s build that:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Stage</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Stage</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="n">Actor</span><span class="o">*</span><span class="w"> </span><span class="n">actor</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">actors_</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">actor</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="kt">void</span> <span class="n">add</span><span class="p">(</span><span class="n">Actor</span><span class="o">*</span> <span class="n">actor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">index</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">actors_</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">actor</span><span class="p">;</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ACTORS</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="n">actors_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">();</span>
-<span class="w">      </span><span class="n">actors_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">reset</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="kt">void</span> <span class="n">update</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">NUM_ACTORS</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">actors_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">();</span>
+      <span class="n">actors_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">reset</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">NUM_ACTORS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+  <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">NUM_ACTORS</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
 
-<span class="w">  </span><span class="n">Actor</span><span class="o">*</span><span class="w"> </span><span class="n">actors_</span><span class="p">[</span><span class="n">NUM_ACTORS</span><span class="p">];</span>
+  <span class="n">Actor</span><span class="o">*</span> <span class="n">actors_</span><span class="p">[</span><span class="n">NUM_ACTORS</span><span class="p">];</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -418,37 +418,37 @@ slap once.</p>
 <p>To get things going, let&#8217;s define a concrete actor subclass. Our comedian here
 is pretty simple. He faces a single actor. Whenever he gets slapped&#8202;&mdash;&#8202;by
 anyone&#8202;&mdash;&#8202;he responds by slapping the actor he faces.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Comedian</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Actor</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Comedian</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Actor</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">face</span><span class="p">(</span><span class="n">Actor</span><span class="o">*</span><span class="w"> </span><span class="n">actor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">facing_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">actor</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+  <span class="kt">void</span> <span class="n">face</span><span class="p">(</span><span class="n">Actor</span><span class="o">*</span> <span class="n">actor</span><span class="p">)</span> <span class="p">{</span> <span class="n">facing_</span> <span class="o">=</span> <span class="n">actor</span><span class="p">;</span> <span class="p">}</span>
 
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">wasSlapped</span><span class="p">())</span><span class="w"> </span><span class="n">facing_</span><span class="o">-&gt;</span><span class="n">slap</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">update</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">wasSlapped</span><span class="p">())</span> <span class="n">facing_</span><span class="o">-&gt;</span><span class="n">slap</span><span class="p">();</span>
+  <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Actor</span><span class="o">*</span><span class="w"> </span><span class="n">facing_</span><span class="p">;</span>
+  <span class="n">Actor</span><span class="o">*</span> <span class="n">facing_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>Now, let&#8217;s throw some comedians on a stage and see what happens. We&#8217;ll set up
 three comedians, each facing the next. The last one will face the first, in a
 big circle:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Stage</span><span class="w"> </span><span class="n">stage</span><span class="p">;</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Stage</span> <span class="n">stage</span><span class="p">;</span>
 
-<span class="n">Comedian</span><span class="o">*</span><span class="w"> </span><span class="n">harry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Comedian</span><span class="p">();</span>
-<span class="n">Comedian</span><span class="o">*</span><span class="w"> </span><span class="n">baldy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Comedian</span><span class="p">();</span>
-<span class="n">Comedian</span><span class="o">*</span><span class="w"> </span><span class="n">chump</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Comedian</span><span class="p">();</span>
+<span class="n">Comedian</span><span class="o">*</span> <span class="n">harry</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Comedian</span><span class="p">();</span>
+<span class="n">Comedian</span><span class="o">*</span> <span class="n">baldy</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Comedian</span><span class="p">();</span>
+<span class="n">Comedian</span><span class="o">*</span> <span class="n">chump</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Comedian</span><span class="p">();</span>
 
 <span class="n">harry</span><span class="o">-&gt;</span><span class="n">face</span><span class="p">(</span><span class="n">baldy</span><span class="p">);</span>
 <span class="n">baldy</span><span class="o">-&gt;</span><span class="n">face</span><span class="p">(</span><span class="n">chump</span><span class="p">);</span>
 <span class="n">chump</span><span class="o">-&gt;</span><span class="n">face</span><span class="p">(</span><span class="n">harry</span><span class="p">);</span>
 
-<span class="n">stage</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">harry</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
-<span class="n">stage</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">baldy</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-<span class="n">stage</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">chump</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="n">stage</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">harry</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">stage</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">baldy</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">stage</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">chump</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
 </code></pre></div>
 
 <p>The resulting stage is set up as shown in the following image. The arrows
@@ -478,9 +478,9 @@ within the stage&#8217;s array but leave them facing each other the same way.</p
 <p><img src="images/double-buffer-slaps-2.png" alt="The same boxes as before with the same arrows, but now they are ordered Chump, Baldy, Harry." /></p>
 <p>We&#8217;ll leave the rest of the stage setup alone, but we&#8217;ll replace the chunk of code
 where we add the actors to the stage with this:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">stage</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">harry</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
-<span class="n">stage</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">baldy</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-<span class="n">stage</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">chump</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><code><span class="n">stage</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">harry</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">stage</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">baldy</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">stage</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">chump</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 </code></pre></div>
 
 <p>Let&#8217;s see what happens when we run our experiment again:</p>
@@ -513,29 +513,29 @@ matter.</p>
 <p>Fortunately, our Double Buffer pattern can help. This time, instead of
 having two copies of a monolithic &#8220;buffer&#8221; object, we&#8217;ll be buffering
 at a much finer granularity: each actor&#8217;s &#8220;slapped&#8221; state:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Actor</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Actor</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Actor</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">currentSlapped_</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+  <span class="n">Actor</span><span class="p">()</span> <span class="o">:</span> <span class="n">currentSlapped_</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span> <span class="p">{}</span>
 
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Actor</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">Actor</span><span class="p">()</span> <span class="p">{}</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">update</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">swap</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Swap the buffer.</span>
-<span class="w">    </span><span class="n">currentSlapped_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nextSlapped_</span><span class="p">;</span>
+  <span class="kt">void</span> <span class="nf">swap</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="c1">// Swap the buffer.</span>
+    <span class="n">currentSlapped_</span> <span class="o">=</span> <span class="n">nextSlapped_</span><span class="p">;</span>
 
-<span class="w">    </span><span class="c1">// Clear the new &quot;next&quot; buffer.</span>
-<span class="w">    </span><span class="n">nextSlapped_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+    <span class="c1">// Clear the new &quot;next&quot; buffer.</span>
+    <span class="n">nextSlapped_</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">slap</span><span class="p">()</span><span class="w">       </span><span class="p">{</span><span class="w"> </span><span class="n">nextSlapped_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">wasSlapped</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">currentSlapped_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+  <span class="kt">void</span> <span class="nf">slap</span><span class="p">()</span>       <span class="p">{</span> <span class="n">nextSlapped_</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kt">bool</span> <span class="nf">wasSlapped</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">currentSlapped_</span><span class="p">;</span> <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">currentSlapped_</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">nextSlapped_</span><span class="p">;</span>
+  <span class="kt">bool</span> <span class="n">currentSlapped_</span><span class="p">;</span>
+  <span class="kt">bool</span> <span class="n">nextSlapped_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -546,17 +546,17 @@ reading, and the next state is used for writing.</p>
 before clearing the swap state, it copies the next state into the
 current one, making it the new current state. This also requires a
 small change in <code>Stage</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">Stage::update</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="kt">void</span> <span class="nf">Stage::update</span><span class="p">()</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ACTORS</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">actors_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">NUM_ACTORS</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">actors_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">();</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_ACTORS</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">actors_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">swap</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">NUM_ACTORS</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">actors_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">swap</span><span class="p">();</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -679,20 +679,20 @@ monolithic buffer while distributing the buffer across multiple objects.</p>
 <p>The idea is to get the &#8220;current&#8221; and &#8220;next&#8221; pointer concept and apply it
 to each of our objects by turning them into object-relative <em>offsets</em>.
 Like so:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Actor</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Actor</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">current_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">swap</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">current_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">next</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+  <span class="k">static</span> <span class="kt">void</span> <span class="n">init</span><span class="p">()</span> <span class="p">{</span> <span class="n">current_</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+  <span class="k">static</span> <span class="kt">void</span> <span class="n">swap</span><span class="p">()</span> <span class="p">{</span> <span class="n">current_</span> <span class="o">=</span> <span class="n">next</span><span class="p">();</span> <span class="p">}</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">slap</span><span class="p">()</span><span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="n">slapped_</span><span class="p">[</span><span class="n">next</span><span class="p">()]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">wasSlapped</span><span class="p">()</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">slapped_</span><span class="p">[</span><span class="n">current_</span><span class="p">];</span><span class="w"> </span><span class="p">}</span>
+  <span class="kt">void</span> <span class="n">slap</span><span class="p">()</span>        <span class="p">{</span> <span class="n">slapped_</span><span class="p">[</span><span class="n">next</span><span class="p">()]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kt">bool</span> <span class="n">wasSlapped</span><span class="p">()</span>  <span class="p">{</span> <span class="k">return</span> <span class="n">slapped_</span><span class="p">[</span><span class="n">current_</span><span class="p">];</span> <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">current_</span><span class="p">;</span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">next</span><span class="p">()</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">current_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+  <span class="k">static</span> <span class="kt">int</span> <span class="n">current_</span><span class="p">;</span>
+  <span class="k">static</span> <span class="kt">int</span> <span class="nf">next</span><span class="p">()</span>  <span class="p">{</span> <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">current_</span><span class="p">;</span> <span class="p">}</span>
 
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">slapped_</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+  <span class="kt">bool</span> <span class="n">slapped_</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
 <span class="p">};</span>
 </code></pre></div>
 

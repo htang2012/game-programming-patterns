@@ -80,20 +80,20 @@ instances of our file system wrapper, how can they get ahold of one?</p>
 instance, it also provides a globally available method to get it. This way,
 anyone anywhere can get their paws on our blessed instance. All together, the
 classic implementation looks like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">FileSystem</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">FileSystem</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">FileSystem</span><span class="o">&amp;</span><span class="w"> </span><span class="n">instance</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Lazy initialize.</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">instance_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="n">instance_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileSystem</span><span class="p">();</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="n">instance_</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">static</span> <span class="n">FileSystem</span><span class="o">&amp;</span> <span class="n">instance</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="c1">// Lazy initialize.</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">instance_</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="n">instance_</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileSystem</span><span class="p">();</span>
+    <span class="k">return</span> <span class="o">*</span><span class="n">instance_</span><span class="p">;</span>
+  <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="n">FileSystem</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+  <span class="n">FileSystem</span><span class="p">()</span> <span class="p">{}</span>
 
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">FileSystem</span><span class="o">*</span><span class="w"> </span><span class="n">instance_</span><span class="p">;</span>
+  <span class="k">static</span> <span class="n">FileSystem</span><span class="o">*</span> <span class="n">instance_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -103,17 +103,17 @@ method grants access to the instance from anywhere in the codebase. It is also
 responsible for instantiating the singleton instance lazily the first time
 someone asks for it.</p>
 <p>A modern take looks like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">FileSystem</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">FileSystem</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">FileSystem</span><span class="o">&amp;</span><span class="w"> </span><span class="n">instance</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FileSystem</span><span class="w"> </span><span class="o">*</span><span class="n">instance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileSystem</span><span class="p">();</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="n">instance</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">static</span> <span class="n">FileSystem</span><span class="o">&amp;</span> <span class="n">instance</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">static</span> <span class="n">FileSystem</span> <span class="o">*</span><span class="n">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileSystem</span><span class="p">();</span>
+    <span class="k">return</span> <span class="o">*</span><span class="n">instance</span><span class="p">;</span>
+  <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="n">FileSystem</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+  <span class="n">FileSystem</span><span class="p">()</span> <span class="p">{}</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -158,70 +158,70 @@ singleton can even refer to another when initializing itself.</p>
     To make this work, we want it to be an abstract interface for a file system
     with subclasses that implement the interface for each platform. Here is the
     base class:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">FileSystem</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">FileSystem</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">FileSystem</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">readFile</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w">  </span><span class="nf">writeFile</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">contents</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">FileSystem</span><span class="p">()</span> <span class="p">{}</span>
+  <span class="k">virtual</span> <span class="kt">char</span><span class="o">*</span> <span class="n">readFile</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">path</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="kt">void</span>  <span class="nf">writeFile</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">path</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">contents</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>Then we define derived classes for a couple of platforms:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PS3FileSystem</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">FileSystem</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">PS3FileSystem</span> <span class="o">:</span> <span class="k">public</span> <span class="n">FileSystem</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">readFile</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">path</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span>
-<span class="w">    </span><span class="c1">// Use Sony file IO API...</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">virtual</span> <span class="kt">char</span><span class="o">*</span> <span class="n">readFile</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">path</span><span class="p">)</span>
+  <span class="p">{</span> 
+    <span class="c1">// Use Sony file IO API...</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">writeFile</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">contents</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Use sony file IO API...</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">writeFile</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">path</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">contents</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// Use sony file IO API...</span>
+  <span class="p">}</span>
 <span class="p">};</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">WiiFileSystem</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">FileSystem</span>
+<span class="k">class</span> <span class="nc">WiiFileSystem</span> <span class="o">:</span> <span class="k">public</span> <span class="n">FileSystem</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">readFile</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">path</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span>
-<span class="w">    </span><span class="c1">// Use Nintendo file IO API...</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">virtual</span> <span class="kt">char</span><span class="o">*</span> <span class="n">readFile</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">path</span><span class="p">)</span>
+  <span class="p">{</span> 
+    <span class="c1">// Use Nintendo file IO API...</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">writeFile</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">contents</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Use Nintendo file IO API...</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">writeFile</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">path</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">contents</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// Use Nintendo file IO API...</span>
+  <span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>Next, we turn <code>FileSystem</code> into a singleton:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">FileSystem</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">FileSystem</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">FileSystem</span><span class="o">&amp;</span><span class="w"> </span><span class="n">instance</span><span class="p">();</span>
+  <span class="k">static</span> <span class="n">FileSystem</span><span class="o">&amp;</span> <span class="n">instance</span><span class="p">();</span>
 
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">FileSystem</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">readFile</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w">  </span><span class="nf">writeFile</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">contents</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">FileSystem</span><span class="p">()</span> <span class="p">{}</span>
+  <span class="k">virtual</span> <span class="kt">char</span><span class="o">*</span> <span class="n">readFile</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">path</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="kt">void</span>  <span class="nf">writeFile</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">path</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">contents</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
 <span class="k">protected</span><span class="o">:</span>
-<span class="w">  </span><span class="n">FileSystem</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+  <span class="n">FileSystem</span><span class="p">()</span> <span class="p">{}</span>
 <span class="p">};</span>
 </code></pre></div>
 
 <p>The clever part is how the instance is created:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">FileSystem</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">FileSystem::instance</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="n">FileSystem</span><span class="o">&amp;</span> <span class="nf">FileSystem::instance</span><span class="p">()</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="cp">#if PLATFORM == PLAYSTATION3</span>
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FileSystem</span><span class="w"> </span><span class="o">*</span><span class="n">instance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PS3FileSystem</span><span class="p">();</span>
-<span class="w">  </span><span class="cp">#elif PLATFORM == WII</span>
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">FileSystem</span><span class="w"> </span><span class="o">*</span><span class="n">instance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">WiiFileSystem</span><span class="p">();</span>
-<span class="w">  </span><span class="cp">#endif</span>
+  <span class="cp">#if PLATFORM == PLAYSTATION3</span>
+    <span class="k">static</span> <span class="n">FileSystem</span> <span class="o">*</span><span class="n">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PS3FileSystem</span><span class="p">();</span>
+  <span class="cp">#elif PLATFORM == WII</span>
+    <span class="k">static</span> <span class="n">FileSystem</span> <span class="o">*</span><span class="n">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WiiFileSystem</span><span class="p">();</span>
+  <span class="cp">#endif</span>
 
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="n">instance</span><span class="p">;</span>
+  <span class="k">return</span> <span class="o">*</span><span class="n">instance</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -366,15 +366,15 @@ explanation of memory fragmentation.</p>
 </aside>
 <p>Because of these two problems, most games I&#8217;ve seen don&#8217;t rely on lazy
 initialization. Instead, they implement the Singleton pattern like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">FileSystem</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">FileSystem</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">FileSystem</span><span class="o">&amp;</span><span class="w"> </span><span class="n">instance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">instance_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+  <span class="k">static</span> <span class="n">FileSystem</span><span class="o">&amp;</span> <span class="n">instance</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">instance_</span><span class="p">;</span> <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="n">FileSystem</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+  <span class="n">FileSystem</span><span class="p">()</span> <span class="p">{}</span>
 
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">FileSystem</span><span class="w"> </span><span class="n">instance_</span><span class="p">;</span>
+  <span class="k">static</span> <span class="n">FileSystem</span> <span class="n">instance_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -413,43 +413,43 @@ ParticleManager, Sound, SoundManager, ManagerManager. Sometimes, for variety,
 they&#8217;ll throw a &#8220;System&#8221; or &#8220;Engine&#8221; in there, but it&#8217;s still the same idea.</p>
 <p>While caretaker classes are sometimes useful, often they just reflect
 unfamiliarity with OOP. Consider these two contrived classes:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Bullet</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Bullet</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">getX</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">x_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">getY</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">y_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+  <span class="kt">int</span> <span class="n">getX</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x_</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kt">int</span> <span class="n">getY</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">y_</span><span class="p">;</span> <span class="p">}</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">setX</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">setY</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">y_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+  <span class="kt">void</span> <span class="n">setX</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="n">x_</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kt">void</span> <span class="n">setY</span><span class="p">(</span><span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span> <span class="n">y_</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span> <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">x_</span><span class="p">,</span><span class="w"> </span><span class="n">y_</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">x_</span><span class="p">,</span> <span class="n">y_</span><span class="p">;</span>
 <span class="p">};</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">BulletManager</span>
+<span class="k">class</span> <span class="nc">BulletManager</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Bullet</span><span class="o">*</span><span class="w"> </span><span class="n">create</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">Bullet</span><span class="o">*</span><span class="w"> </span><span class="n">bullet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Bullet</span><span class="p">();</span>
-<span class="w">    </span><span class="n">bullet</span><span class="o">-&gt;</span><span class="n">setX</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
-<span class="w">    </span><span class="n">bullet</span><span class="o">-&gt;</span><span class="n">setY</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+  <span class="n">Bullet</span><span class="o">*</span> <span class="n">create</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">Bullet</span><span class="o">*</span> <span class="n">bullet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Bullet</span><span class="p">();</span>
+    <span class="n">bullet</span><span class="o">-&gt;</span><span class="n">setX</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+    <span class="n">bullet</span><span class="o">-&gt;</span><span class="n">setY</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">bullet</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">bullet</span><span class="p">;</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">isOnScreen</span><span class="p">(</span><span class="n">Bullet</span><span class="o">&amp;</span><span class="w"> </span><span class="n">bullet</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">bullet</span><span class="p">.</span><span class="n">getX</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span>
-<span class="w">           </span><span class="n">bullet</span><span class="p">.</span><span class="n">getX</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">SCREEN_WIDTH</span><span class="w"> </span><span class="o">&amp;&amp;</span>
-<span class="w">           </span><span class="n">bullet</span><span class="p">.</span><span class="n">getY</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span>
-<span class="w">           </span><span class="n">bullet</span><span class="p">.</span><span class="n">getY</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">SCREEN_HEIGHT</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="kt">bool</span> <span class="n">isOnScreen</span><span class="p">(</span><span class="n">Bullet</span><span class="o">&amp;</span> <span class="n">bullet</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="n">bullet</span><span class="p">.</span><span class="n">getX</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span>
+           <span class="n">bullet</span><span class="p">.</span><span class="n">getX</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">SCREEN_WIDTH</span> <span class="o">&amp;&amp;</span>
+           <span class="n">bullet</span><span class="p">.</span><span class="n">getY</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span>
+           <span class="n">bullet</span><span class="p">.</span><span class="n">getY</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">SCREEN_HEIGHT</span><span class="p">;</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="n">Bullet</span><span class="o">&amp;</span><span class="w"> </span><span class="n">bullet</span><span class="p">)</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">bullet</span><span class="p">.</span><span class="n">setX</span><span class="p">(</span><span class="n">bullet</span><span class="p">.</span><span class="n">getX</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="kt">void</span> <span class="n">move</span><span class="p">(</span><span class="n">Bullet</span><span class="o">&amp;</span> <span class="n">bullet</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">bullet</span><span class="p">.</span><span class="n">setX</span><span class="p">(</span><span class="n">bullet</span><span class="p">.</span><span class="n">getX</span><span class="p">()</span> <span class="o">+</span> <span class="mi">5</span><span class="p">);</span>
+  <span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -460,21 +460,21 @@ all, anything that has a <code>Bullet</code> will need the manager too, and how 
 instances of <code>BulletManager</code> do you need?</p>
 <p>The answer here is <em>zero</em>, actually. Here&#8217;s how we solve the &#8220;singleton&#8221; problem
 for our manager class:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Bullet</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Bullet</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Bullet</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">x_</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="n">y_</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+  <span class="n">Bullet</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="o">:</span> <span class="n">x_</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">y_</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="p">{}</span>
 
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">isOnScreen</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x_</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">x_</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">SCREEN_WIDTH</span><span class="w"> </span><span class="o">&amp;&amp;</span>
-<span class="w">           </span><span class="n">y_</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">y_</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">SCREEN_HEIGHT</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="kt">bool</span> <span class="n">isOnScreen</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="n">x_</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">x_</span> <span class="o">&lt;</span> <span class="n">SCREEN_WIDTH</span> <span class="o">&amp;&amp;</span>
+           <span class="n">y_</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">y_</span> <span class="o">&lt;</span> <span class="n">SCREEN_HEIGHT</span><span class="p">;</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">move</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x_</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+  <span class="kt">void</span> <span class="n">move</span><span class="p">()</span> <span class="p">{</span> <span class="n">x_</span> <span class="o">+=</span> <span class="mi">5</span><span class="p">;</span> <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">x_</span><span class="p">,</span><span class="w"> </span><span class="n">y_</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">x_</span><span class="p">,</span> <span class="n">y_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -500,22 +500,22 @@ of abstraction.</p>
 <p>We want a way to ensure single instantiation <em>without</em> providing global access.
 There are a couple of ways to accomplish this. Here&#8217;s one:</p>
 <p><span name="assert"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">FileSystem</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">FileSystem</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">FileSystem</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="o">!</span><span class="n">instantiated_</span><span class="p">);</span>
-<span class="w">    </span><span class="n">instantiated_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="n">FileSystem</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">assert</span><span class="p">(</span><span class="o">!</span><span class="n">instantiated_</span><span class="p">);</span>
+    <span class="n">instantiated_</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+  <span class="p">}</span>
 
-<span class="w">  </span><span class="o">~</span><span class="n">FileSystem</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">instantiated_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+  <span class="o">~</span><span class="n">FileSystem</span><span class="p">()</span> <span class="p">{</span> <span class="n">instantiated_</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span> <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">instantiated_</span><span class="p">;</span>
+  <span class="k">static</span> <span class="kt">bool</span> <span class="n">instantiated_</span><span class="p">;</span>
 <span class="p">};</span>
 
-<span class="kt">bool</span><span class="w"> </span><span class="n">FileSystem</span><span class="o">::</span><span class="n">instantiated_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="kt">bool</span> <span class="n">FileSystem</span><span class="o">::</span><span class="n">instantiated_</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
 </code></pre></div>
 
 <p>This class allows anyone to construct it, but it will assert and fail if you try to
@@ -594,21 +594,21 @@ designed to address these concerns.</p>
     these classes already have access to the same thing: their <code>GameObject</code> base
     class. We can use that to our advantage:</p>
 <p><span name="gameobject"></span></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">GameObject</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">GameObject</span>
 <span class="p">{</span>
 <span class="k">protected</span><span class="o">:</span>
-<span class="w">  </span><span class="n">Log</span><span class="o">&amp;</span><span class="w"> </span><span class="n">getLog</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">log_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+  <span class="n">Log</span><span class="o">&amp;</span> <span class="n">getLog</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">log_</span><span class="p">;</span> <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">Log</span><span class="o">&amp;</span><span class="w"> </span><span class="n">log_</span><span class="p">;</span>
+  <span class="k">static</span> <span class="n">Log</span><span class="o">&amp;</span> <span class="n">log_</span><span class="p">;</span>
 <span class="p">};</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">Enemy</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">GameObject</span>
+<span class="k">class</span> <span class="nc">Enemy</span> <span class="o">:</span> <span class="k">public</span> <span class="n">GameObject</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">doSomething</span><span class="p">()</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">getLog</span><span class="p">().</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;I can log!&quot;</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
+  <span class="kt">void</span> <span class="nf">doSomething</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="n">getLog</span><span class="p">().</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;I can log!&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
 
@@ -635,23 +635,23 @@ find it.</p>
 <p>We can reduce the number of global classes by piggybacking on existing ones
 like that. Instead of making singletons out of <code>Log</code>, <code>FileSystem</code>, and
 <code>AudioPlayer</code>, do this:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Game</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Game</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">Game</span><span class="o">&amp;</span><span class="w"> </span><span class="n">instance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">instance_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+  <span class="k">static</span> <span class="n">Game</span><span class="o">&amp;</span> <span class="n">instance</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">instance_</span><span class="p">;</span> <span class="p">}</span>
 
-<span class="w">  </span><span class="c1">// Functions to set log_, et. al. ...</span>
+  <span class="c1">// Functions to set log_, et. al. ...</span>
 
-<span class="w">  </span><span class="n">Log</span><span class="o">&amp;</span><span class="w">         </span><span class="n">getLog</span><span class="p">()</span><span class="w">         </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="n">log_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="n">FileSystem</span><span class="o">&amp;</span><span class="w">  </span><span class="n">getFileSystem</span><span class="p">()</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="n">fileSystem_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="n">AudioPlayer</span><span class="o">&amp;</span><span class="w"> </span><span class="n">getAudioPlayer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="n">audioPlayer_</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+  <span class="n">Log</span><span class="o">&amp;</span>         <span class="n">getLog</span><span class="p">()</span>         <span class="p">{</span> <span class="k">return</span> <span class="o">*</span><span class="n">log_</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">FileSystem</span><span class="o">&amp;</span>  <span class="n">getFileSystem</span><span class="p">()</span>  <span class="p">{</span> <span class="k">return</span> <span class="o">*</span><span class="n">fileSystem_</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">AudioPlayer</span><span class="o">&amp;</span> <span class="n">getAudioPlayer</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="o">*</span><span class="n">audioPlayer_</span><span class="p">;</span> <span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="n">instance_</span><span class="p">;</span>
+  <span class="k">static</span> <span class="n">Game</span> <span class="n">instance_</span><span class="p">;</span>
 
-<span class="w">  </span><span class="n">Log</span><span class="w">         </span><span class="o">*</span><span class="n">log_</span><span class="p">;</span>
-<span class="w">  </span><span class="n">FileSystem</span><span class="w">  </span><span class="o">*</span><span class="n">fileSystem_</span><span class="p">;</span>
-<span class="w">  </span><span class="n">AudioPlayer</span><span class="w"> </span><span class="o">*</span><span class="n">audioPlayer_</span><span class="p">;</span>
+  <span class="n">Log</span>         <span class="o">*</span><span class="n">log_</span><span class="p">;</span>
+  <span class="n">FileSystem</span>  <span class="o">*</span><span class="n">fileSystem_</span><span class="p">;</span>
+  <span class="n">AudioPlayer</span> <span class="o">*</span><span class="n">audioPlayer_</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
